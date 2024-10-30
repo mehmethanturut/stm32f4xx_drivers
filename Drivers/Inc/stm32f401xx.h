@@ -50,7 +50,7 @@
 /** @} */
 
 /**
- * @defgroup PERIPH_BASEADDR Base addresses for APB and AHB buses
+ * @defgroup BUS_BASEADDR Base addresses for APB and AHB buses
  * @{
  */
 #define PERIPH_BASEADDR                0x40000000U /**< Base address of peripheral memory */
@@ -61,7 +61,7 @@
 /** @} */
 
 /**
- * @defgroup PERIPH_BASEADDR Individual peripheral base addresses
+ * @defgroup INDIV_PERIPH_BASEADDR Individual peripheral base addresses
  * @{
  */
 #define TIM2_BASEADDR                  APB1PERIPH_BASEADDR /**< Base address of TIM2 */

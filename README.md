@@ -39,6 +39,7 @@ This project provides a GPIO driver library for the STM32F401xx microcontroller.
    ```c
    #include "stm32f401xx_gpio_driver.h"
    ```
+
 2. Initialize GPIO pins using `GPIO_Init()`, configure their mode, speed, and other settings as needed.
 
 ### Example
@@ -71,10 +72,11 @@ int main(void) {
 Each function in this project is documented using [Doxygen](https://www.doxygen.nl/). To generate documentation:
 
 1. Ensure Doxygen is installed.
-2. Run the following command in the project directory:
+
+2. Run the following .bat file in the project directory:
    
    ```bash
-   doxygen Doxyfile
+   generate_documentation.bat
    ```
 
 ### Key Files
@@ -95,12 +97,14 @@ The `stm32f401xx.h` file provides core definitions, register mappings, and clock
   #define NVIC_ISER0 ((volatile uint32_t*)0xE000E100)
   #define NVIC_ICER0 ((volatile uint32_t*)0xE000E180)
   ```
+
 - **Base Addresses**:
   
   ```c
   #define FLASH_BASEADDR 0x08000000U
   #define SRAM_BASEADDR  0x20000000U
   ```
+
 - **Peripheral Structure Example**:
   
   ```c
@@ -129,6 +133,7 @@ The `stm32f401xx_gpio_driver.h` file defines the GPIO driver interface, includin
   #define GPIO_MODE_IN 0
   #define GPIO_MODE_OUT 1
   ```
+
 - **Functions**:
   
   ```c
@@ -155,6 +160,7 @@ The `stm32f401xx_gpio_driver.c` file implements the GPIO driver functions declar
       // Function to initialize GPIO based on configuration
   }
   ```
+
 - **GPIO Write Example**:
   
   ```c
