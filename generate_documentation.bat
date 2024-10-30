@@ -1,6 +1,8 @@
 @echo off
 echo Checking for curl...
 
+mkdir docs
+
 REM Check if curl is available
 curl --version >nul 2>&1
 if errorlevel 1 (
