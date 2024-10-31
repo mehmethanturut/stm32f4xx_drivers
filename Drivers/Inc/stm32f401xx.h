@@ -1,8 +1,12 @@
-/*
- * stm32f401xx.h
- *
- *  Created on: Oct 25, 2024
- *      Author: Mehmethan Türüt
+/**
+ * @file stm32f401xx.h
+ * @brief Header file defining hardware registers and base addresses for STM32F401xx microcontroller.
+ * 
+ * This file provides definitions and macros for base addresses, peripheral structures,
+ * and clock configurations for STM32F401xx devices.
+ * 
+ * Created on: Oct 25, 2024
+ * Author: Mehmethan Türüt
  */
 
 #ifndef INC_STM32F401XX_H_
@@ -10,61 +14,60 @@
 
 #include <stdint.h>
 
-
-
 /*
 *****************************processor specific details**********************
 */
-/*
-    ARM Cortex Mx NVIC ISERx register addresses
-*/
 
+/** 
+ * @defgroup NVIC_ISERx ARM Cortex Mx NVIC ISERx register addresses
+ * @{
+ */
 #define NVIC_ISER0      ((volatile uint32_t*)0xE000E100)
 #define NVIC_ISER1      ((volatile uint32_t*)0xE000E104)
 #define NVIC_ISER2      ((volatile uint32_t*)0xE000E108)
 #define NVIC_ISER3      ((volatile uint32_t*)0xE000E10C)
+/** @} */
 
-/*
-    ARM Cortex Mx NVIC ICERx register addresses
-*/
-
+/** 
+ * @defgroup NVIC_ICERx ARM Cortex Mx NVIC ICERx register addresses
+ * @{
+ */
 #define NVIC_ICER0      ((volatile uint32_t*)0xE000E180)
 #define NVIC_ICER1      ((volatile uint32_t*)0xE000E184)
 #define NVIC_ICER2      ((volatile uint32_t*)0xE000E188)
 #define NVIC_ICER3      ((volatile uint32_t*)0xE000E18C)
+/** @} */
 
-
-/*
-    ARM Cortex Mx Priority register addresses
-*/
-
+/**
+ * @def NVIC_PR_BASEADDR 
+ * @brief ARM Cortex Mx Priority register base address.
+ */
 #define NVIC_PR_BASEADDR        ((volatile uint32_t*)0xE000E400)
 
-
-
-
-/*
-base address of flash and SRAM
-*/
-
+/** 
+ * @defgroup MEMORY_BASEADDR Base addresses of Flash, SRAM, and ROM
+ * @{
+ */
 #define FLASH_BASEADDR                 0x08000000U /**< Base address of Flash memory */
 #define SRAM_BASEADDR                  0x20000000U /**< Base address of SRAM memory */
 #define ROM_BASEADDR                   0x1FFF0000U /**< Base address of ROM memory */
+/** @} */
 
-/*
-base address of APB AHB bus peripherals
-*/
-
+/**
+ * @defgroup BUS_BASEADDR Base addresses for APB and AHB buses
+ * @{
+ */
 #define PERIPH_BASEADDR                0x40000000U /**< Base address of peripheral memory */
 #define APB1PERIPH_BASEADDR            PERIPH_BASEADDR /**< Base address of APB1 peripheral memory */
 #define APB2PERIPH_BASEADDR            0x40010000U /**< Base address of APB2 peripheral memory */
 #define AHB1PERIPH_BASEADDR            0x40020000U /**< Base address of AHB1 peripheral memory */
 #define AHB2PERIPH_BASEADDR            0x50000000U /**< Base address of AHB2 peripheral memory */
+/** @} */
 
-/*
-base address of peripherals
-*/
-
+/**
+ * @defgroup INDIV_PERIPH_BASEADDR Individual peripheral base addresses
+ * @{
+ */
 #define TIM2_BASEADDR                  APB1PERIPH_BASEADDR /**< Base address of TIM2 */
 #define TIM3_BASEADDR                  (APB1PERIPH_BASEADDR+ 0X400) /**< Base address of TIM3 */
 #define TIM4_BASEADDR                  (APB1PERIPH_BASEADDR+ 0X800) /**< Base address of TIM4 */
@@ -114,7 +117,9 @@ base address of peripherals
 */
 
 
-
+/** 
+ * @brief Structure for GPIO port mode register.
+ */
 volatile typedef struct 
 {
     struct{         //GPIO port mode register
@@ -323,7 +328,6 @@ volatile typedef struct
 /* 
 ******************RCC register definition structures******************
 */
-
 typedef struct
 {
     struct{         //RCC clock control register
@@ -924,9 +928,8 @@ typedef struct{
 
 
 
-
 /* 
-****************** EXTI register definition structures******************
+****************** SYSCFG register definition structures******************
 */
 
 typedef struct
@@ -997,6 +1000,10 @@ typedef struct
 }SYSCFG_RegDef_t;
 
 
+
+/* 
+****************** SPI register definition structures******************
+*/
 
 typedef struct{
     struct       //SPI control register 1
@@ -1115,6 +1122,10 @@ typedef struct{
 
 
 
+
+/** 
+ * @brief GPIO peripheral definitions for GPIOA, GPIOB, etc.
+ */
 #define GPIOA                 ((GPIO_RegDef_t*)  GPIOA_BASEADDR)
 #define GPIOB                 ((GPIO_RegDef_t*)  GPIOB_BASEADDR)
 #define GPIOC                 ((GPIO_RegDef_t*)  GPIOC_BASEADDR)
@@ -1122,8 +1133,10 @@ typedef struct{
 #define GPIOE                 ((GPIO_RegDef_t*)  GPIOE_BASEADDR)
 #define GPIOH                 ((GPIO_RegDef_t*)  GPIOH_BASEADDR)
 
-
-#define RCC                   ((RCCRegDef_t*)    RCC_BASEADDR)
+/** 
+ * @brief RCC peripheral definition.
+ */
+#define RCC                   ((RCC_RegDef_t*)    RCC_BASEADDR)
 
 
 #define EXTI	( (EXTI_RegDef_t*) EXTI_BASEADDR )
@@ -1143,27 +1156,26 @@ typedef struct{
 #define USART6  ( (USART_RegDef_t*)USART6_BASEADDR )
 
 
-/*
-************clock enable macros for GPIO peripherals*************
-*/
-
+/** 
+ * @defgroup CLOCK_ENABLE_MACROS Clock enable macros for GPIO, I2C, SPI, etc.
+ * @{
+ */
+ 
 #define GPIOA_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIOA_EN=1)
 #define GPIOB_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIOB_EN=1)
 #define GPIOC_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIOC_EN=1)
 #define GPIOD_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIOD_EN=1)
 #define GPIOE_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIOE_EN=1)
 #define GPIOH_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIOH_EN=1)
-
-
+  
+ 
 /*
 ************clock enable macros for I2Cx peripherals*************
 */
-
-
+ 
 #define I2C1_PCLK_EN()                   (RCC->RCC_APB1ENR_t.I2C1_EN=1)
 #define I2C2_PCLK_EN()                   (RCC->RCC_APB1ENR_t.I2C2_EN=1)
 #define I2C3_PCLK_EN()                   (RCC->RCC_APB1ENR_t.I2C3_EN=1)
-
 
 /*
 ************clock enable macros for SPIx peripherals*************
@@ -1310,10 +1322,10 @@ typedef struct{
                                             (x  ==   GPIOE)  ? 4:\
                                             (x  ==   GPIOH)  ? 7:0 )
 
-/*
-            generic macros
-*/
-
+/**
+ * @brief Generic macros.
+ */
+  
 #define ENABLE          1
 #define DISABLE         0
 #define SET             ENABLE
@@ -1321,7 +1333,8 @@ typedef struct{
 #define GPIO_PIN_SET    SET
 #define GPIO_PIN_RESET  RESET
 
-
+  
+  
 #include "stm32f401xx_gpio_driver.h"
 
 #include "Stm32f401xx_spi_driver.h"
