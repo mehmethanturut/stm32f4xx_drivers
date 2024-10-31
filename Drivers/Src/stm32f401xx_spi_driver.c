@@ -1,9 +1,14 @@
-/*
- * stm32f401xx_spi_driver.c
- *
- *  Created on: Oct 31, 2024
- *      Author: Mehmethan Türüt
+/**
+ * @file stm32f401xx_spi_driver.c
+ * @brief Source file for the SPI driver for STM32F401xx microcontrollers.
+ * 
+ * This file provides function definitions for configuring and controlling the SPI peripheral 
+ * on STM32F401xx devices, including initialization, data transmission, and interrupt handling.
+ * 
+ * Created on: Oct 31, 2024
+ * Author: Mehmethan Türüt
  */
+
 
 #include "stm32f401xx.h"
 
@@ -65,14 +70,74 @@ void SPI_PeriClkCtrl(SPI_RegDef_t *pSPIx, uint8_t EnorDi){
  * 
  * @param[in] pSPIHandle Pointer to the SPI handle structure.
  */
-void SPI_Init(SPI_Handle_t *pSPIHandle);
+void SPI_Init(SPI_Handle_t *pSPIHandle){
+
+
+    uint32_t *pTemp;
+    pTemp =(uint32_t*) &(pSPIHandle->pSPIx->SPI_CR1_t);
+    *pTemp = 0;
+
+    //1. configure the SPI device mode
+    pSPIHandle->pSPIx->SPI_CR1_t.MSTR=pSPIHandle->SPI_Config.SPI_DeviceMode;
+
+    //2. configure the SPI bus config
+    if (pSPIHandle->SPI_Config.SPI_BusConfig==SPI_BUS_CONFIG_FD)
+    {
+        //bidi mode should be cleared 
+        pSPIHandle->pSPIx->SPI_CR1_t.BIDIMODE=0;
+    }
+    else if (pSPIHandle->SPI_Config.SPI_BusConfig==SPI_BUS_CONFIG_HD)
+    {
+        //bidi mode should be set 
+        pSPIHandle->pSPIx->SPI_CR1_t.BIDIMODE=1;
+    }
+    else if (pSPIHandle->SPI_Config.SPI_BusConfig==SPI_BUS_CONFIG_SX_RX)
+    {
+        //bidi mode should be cleared
+        //RXONLY should be set
+        pSPIHandle->pSPIx->SPI_CR1_t.BIDIMODE=0;
+        pSPIHandle->pSPIx->SPI_CR1_t.RXONLY=1;
+    }
+    
+    //3. configure the SPI clock speed
+    pSPIHandle->pSPIx->SPI_CR1_t.BR=pSPIHandle->SPI_Config.SPI_SclkSpeed;
+
+    //4. configure the Data Rate Format
+    pSPIHandle->pSPIx->SPI_CR1_t.DFF=pSPIHandle->SPI_Config.SPI_DFF;
+
+    //5. configure the CPOL
+    pSPIHandle->pSPIx->SPI_CR1_t.CPOL=pSPIHandle->SPI_Config.SPI_CPOL;
+
+    //6. configure the CPHA
+    pSPIHandle->pSPIx->SPI_CR1_t.CPHA=pSPIHandle->SPI_Config.SPI_CPHA;
+    
+    
+}
+
 
 /**
  * @brief Deinitializes the SPI port, resetting it to its default state.
  * 
  * @param[in] pGPIOx Pointer to the SPI port base address.
  */
-void SPI_DeInit(SPI_RegDef_t *pSPIx);
+void SPI_DeInit(SPI_RegDef_t *pSPIx){
+        if (pSPIx==SPI1)
+    {
+        SPI1_REG_RESET();
+    }
+    else if (pSPIx==SPI2)
+    {
+        SPI2_REG_RESET();
+    }
+    else if (pSPIx==SPI3)
+    {
+        SPI3_REG_RESET();
+    }
+    else if (pSPIx==SPI4)
+    {
+        SPI4_REG_RESET();
+    }
+}
 
 /**
  * @brief Reads the value of a specific GPIO pin.

@@ -297,7 +297,7 @@ volatile typedef struct
         uint32_t LCK14      :1; /**< Lock configuration for pin 14 */
         uint32_t LCK15      :1; /**< Lock configuration for pin 15 */
         uint32_t LCKK       :1; /**< Lock key bit */
-        uint32_t reserved   :16; /**< Reserved bits */
+        uint32_t res   :16; /**< Reserved bits */
     } GPIOx_LCKR_t;
 
     struct{         //GPIO alternate function low register
@@ -333,21 +333,21 @@ volatile typedef struct
 typedef struct
 {
     struct{         //RCC clock control register
-        uint32_t HSI_ON           :1; /**< High-speed internal clock enable */
-        uint32_t HSI_RDY          :1; /**< HSI clock ready flag */
-        uint32_t res              :1; /**< Reserved */
-        uint32_t HSI_TRIM         :5; /**< HSI clock trimming */
-        uint32_t HSI_CAL          :8; /**< HSI clock calibration */
-        uint32_t HSE_ON           :1; /**< High-speed external clock enable */
-        uint32_t HSE_RDY          :1; /**< HSE clock ready flag */
-        uint32_t HSE_BYP          :1; /**< HSE clock bypass */
-        uint32_t CSS_ON           :1; /**< Clock security system enable */
-        uint32_t res1             :4; /**< Reserved */
-        uint32_t PLL_ON           :1; /**< PLL enable */
-        uint32_t PLL_RDY          :1; /**< PLL ready flag */
-        uint32_t PLL_I2S_ON       :1; /**< PLLI2S enable */
-        uint32_t PLL_I2S_RDY      :1; /**< PLLI2S ready flag */
-        uint32_t res2             :4; /**< Reserved */
+        uint32_t HSION           :1; /**< High-speed internal clock enable */
+        uint32_t HSIRDY          :1; /**< HSI clock ready flag */
+        uint32_t res             :1; /**< Reserved */
+        uint32_t HSITRIM         :5; /**< HSI clock trimming */
+        uint32_t HSICAL          :8; /**< HSI clock calibration */
+        uint32_t HSEON           :1; /**< High-speed external clock enable */
+        uint32_t HSERDY          :1; /**< HSE clock ready flag */
+        uint32_t HSEBYP          :1; /**< HSE clock bypass */
+        uint32_t CSSON           :1; /**< Clock security system enable */
+        uint32_t res1            :4; /**< Reserved */
+        uint32_t PLLON           :1; /**< PLL enable */
+        uint32_t PLLRDY          :1; /**< PLL ready flag */
+        uint32_t PLLI2S_ON       :1; /**< PLLI2S enable */
+        uint32_t PLLI2S_RDY      :1; /**< PLLI2S ready flag */
+        uint32_t res2            :4; /**< Reserved */
     } RCC_CR_t;
 
     struct{         //RCC PLL configuration register
@@ -383,52 +383,52 @@ typedef struct
         uint32_t RTCPRE           :5; /**< HSE division factor for RTC clock */
         uint32_t MCO1             :2; /**< Microcontroller clock output 1 */
         uint32_t I2SSCR           :1; /**< I2S clock selection */
-        uint32_t MCO1_PRE         :3; /**< MCO1 prescaler */
-        uint32_t MCO2_PRE         :3; /**< MCO2 prescaler */
+        uint32_t MCO1PRE          :3; /**< MCO1 prescaler */
+        uint32_t MCO2PRE          :3; /**< MCO2 prescaler */
         uint32_t MCO2             :2; /**< Microcontroller clock output 2 */
     } RCC_CFGR_t;
 
     struct{         //RCC clock interrupt register
-        uint32_t LSI_RDYF         :1; /**< LSI ready interrupt flag */
-        uint32_t LSE_RDYF         :1; /**< LSE ready interrupt flag */
-        uint32_t HSI_RDYF         :1; /**< HSI ready interrupt flag */
-        uint32_t HSE_RDYF         :1; /**< HSE ready interrupt flag */
-        uint32_t PLL_RDYF         :1; /**< PLL ready interrupt flag */
-        uint32_t PLL_I2S_RDYF     :1; /**< PLLI2S ready interrupt flag */
-        uint32_t res              :1; /**< Reserved */
-        uint32_t CSSF             :1; /**< Clock security system interrupt flag */
-        uint32_t LSI_RDYIE        :1; /**< LSI ready interrupt enable */
-        uint32_t LSE_RDYIE        :1; /**< LSE ready interrupt enable */
-        uint32_t HSI_RDYIE        :1; /**< HSI ready interrupt enable */
-        uint32_t HSE_RDYIE        :1; /**< HSE ready interrupt enable */
-        uint32_t PLL_RDYIE        :1; /**< PLL ready interrupt enable */
-        uint32_t PLL_I2S_RDYIE    :1; /**< PLLI2S ready interrupt enable */
-        uint32_t res1             :2; /**< Reserved */
-        uint32_t LSI_RDYC         :1; /**< LSI ready clear flag */
-        uint32_t LSE_RDYC         :1; /**< LSE ready clear flag */
-        uint32_t HSI_RDYC         :1; /**< HSI ready clear flag */
-        uint32_t HSE_RDYC         :1; /**< HSE ready clear flag */
-        uint32_t PLL_RDYC         :1; /**< PLL ready clear flag */
-        uint32_t PLL_I2S_RDYC     :1; /**< PLLI2S ready clear flag */
-        uint32_t res2             :1; /**< Reserved */
-        uint32_t CSSC             :1; /**< Clock security system interrupt clear */
-        uint32_t res3             :8; /**< Reserved */
+        uint32_t LSIRDYF         :1; /**< LSI ready interrupt flag */
+        uint32_t LSERDYF         :1; /**< LSE ready interrupt flag */
+        uint32_t HSIRDYF         :1; /**< HSI ready interrupt flag */
+        uint32_t HSERDYF         :1; /**< HSE ready interrupt flag */
+        uint32_t PLLRDYF         :1; /**< PLL ready interrupt flag */
+        uint32_t PLLI2SRDYF      :1; /**< PLLI2S ready interrupt flag */
+        uint32_t res             :1; /**< Reserved */
+        uint32_t CSSF            :1; /**< Clock security system interrupt flag */
+        uint32_t LSIRDYIE        :1; /**< LSI ready interrupt enable */
+        uint32_t LSERDYIE        :1; /**< LSE ready interrupt enable */
+        uint32_t HSIRDYIE        :1; /**< HSI ready interrupt enable */
+        uint32_t HSERDYIE        :1; /**< HSE ready interrupt enable */
+        uint32_t PLLRDYIE        :1; /**< PLL ready interrupt enable */
+        uint32_t PLLI2SRDYIE     :1; /**< PLLI2S ready interrupt enable */
+        uint32_t res1            :2; /**< Reserved */
+        uint32_t LSIRDYC         :1; /**< LSI ready clear flag */
+        uint32_t LSERDYC         :1; /**< LSE ready clear flag */
+        uint32_t HSIRDYC         :1; /**< HSI ready clear flag */
+        uint32_t HSERDYC         :1; /**< HSE ready clear flag */
+        uint32_t PLLRDYC         :1; /**< PLL ready clear flag */
+        uint32_t PLLI2SRDYC      :1; /**< PLLI2S ready clear flag */
+        uint32_t res2            :1; /**< Reserved */
+        uint32_t CSSC            :1; /**< Clock security system interrupt clear */
+        uint32_t res3            :8; /**< Reserved */
     } RCC_CIR_t;
 
     struct{         //RCC AHB1 peripheral reset register
-        uint32_t GPIOA_RST        :1; /**< Reset GPIOA */
-        uint32_t GPIOB_RST        :1; /**< Reset GPIOB */
-        uint32_t GPIOC_RST        :1; /**< Reset GPIOC */
-        uint32_t GPIOD_RST        :1; /**< Reset GPIOD */
-        uint32_t GPIOE_RST        :1; /**< Reset GPIOE */
-        uint32_t res              :2; /**< Reserved */
-        uint32_t GPIOH_RST        :1; /**< Reset GPIOH */
-        uint32_t res1             :4; /**< Reserved */
-        uint32_t CRC_R            :1; /**< Reset CRC module */
-        uint32_t res2             :8; /**< Reserved */
-        uint32_t DMA1_RST         :1; /**< Reset DMA1 */
-        uint32_t DMA2_RST         :1; /**< Reset DMA2 */
-        uint32_t res3             :9; /**< Reserved */
+        uint32_t GPIOARST        :1; /**< Reset GPIOA */
+        uint32_t GPIOBRST        :1; /**< Reset GPIOB */
+        uint32_t GPIOCRST        :1; /**< Reset GPIOC */
+        uint32_t GPIODRST        :1; /**< Reset GPIOD */
+        uint32_t GPIOERST        :1; /**< Reset GPIOE */
+        uint32_t res             :2; /**< Reserved */
+        uint32_t GPIOHRST        :1; /**< Reset GPIOH */
+        uint32_t res1            :4; /**< Reserved */
+        uint32_t CRCR            :1; /**< Reset CRC module */
+        uint32_t res2            :8; /**< Reserved */
+        uint32_t DMA1RST         :1; /**< Reset DMA1 */
+        uint32_t DMA2RST         :1; /**< Reset DMA2 */
+        uint32_t res3            :9; /**< Reserved */
     } RCC_AHB1RSTR_t;
 
 
@@ -448,50 +448,50 @@ typedef struct
 
     struct{         //RCC AHB2 peripheral reset register
         uint32_t res              :7; /**< Reserved */
-        uint32_t OTGFS_RST        :1; /**< Reset OTGFS */
+        uint32_t OTGFSRST        :1; /**< Reset OTGFS */
         uint32_t res1             :24; /**< Reserved */
     } RCC_AHB2RSTR_t;
 
 
 
        struct{                 //RCC APB1 peripheral reset register
-        uint32_t TIM2_RST         :1; /**< Reset TIM2 */
-        uint32_t TIM3_RST         :1; /**< Reset TIM3 */
-        uint32_t TIM4_RST         :1; /**< Reset TIM4 */
-        uint32_t TIM5_RST         :1; /**< Reset TIM5 */
-        uint32_t res              :7; /**< Reserved */
-        uint32_t WWDG_RST         :1; /**< Reset WWDG */
-        uint32_t res1             :2; /**< Reserved */
-        uint32_t SPI2_RST         :1; /**< Reset SPI2 */
-        uint32_t SPI3_RST         :1; /**< Reset SPI3 */
-        uint32_t res2             :1; /**< Reserved */
-        uint32_t USART2_RST       :1; /**< Reset USART2 */
-        uint32_t res3             :3; /**< Reserved */
-        uint32_t I2C1_RST         :1; /**< Reset I2C1 */
-        uint32_t I2C2_RST         :1; /**< Reset I2C2 */
-        uint32_t I2C3_RST         :1; /**< Reset I2C3 */
-        uint32_t res4             :4; /**< Reserved */
-        uint32_t PWR_RST          :1; /**< Reset PWR */
-        uint32_t res5             :3; /**< Reserved */
+        uint32_t TIM2RST         :1; /**< Reset TIM2 */
+        uint32_t TIM3RST         :1; /**< Reset TIM3 */
+        uint32_t TIM4RST         :1; /**< Reset TIM4 */
+        uint32_t TIM5RST         :1; /**< Reset TIM5 */
+        uint32_t res             :7; /**< Reserved */
+        uint32_t WWDGRST         :1; /**< Reset WWDG */
+        uint32_t res1            :2; /**< Reserved */
+        uint32_t SPI2RST         :1; /**< Reset SPI2 */
+        uint32_t SPI3RST         :1; /**< Reset SPI3 */
+        uint32_t res2            :1; /**< Reserved */
+        uint32_t USART2RST       :1; /**< Reset USART2 */
+        uint32_t res3            :3; /**< Reserved */
+        uint32_t I2C1RST         :1; /**< Reset I2C1 */
+        uint32_t I2C2RST         :1; /**< Reset I2C2 */
+        uint32_t I2C3RST         :1; /**< Reset I2C3 */
+        uint32_t res4            :4; /**< Reserved */
+        uint32_t PWRRST          :1; /**< Reset PWR */
+        uint32_t res5            :3; /**< Reserved */
     } RCC_APB1RSTR_t;
 
     struct{                 //RCC APB2 peripheral reset register
-        uint32_t TIM1_RST         :1; /**< Reset TIM1 */
-        uint32_t res              :3; /**< Reserved */
-        uint32_t USART1_RST       :1; /**< Reset USART1 */
-        uint32_t USART6_RST       :1; /**< Reset USART6 */
-        uint32_t res1             :2; /**< Reserved */
-        uint32_t ADC1_RST         :1; /**< Reset ADC1 */
-        uint32_t res2             :2; /**< Reserved */
-        uint32_t SDIO_RST         :1; /**< Reset SDIO */
-        uint32_t SPI1_RST         :1; /**< Reset SPI1 */
-        uint32_t SPI4_RST         :1; /**< Reset SPI4 */
-        uint32_t SYSCFG_RST       :1; /**< Reset SYSCFG */
-        uint32_t res3             :1; /**< Reserved */
-        uint32_t TIM9_RST         :1; /**< Reset TIM9 */
-        uint32_t TIM10_RST        :1; /**< Reset TIM10 */
-        uint32_t TIM11_RST        :1; /**< Reset TIM11 */
-        uint32_t res4             :13; /**< Reserved */
+        uint32_t TIM1RST         :1; /**< Reset TIM1 */
+        uint32_t res             :3; /**< Reserved */
+        uint32_t USART1RST       :1; /**< Reset USART1 */
+        uint32_t USART6RST       :1; /**< Reset USART6 */
+        uint32_t res1            :2; /**< Reserved */
+        uint32_t ADC1RST         :1; /**< Reset ADC1 */
+        uint32_t res2            :2; /**< Reserved */
+        uint32_t SDIORST         :1; /**< Reset SDIO */
+        uint32_t SPI1RST         :1; /**< Reset SPI1 */
+        uint32_t SPI4RST         :1; /**< Reset SPI4 */
+        uint32_t SYSCFGRST       :1; /**< Reset SYSCFG */
+        uint32_t res3            :1; /**< Reserved */
+        uint32_t TIM9RST         :1; /**< Reset TIM9 */
+        uint32_t TIM10RST        :1; /**< Reset TIM10 */
+        uint32_t TIM11RST        :1; /**< Reset TIM11 */
+        uint32_t res4            :13; /**< Reserved */
     } RCC_APB2RSTR_t;
 
 
@@ -506,24 +506,24 @@ typedef struct
     }RESERVED3_t;
 
     struct{                 //RCC AHB1 peripheral clock enable register
-        uint32_t GPIOA_EN         :1; /**< Enable clock for GPIOA */
-        uint32_t GPIOB_EN         :1; /**< Enable clock for GPIOB */
-        uint32_t GPIOC_EN         :1; /**< Enable clock for GPIOC */
-        uint32_t GPIOD_EN         :1; /**< Enable clock for GPIOD */
-        uint32_t GPIOE_EN         :1; /**< Enable clock for GPIOE */
-        uint32_t res              :2; /**< Reserved */
-        uint32_t GPIOH_EN         :1; /**< Enable clock for GPIOH */
-        uint32_t res1             :4; /**< Reserved */
-        uint32_t CRC_EN           :1; /**< Enable clock for CRC */
-        uint32_t res2             :8; /**< Reserved */
-        uint32_t DMA1_EN          :1; /**< Enable clock for DMA1 */
-        uint32_t DMA2_EN          :1; /**< Enable clock for DMA2 */
-        uint32_t res3             :9; /**< Reserved */
+        uint32_t GPIOAEN         :1; /**< Enable clock for GPIOA */
+        uint32_t GPIOBEN         :1; /**< Enable clock for GPIOB */
+        uint32_t GPIOCEN         :1; /**< Enable clock for GPIOC */
+        uint32_t GPIODEN         :1; /**< Enable clock for GPIOD */
+        uint32_t GPIOEEN         :1; /**< Enable clock for GPIOE */
+        uint32_t res             :2; /**< Reserved */
+        uint32_t GPIOHEN         :1; /**< Enable clock for GPIOH */
+        uint32_t res1            :4; /**< Reserved */
+        uint32_t CRCEN           :1; /**< Enable clock for CRC */
+        uint32_t res2            :8; /**< Reserved */
+        uint32_t DMA1EN          :1; /**< Enable clock for DMA1 */
+        uint32_t DMA2EN          :1; /**< Enable clock for DMA2 */
+        uint32_t res3            :9; /**< Reserved */
     } RCC_AHB1ENR_t;
 
     struct{                 //RCC AHB2 peripheral clock enable register
         uint32_t res              :7; /**< Reserved */
-        uint32_t OTGFS_EN         :1; /**< Enable clock for OTGFS */
+        uint32_t OTGFSEN         :1; /**< Enable clock for OTGFS */
         uint32_t res1             :24; /**< Reserved */
     } RCC_AHB2ENR_t;
 
@@ -539,43 +539,43 @@ typedef struct
     }RESERVED5_t;
 
     struct{                 //RCC APB1 peripheral clock enable register
-        uint32_t TIM2_EN          :1; /**< Enable clock for TIM2 */
-        uint32_t TIM3_EN          :1; /**< Enable clock for TIM3 */
-        uint32_t TIM4_EN          :1; /**< Enable clock for TIM4 */
-        uint32_t TIM5_EN          :1; /**< Enable clock for TIM5 */
-        uint32_t res              :7; /**< Reserved */
-        uint32_t WWDG_EN          :1; /**< Enable clock for WWDG */
-        uint32_t res1             :2; /**< Reserved */
-        uint32_t SPI2_EN          :1; /**< Enable clock for SPI2 */
-        uint32_t SPI3_EN          :1; /**< Enable clock for SPI3 */
-        uint32_t res2             :1; /**< Reserved */
-        uint32_t USART2_EN        :1; /**< Enable clock for USART2 */
-        uint32_t res3             :3; /**< Reserved */
-        uint32_t I2C1_EN          :1; /**< Enable clock for I2C1 */
-        uint32_t I2C2_EN          :1; /**< Enable clock for I2C2 */
-        uint32_t I2C3_EN          :1; /**< Enable clock for I2C3 */
-        uint32_t res4             :4; /**< Reserved */
-        uint32_t PWR_EN           :1; /**< Enable clock for PWR */
-        uint32_t res5             :3; /**< Reserved */
+        uint32_t TIM2EN          :1; /**< Enable clock for TIM2 */
+        uint32_t TIM3EN          :1; /**< Enable clock for TIM3 */
+        uint32_t TIM4EN          :1; /**< Enable clock for TIM4 */
+        uint32_t TIM5EN          :1; /**< Enable clock for TIM5 */
+        uint32_t res             :7; /**< Reserved */
+        uint32_t WWDGEN          :1; /**< Enable clock for WWDG */
+        uint32_t res1            :2; /**< Reserved */
+        uint32_t SPI2EN          :1; /**< Enable clock for SPI2 */
+        uint32_t SPI3EN          :1; /**< Enable clock for SPI3 */
+        uint32_t res2            :1; /**< Reserved */
+        uint32_t USART2EN        :1; /**< Enable clock for USART2 */
+        uint32_t res3            :3; /**< Reserved */
+        uint32_t I2C1EN          :1; /**< Enable clock for I2C1 */
+        uint32_t I2C2EN          :1; /**< Enable clock for I2C2 */
+        uint32_t I2C3EN          :1; /**< Enable clock for I2C3 */
+        uint32_t res4            :4; /**< Reserved */
+        uint32_t PWREN           :1; /**< Enable clock for PWR */
+        uint32_t res5            :3; /**< Reserved */
     } RCC_APB1ENR_t;
 
     struct{                 //RCC APB2 peripheral clock enable register
-        uint32_t TIM1_EN          :1; /**< Enable clock for TIM1 */
-        uint32_t res              :3; /**< Reserved */
-        uint32_t USART1_EN        :1; /**< Enable clock for USART1 */
-        uint32_t USART6_EN        :1; /**< Enable clock for USART6 */
-        uint32_t res1             :2; /**< Reserved */
-        uint32_t ADC1_EN          :1; /**< Enable clock for ADC1 */
-        uint32_t res2             :2; /**< Reserved */
-        uint32_t SDIO_EN          :1; /**< Enable clock for SDIO */
-        uint32_t SPI1_EN          :1; /**< Enable clock for SPI1 */
-        uint32_t SPI4_EN          :1; /**< Enable clock for SPI4 */
-        uint32_t SYSCFG_EN        :1; /**< Enable clock for SYSCFG */
-        uint32_t res3             :1; /**< Reserved */
-        uint32_t TIM9_EN          :1; /**< Enable clock for TIM9 */
-        uint32_t TIM10_EN         :1; /**< Enable clock for TIM10 */
-        uint32_t TIM11_EN         :1; /**< Enable clock for TIM11 */
-        uint32_t res4             :13; /**< Reserved */
+        uint32_t TIM1EN          :1; /**< Enable clock for TIM1 */
+        uint32_t res             :3; /**< Reserved */
+        uint32_t USART1EN        :1; /**< Enable clock for USART1 */
+        uint32_t USART6EN        :1; /**< Enable clock for USART6 */
+        uint32_t res1            :2; /**< Reserved */
+        uint32_t ADC1EN          :1; /**< Enable clock for ADC1 */
+        uint32_t res2            :2; /**< Reserved */
+        uint32_t SDIOEN          :1; /**< Enable clock for SDIO */
+        uint32_t SPI1EN          :1; /**< Enable clock for SPI1 */
+        uint32_t SPI4EN          :1; /**< Enable clock for SPI4 */
+        uint32_t SYSCFGEN        :1; /**< Enable clock for SYSCFG */
+        uint32_t res3            :1; /**< Reserved */
+        uint32_t TIM9EN          :1; /**< Enable clock for TIM9 */
+        uint32_t TIM10EN         :1; /**< Enable clock for TIM10 */
+        uint32_t TIM11EN         :1; /**< Enable clock for TIM11 */
+        uint32_t res4            :13; /**< Reserved */
     } RCC_APB2ENR_t;
 
 
@@ -592,28 +592,28 @@ typedef struct
     }RESERVED7_t;
 
     struct{                 //RCC AHB1 peripheral clock enable in low power mode register
-        uint32_t GPIOA_LPEN       :1; /**< Low power mode clock enable for GPIOA */
-        uint32_t GPIOB_LPEN       :1; /**< Low power mode clock enable for GPIOB */
-        uint32_t GPIOC_LPEN       :1; /**< Low power mode clock enable for GPIOC */
-        uint32_t GPIOD_LPEN       :1; /**< Low power mode clock enable for GPIOD */
-        uint32_t GPIOE_LPEN       :1; /**< Low power mode clock enable for GPIOE */
-        uint32_t res              :2; /**< Reserved */
-        uint32_t GPIOH_LPEN       :1; /**< Low power mode clock enable for GPIOH */
-        uint32_t res1             :4; /**< Reserved */
-        uint32_t CRC_LPEN         :1; /**< Low power mode clock enable for CRC */
-        uint32_t res2             :2; /**< Reserved */
-        uint32_t FLITF_LPEN       :1; /**< Low power mode clock enable for FLITF */
-        uint32_t SRAM1_LPEN       :1; /**< Low power mode clock enable for SRAM1 */
-        uint32_t res3             :4; /**< Reserved */
-        uint32_t DMA1_LPEN        :1; /**< Low power mode clock enable for DMA1 */
-        uint32_t DMA2_LPEN        :1; /**< Low power mode clock enable for DMA2 */
-        uint32_t res4             :9; /**< Reserved */
+        uint32_t GPIOALPEN       :1; /**< Low power mode clock enable for GPIOA */
+        uint32_t GPIOBLPEN       :1; /**< Low power mode clock enable for GPIOB */
+        uint32_t GPIOCLPEN       :1; /**< Low power mode clock enable for GPIOC */
+        uint32_t GPIODLPEN       :1; /**< Low power mode clock enable for GPIOD */
+        uint32_t GPIOELPEN       :1; /**< Low power mode clock enable for GPIOE */
+        uint32_t res             :2; /**< Reserved */
+        uint32_t GPIOHLPEN       :1; /**< Low power mode clock enable for GPIOH */
+        uint32_t res1            :4; /**< Reserved */
+        uint32_t CRCLPEN         :1; /**< Low power mode clock enable for CRC */
+        uint32_t res2            :2; /**< Reserved */
+        uint32_t FLITFLPEN       :1; /**< Low power mode clock enable for FLITF */
+        uint32_t SRAM1LPEN       :1; /**< Low power mode clock enable for SRAM1 */
+        uint32_t res3            :4; /**< Reserved */
+        uint32_t DMA1LPEN        :1; /**< Low power mode clock enable for DMA1 */
+        uint32_t DMA2LPEN        :1; /**< Low power mode clock enable for DMA2 */
+        uint32_t res4            :9; /**< Reserved */
     } RCC_AHB1LPENR_t;
 
     struct{                 //RCC AHB2 peripheral clock enable in low power mode register
-        uint32_t res              :7; /**< Reserved */
-        uint32_t OTGFS_EN         :1; /**< Low power mode clock enable for OTGFS */
-        uint32_t res1             :24; /**< Reserved */
+        uint32_t res             :7; /**< Reserved */
+        uint32_t OTGFSEN         :1; /**< Low power mode clock enable for OTGFS */
+        uint32_t res1            :24; /**< Reserved */
     } RCC_AHB2LPENR_t;
 
 
@@ -629,42 +629,42 @@ typedef struct
     }RESERVED9_t;
 
     struct{                 //RCC APB1 peripheral clock enable in low power mode register
-        uint32_t TIM2_LPEN        :1; /**< Low power mode clock enable for TIM2 */
-        uint32_t TIM3_LPEN        :1; /**< Low power mode clock enable for TIM3 */
-        uint32_t TIM4_LPEN        :1; /**< Low power mode clock enable for TIM4 */
-        uint32_t TIM5_LPEN        :1; /**< Low power mode clock enable for TIM5 */
-        uint32_t res              :7; /**< Reserved */
-        uint32_t WWDG_LPEN        :1; /**< Low power mode clock enable for WWDG */
-        uint32_t res1             :2; /**< Reserved */
-        uint32_t SPI2_LPEN        :1; /**< Low power mode clock enable for SPI2 */
-        uint32_t SPI3_LPEN        :1; /**< Low power mode clock enable for SPI3 */
-        uint32_t res2             :1; /**< Reserved */
-        uint32_t USART2_LPEN      :1; /**< Low power mode clock enable for USART2 */
-        uint32_t res3             :3; /**< Reserved */
-        uint32_t I2C1_LPEN        :1; /**< Low power mode clock enable for I2C1 */
-        uint32_t I2C2_LPEN        :1; /**< Low power mode clock enable for I2C2 */
-        uint32_t I2C3_LPEN        :1; /**< Low power mode clock enable for I2C3 */
-        uint32_t res4             :4; /**< Reserved */
-        uint32_t PWR_LPEN         :1; /**< Low power mode clock enable for PWR */
-        uint32_t res5             :3; /**< Reserved */
+        uint32_t TIM2LPEN        :1; /**< Low power mode clock enable for TIM2 */
+        uint32_t TIM3LPEN        :1; /**< Low power mode clock enable for TIM3 */
+        uint32_t TIM4LPEN        :1; /**< Low power mode clock enable for TIM4 */
+        uint32_t TIM5LPEN        :1; /**< Low power mode clock enable for TIM5 */
+        uint32_t res             :7; /**< Reserved */
+        uint32_t WWDGLPEN        :1; /**< Low power mode clock enable for WWDG */
+        uint32_t res1            :2; /**< Reserved */
+        uint32_t SPI2LPEN        :1; /**< Low power mode clock enable for SPI2 */
+        uint32_t SPI3LPEN        :1; /**< Low power mode clock enable for SPI3 */
+        uint32_t res2            :1; /**< Reserved */
+        uint32_t USART2LPEN      :1; /**< Low power mode clock enable for USART2 */
+        uint32_t res3            :3; /**< Reserved */
+        uint32_t I2C1LPEN        :1; /**< Low power mode clock enable for I2C1 */
+        uint32_t I2C2LPEN        :1; /**< Low power mode clock enable for I2C2 */
+        uint32_t I2C3LPEN        :1; /**< Low power mode clock enable for I2C3 */
+        uint32_t res4            :4; /**< Reserved */
+        uint32_t PWRLPEN         :1; /**< Low power mode clock enable for PWR */
+        uint32_t res5            :3; /**< Reserved */
     } RCC_APB1LPENR_t;
 
     struct{                 // RCC APB2 peripheral clock enabled in low power mode register
-        uint32_t TIM1_LPEN        :1; /**< Low power mode clock enable for TIM1 */
+        uint32_t TIM1LPEN        :1; /**< Low power mode clock enable for TIM1 */
         uint32_t res              :3; /**< Reserved */
-        uint32_t USART1_LPEN      :1; /**< Low power mode clock enable for USART1 */
-        uint32_t USART6_LPEN      :1; /**< Low power mode clock enable for USART6 */
+        uint32_t USART1LPEN      :1; /**< Low power mode clock enable for USART1 */
+        uint32_t USART6LPEN      :1; /**< Low power mode clock enable for USART6 */
         uint32_t res1             :2; /**< Reserved */
-        uint32_t ADC1_LPEN        :1; /**< Low power mode clock enable for ADC1 */
+        uint32_t ADC1LPEN        :1; /**< Low power mode clock enable for ADC1 */
         uint32_t res2             :2; /**< Reserved */
-        uint32_t SDIO_LPEN        :1; /**< Low power mode clock enable for SDIO */
-        uint32_t SPI1_LPEN        :1; /**< Low power mode clock enable for SPI1 */
-        uint32_t SPI4_LPEN        :1; /**< Low power mode clock enable for SPI4 */
-        uint32_t SYSCFG_LPEN      :1; /**< Low power mode clock enable for SYSCFG */
+        uint32_t SDIOLPEN        :1; /**< Low power mode clock enable for SDIO */
+        uint32_t SPI1LPEN        :1; /**< Low power mode clock enable for SPI1 */
+        uint32_t SPI4LPEN        :1; /**< Low power mode clock enable for SPI4 */
+        uint32_t SYSCFGLPEN      :1; /**< Low power mode clock enable for SYSCFG */
         uint32_t res3             :1; /**< Reserved */
-        uint32_t TIM9_LPEN        :1; /**< Low power mode clock enable for TIM9 */
-        uint32_t TIM10_LPEN       :1; /**< Low power mode clock enable for TIM10 */
-        uint32_t TIM11_LPEN       :1; /**< Low power mode clock enable for TIM11 */
+        uint32_t TIM9LPEN        :1; /**< Low power mode clock enable for TIM9 */
+        uint32_t TIM10LPEN       :1; /**< Low power mode clock enable for TIM10 */
+        uint32_t TIM11LPEN       :1; /**< Low power mode clock enable for TIM11 */
         uint32_t res4             :13; /**< Reserved */
     } RCC_APB2LPENR_t;
 
@@ -682,29 +682,29 @@ typedef struct
 
 
     struct{         //RCC Backup domain control register
-        uint32_t LSE_ON            :1; /**< LSE oscillator enable */
-        uint32_t LSE_RDY           :1; /**< LSE oscillator ready */
-        uint32_t LSE_BYP           :1; /**< LSE oscillator bypass */
-        uint32_t res               :5; /**< Reserved */
-        uint32_t RTC_SEL           :2; /**< RTC clock source selection */
-        uint32_t res1              :5; /**< Reserved */
-        uint32_t RTC_EN            :1; /**< RTC clock enable */
-        uint32_t BD_RST            :1; /**< Backup domain software reset */
-        uint32_t res2              :15; /**< Reserved */
+        uint32_t LSEON            :1; /**< LSE oscillator enable */
+        uint32_t LSERDY           :1; /**< LSE oscillator ready */
+        uint32_t LSEBYP           :1; /**< LSE oscillator bypass */
+        uint32_t res              :5; /**< Reserved */
+        uint32_t RTCSEL           :2; /**< RTC clock source selection */
+        uint32_t res1             :5; /**< Reserved */
+        uint32_t RTCEN            :1; /**< RTC clock enable */
+        uint32_t BDRST            :1; /**< Backup domain software reset */
+        uint32_t res2             :15; /**< Reserved */
     } RCC_BDCR_t;
 
     struct{         //RCC clock control & status register
-        uint32_t LSI_ON            :1; /**< LSI oscillator enable */
-        uint32_t LSI_RDY           :1; /**< LSI oscillator ready */
-        uint32_t res               :22; /**< Reserved */
-        uint32_t RMVF              :1; /**< Remove reset flag */
-        uint32_t BOR_RSTF          :1; /**< BOR reset flag */
-        uint32_t PIN_RSTF          :1; /**< PIN reset flag */
-        uint32_t POR_RSTF          :1; /**< POR/PDR reset flag */
-        uint32_t SFT_RSTF          :1; /**< Software reset flag */
-        uint32_t IWDG_RSTF         :1; /**< Independent watchdog reset flag */
-        uint32_t WWDG_RSTF         :1; /**< Window watchdog reset flag */
-        uint32_t LPWR_RSTF         :1; /**< Low-power reset flag */
+        uint32_t LSION            :1; /**< LSI oscillator enable */
+        uint32_t LSIRDY           :1; /**< LSI oscillator ready */
+        uint32_t res              :22; /**< Reserved */
+        uint32_t RMVF             :1; /**< Remove reset flag */
+        uint32_t BORRSTF          :1; /**< BOR reset flag */
+        uint32_t PINRSTF          :1; /**< PIN reset flag */
+        uint32_t PORRSTF          :1; /**< POR/PDR reset flag */
+        uint32_t SFTRSTF          :1; /**< Software reset flag */
+        uint32_t IWDGRSTF         :1; /**< Independent watchdog reset flag */
+        uint32_t WWDGRSTF         :1; /**< Window watchdog reset flag */
+        uint32_t LPWRRSTF         :1; /**< Low-power reset flag */
     } RCC_CSR_t;
 
     struct 
@@ -718,11 +718,11 @@ typedef struct
     } RESERVED13_t;
 
     struct{         // RCC spread spectrum clock generation register
-        uint32_t MOD_PER           :13; /**< Modulation period */
-        uint32_t INC_STEP          :15; /**< Increment step */
-        uint32_t res               :2; /**< Reserved */
-        uint32_t SPREAD_SEL        :1; /**< Spread Select */
-        uint32_t SSCG_EN           :1; /**< Spread spectrum clock generator enable */
+        uint32_t MODPER           :13; /**< Modulation period */
+        uint32_t INCSTEP          :15; /**< Increment step */
+        uint32_t res              :2; /**< Reserved */
+        uint32_t SPREADSEL        :1; /**< Spread Select */
+        uint32_t SSCGEN           :1; /**< Spread spectrum clock generator enable */
     } RCC_SSCGR_t;
 
     struct{         //RCC PLLI2S configuration register
@@ -750,7 +750,7 @@ typedef struct
 
     struct{         // RCC Dedicated Clocks Configuration Register
         uint32_t res               :24; /**< Reserved */
-        uint32_t TIM_PRE           :1; /**< Timer prescaler selection */
+        uint32_t TIMPRE            :1; /**< Timer prescaler selection */
         uint32_t PLL2SN1           :7; /**< Reserved */
     } RCC_DCKCFGR_t;
 
@@ -938,7 +938,7 @@ typedef struct
 {
     struct      //SYSCFG memory remap register
     {
-        uint32_t MEM_MODE          :2;
+        uint32_t MEM_MODE           :2;
         uint32_t res               :30;
     }SYSCFG_MEMRMP_t;
 
@@ -946,7 +946,7 @@ typedef struct
     struct      //SYSCFG peripheral mode configuration register
     {
         uint32_t res               :16;
-        uint32_t ADC1_DC2          :1;
+        uint32_t ADC1DC2           :1;
         uint32_t res1              :15;
     }SYSCFG_PMC_t;
 
@@ -1015,15 +1015,15 @@ typedef struct{
         uint32_t MSTR               :1;
         uint32_t BR                 :3;
         uint32_t SPE                :1;
-        uint32_t LSB_FIRST          :1;
+        uint32_t LSBFIRST           :1;
         uint32_t SSI                :1;
         uint32_t SSM                :1;
-        uint32_t RX_ONLY            :1;
+        uint32_t RXONLY             :1;
         uint32_t DFF                :1;
-        uint32_t CRC_NEXT           :1;
-        uint32_t CRC_EN             :1;
-        uint32_t BIDI_OE            :1;
-        uint32_t BIDI_MODE          :1;
+        uint32_t CRCNEXT            :1;
+        uint32_t CRCEN              :1;
+        uint32_t BIDIOE             :1;
+        uint32_t BIDIMODE           :1;
         uint32_t res1               :16;
     }SPI_CR1_t;
 
@@ -1050,7 +1050,7 @@ typedef struct{
         uint32_t TXE                :1;
         uint32_t CHSIDE             :1;
         uint32_t UDR                :1;
-        uint32_t CRC_ERR            :1;
+        uint32_t CRCERR             :1;
         uint32_t MODF               :1;
         uint32_t OVF                :1;
         uint32_t BSY                :1;
@@ -1094,12 +1094,12 @@ typedef struct{
         uint32_t CHLEN              :1;
         uint32_t DATLEN             :2;
         uint32_t CKPOL              :1;
-        uint32_t I2S_STD            :2;
+        uint32_t I2SSTD             :2;
         uint32_t res                :1;
-        uint32_t PCM_SYNC           :1;
-        uint32_t I2S_CFG            :2;
+        uint32_t PCMSYNC            :1;
+        uint32_t I2SCFG             :2;
         uint32_t I2SE               :1;
-        uint32_t I2S_MOD            :1;
+        uint32_t I2SMOD             :1;
         uint32_t res1               :20;
     }SPI_I2SCFGR_t;
 
@@ -1107,7 +1107,7 @@ typedef struct{
 
     struct       //SPI_I2S prescaler register
     {
-        uint32_t I2S_DIV            :8;
+        uint32_t I2SDIV             :8;
         uint32_t ODD                :1;
         uint32_t MCKOE              :1;
         uint32_t res                :22 ;
@@ -1163,30 +1163,30 @@ typedef struct{
  * @{
  */
  
-#define GPIOA_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIOA_EN=1)
-#define GPIOB_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIOB_EN=1)
-#define GPIOC_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIOC_EN=1)
-#define GPIOD_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIOD_EN=1)
-#define GPIOE_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIOE_EN=1)
-#define GPIOH_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIOH_EN=1)
+#define GPIOA_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIOAEN=1)
+#define GPIOB_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIOBEN=1)
+#define GPIOC_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIOCEN=1)
+#define GPIOD_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIODEN=1)
+#define GPIOE_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIOEEN=1)
+#define GPIOH_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIOHEN=1)
   
  
 /*
 ************clock enable macros for I2Cx peripherals*************
 */
  
-#define I2C1_PCLK_EN()                   (RCC->RCC_APB1ENR_t.I2C1_EN=1)
-#define I2C2_PCLK_EN()                   (RCC->RCC_APB1ENR_t.I2C2_EN=1)
-#define I2C3_PCLK_EN()                   (RCC->RCC_APB1ENR_t.I2C3_EN=1)
+#define I2C1_PCLK_EN()                   (RCC->RCC_APB1ENR_t.I2C1EN=1)
+#define I2C2_PCLK_EN()                   (RCC->RCC_APB1ENR_t.I2C2EN=1)
+#define I2C3_PCLK_EN()                   (RCC->RCC_APB1ENR_t.I2C3EN=1)
 
 /*
 ************clock enable macros for SPIx peripherals*************
 */
 
-#define SPI1_PCLK_EN()                   (RCC->RCC_APB2ENR_t.SPI1_EN=1)
-#define SPI2_PCLK_EN()                   (RCC->RCC_APB1ENR_t.SPI2_EN=1)
-#define SPI3_PCLK_EN()                   (RCC->RCC_APB1ENR_t.SPI3_EN=1)
-#define SPI4_PCLK_EN()                   (RCC->RCC_APB2ENR_t.SPI4_EN=1)
+#define SPI1_PCLK_EN()                   (RCC->RCC_APB2ENR_t.SPI1EN=1)
+#define SPI2_PCLK_EN()                   (RCC->RCC_APB1ENR_t.SPI2EN=1)
+#define SPI3_PCLK_EN()                   (RCC->RCC_APB1ENR_t.SPI3EN=1)
+#define SPI4_PCLK_EN()                   (RCC->RCC_APB2ENR_t.SPI4EN=1)
 
 
 
@@ -1194,15 +1194,15 @@ typedef struct{
 ************clock enable macros for USARTx peripherals*************
 */
 
-#define USART1_PCLK_EN()                   (RCC->RCC_APB2ENR_t.USART1_EN=1)
-#define USART6_PCLK_EN()                   (RCC->RCC_APB2ENR_t.USART6_EN=1)
+#define USART1_PCLK_EN()                   (RCC->RCC_APB2ENR_t.USART1EN=1)
+#define USART6_PCLK_EN()                   (RCC->RCC_APB2ENR_t.USART6EN=1)
 
 
 /*
 ************clock enable macros for SYSCFG peripherals*************
 */
 
-#define SYSCFG_PCLK_EN()                   (RCC->RCC_APB2ENR_t.SYSCFG_EN=1)
+#define SYSCFG_PCLK_EN()                   (RCC->RCC_APB2ENR_t.SYSCFGEN=1)
 
 
 
@@ -1210,12 +1210,12 @@ typedef struct{
 ************clock disable macros for GPIO peripherals*************
 */
 
-#define GPIOA_PCLK_DI()                  (RCC->RCC_AHB1ENR_t.GPIOA_EN=0)
-#define GPIOB_PCLK_DI()                  (RCC->RCC_AHB1ENR_t.GPIOB_EN=0)
-#define GPIOC_PCLK_DI()                  (RCC->RCC_AHB1ENR_t.GPIOC_EN=0)
-#define GPIOD_PCLK_DI()                  (RCC->RCC_AHB1ENR_t.GPIOD_EN=0)
-#define GPIOE_PCLK_DI()                  (RCC->RCC_AHB1ENR_t.GPIOE_EN=0)
-#define GPIOH_PCLK_DI()                  (RCC->RCC_AHB1ENR_t.GPIOH_EN=0)
+#define GPIOA_PCLK_DI()                  (RCC->RCC_AHB1ENR_t.GPIOAEN=0)
+#define GPIOB_PCLK_DI()                  (RCC->RCC_AHB1ENR_t.GPIOBEN=0)
+#define GPIOC_PCLK_DI()                  (RCC->RCC_AHB1ENR_t.GPIOCEN=0)
+#define GPIOD_PCLK_DI()                  (RCC->RCC_AHB1ENR_t.GPIODEN=0)
+#define GPIOE_PCLK_DI()                  (RCC->RCC_AHB1ENR_t.GPIOEEN=0)
+#define GPIOH_PCLK_DI()                  (RCC->RCC_AHB1ENR_t.GPIOHEN=0)
 
 
 
@@ -1224,9 +1224,9 @@ typedef struct{
 */
 
 
-#define I2C1_PCLK_DI()                   (RCC->RCC_APB1ENR_t.I2C1_EN=0)
-#define I2C2_PCLK_DI()                   (RCC->RCC_APB1ENR_t.I2C2_EN=0)
-#define I2C3_PCLK_DI()                   (RCC->RCC_APB1ENR_t.I2C3_EN=0)
+#define I2C1_PCLK_DI()                   (RCC->RCC_APB1ENR_t.I2C1EN=0)
+#define I2C2_PCLK_DI()                   (RCC->RCC_APB1ENR_t.I2C2EN=0)
+#define I2C3_PCLK_DI()                   (RCC->RCC_APB1ENR_t.I2C3EN=0)
 
 
 
@@ -1234,10 +1234,10 @@ typedef struct{
 ************clock disable macros for SPIx peripherals*************
 */
 
-#define SPI1_PCLK_DI()                   (RCC->RCC_APB2ENR_t.SPI1_EN=0)
-#define SPI2_PCLK_DI()                   (RCC->RCC_APB1ENR_t.SPI2_EN=0)
-#define SPI3_PCLK_DI()                   (RCC->RCC_APB1ENR_t.SPI3_EN=0)
-#define SPI4_PCLK_DI()                   (RCC->RCC_APB2ENR_t.SPI4_EN=0)
+#define SPI1_PCLK_DI()                   (RCC->RCC_APB2ENR_t.SPI1EN=0)
+#define SPI2_PCLK_DI()                   (RCC->RCC_APB1ENR_t.SPI2EN=0)
+#define SPI3_PCLK_DI()                   (RCC->RCC_APB1ENR_t.SPI3EN=0)
+#define SPI4_PCLK_DI()                   (RCC->RCC_APB2ENR_t.SPI4EN=0)
 
 
 
@@ -1245,8 +1245,8 @@ typedef struct{
 ************clock disable macros for USARTx peripherals*************
 */
 
-#define USART1_PCLK_DI()                   (RCC->RCC_APB2ENR_t.USART1_EN=0)
-#define USART6_PCLK_DI()                   (RCC->RCC_APB2ENR_t.USART6_EN=0)
+#define USART1_PCLK_DI()                   (RCC->RCC_APB2ENR_t.USART1EN=0)
+#define USART6_PCLK_DI()                   (RCC->RCC_APB2ENR_t.USART6EN=0)
 
 
 
@@ -1254,28 +1254,28 @@ typedef struct{
 ************clock disable macros for SYSCFG peripherals*************
 */
 
-#define SYSCFG_PCLK_DI()                   (RCC->RCC_APB2ENR_t.SYSCFG_EN=0)
+#define SYSCFG_PCLK_DI()                   (RCC->RCC_APB2ENR_t.SYSCFGEN=0)
 
 /*
     GPIO peripherals reset macros
 */
 
-#define GPIOA_REG_RESET()                 do{ (RCC->RCC_AHB1RSTR_t.GPIOA_RST=1);    (RCC->RCC_AHB1RSTR_t.GPIOA_RST=0);}while(0)
-#define GPIOB_REG_RESET()                 do{ (RCC->RCC_AHB1RSTR_t.GPIOB_RST=1);    (RCC->RCC_AHB1RSTR_t.GPIOB_RST=0);}while(0)
-#define GPIOC_REG_RESET()                 do{ (RCC->RCC_AHB1RSTR_t.GPIOC_RST=1);    (RCC->RCC_AHB1RSTR_t.GPIOC_RST=0);}while(0)
-#define GPIOD_REG_RESET()                 do{ (RCC->RCC_AHB1RSTR_t.GPIOD_RST=1);    (RCC->RCC_AHB1RSTR_t.GPIOD_RST=0);}while(0)
-#define GPIOE_REG_RESET()                 do{ (RCC->RCC_AHB1RSTR_t.GPIOE_RST=1);    (RCC->RCC_AHB1RSTR_t.GPIOE_RST=0);}while(0)
-#define GPIOH_REG_RESET()                 do{ (RCC->RCC_AHB1RSTR_t.GPIOH_RST=1);    (RCC->RCC_AHB1RSTR_t.GPIOH_RST=0);}while(0)
+#define GPIOA_REG_RESET()                 do{ (RCC->RCC_AHB1RSTR_t.GPIOARST=1);    (RCC->RCC_AHB1RSTR_t.GPIOARST=0);}while(0)
+#define GPIOB_REG_RESET()                 do{ (RCC->RCC_AHB1RSTR_t.GPIOBRST=1);    (RCC->RCC_AHB1RSTR_t.GPIOBRST=0);}while(0)
+#define GPIOC_REG_RESET()                 do{ (RCC->RCC_AHB1RSTR_t.GPIOCRST=1);    (RCC->RCC_AHB1RSTR_t.GPIOCRST=0);}while(0)
+#define GPIOD_REG_RESET()                 do{ (RCC->RCC_AHB1RSTR_t.GPIODRST=1);    (RCC->RCC_AHB1RSTR_t.GPIODRST=0);}while(0)
+#define GPIOE_REG_RESET()                 do{ (RCC->RCC_AHB1RSTR_t.GPIOERST=1);    (RCC->RCC_AHB1RSTR_t.GPIOERST=0);}while(0)
+#define GPIOH_REG_RESET()                 do{ (RCC->RCC_AHB1RSTR_t.GPIOHRST=1);    (RCC->RCC_AHB1RSTR_t.GPIOHRST=0);}while(0)
 
 
 /*
     SPI peripherals reset macros
 */
 
-#define SPI1_REG_RESET()                  do{ (RCC->RCC_APB2RSTR_t.SPI1_RST=1);     (RCC->RCC_APB2RSTR_t.SPI1_RST=0);}while(0)
-#define SPI2_REG_RESET()                  do{ (RCC->RCC_APB1RSTR_t.SPI2_RST=1);     (RCC->RCC_APB1RSTR_t.SPI2_RST=0);}while(0)
-#define SPI3_REG_RESET()                  do{ (RCC->RCC_APB1RSTR_t.SPI3_RST=1);     (RCC->RCC_APB1RSTR_t.SPI3_RST=0);}while(0)
-#define SPI4_REG_RESET()                  do{ (RCC->RCC_APB2RSTR_t.SPI4_RST=1);     (RCC->RCC_APB2RSTR_t.SPI4_RST=0);}while(0)
+#define SPI1_REG_RESET()                  do{ (RCC->RCC_APB2RSTR_t.SPI1RST=1);     (RCC->RCC_APB2RSTR_t.SPI1RST=0);}while(0)
+#define SPI2_REG_RESET()                  do{ (RCC->RCC_APB1RSTR_t.SPI2RST=1);     (RCC->RCC_APB1RSTR_t.SPI2RST=0);}while(0)
+#define SPI3_REG_RESET()                  do{ (RCC->RCC_APB1RSTR_t.SPI3RST=1);     (RCC->RCC_APB1RSTR_t.SPI3RST=0);}while(0)
+#define SPI4_REG_RESET()                  do{ (RCC->RCC_APB2RSTR_t.SPI4RST=1);     (RCC->RCC_APB2RSTR_t.SPI4RST=0);}while(0)
 
 /*
     IRQ numbers for stm32f401x

@@ -1,8 +1,12 @@
-/*
- * Stm32f401xx_spi_driver.h
- *
- *  Created on: Oct 30, 2024
- *      Author: mehme
+/**
+ * @file stm32f401xx_spi_driver.h
+ * @brief Header file for the GPIO driver for STM32F401xx microcontrollers
+ * 
+ * This file contains the configuration structures, macros, and function 
+ * prototypes to interface with the SPI peripheral on STM32F401xx devices.
+ * 
+ * Created on: Oct 31, 2024
+ * Author: Mehmethan Türüt
  */
 
 #ifndef INC_STM32F401XX_SPI_DRIVER_H_
@@ -39,6 +43,54 @@ typedef struct
 }SPI_Handle_t;
 
 
+/*
+@SPI_DeviceMode
+*/
+#define SPI_DEVICE_MODE_SLAVE    0
+#define SPI_DEVICE_MODE_MASTER   1
+
+/*
+@SPI_BusConfig
+*/
+#define SPI_BUS_CONFIG_FD           1   //full duplex
+#define SPI_BUS_CONFIG_HD           2   //half duplex
+#define SPI_BUS_CONFIG_SX_RX        3   //simplex rxonly
+
+/*
+@SPI_SclkSpeed
+*/
+#define SPI_SCLK_DIV2        0
+#define SPI_SCLK_DIV4        1
+#define SPI_SCLK_DIV8        2
+#define SPI_SCLK_DIV16       3
+#define SPI_SCLK_DIV32       4
+#define SPI_SCLK_DIV64       5
+#define SPI_SCLK_DIV128      6
+#define SPI_SCLK_DIV256      7
+
+/*
+@SPI_DFF
+*/
+#define SPI_DFF_8           0
+#define SPI_DFF_16          1
+
+/*
+@SPI_CPOL
+*/
+#define SPI_CPOL_HIGH       1
+#define SPI_CPOL_LOW        0
+
+/*
+@SPI_CPHA
+*/
+#define SPI_CPHA_HIGH       1
+#define SPI_CPHA_LOW        0
+
+/*
+@SPI_SSM
+*/
+#define SPI_SSM_EN          1   //software slave management enable
+#define SPI_SSM_DI          0   //software slave management disable
 /*******************************************************************************************
                             APIs supported by this driver 
 ********************************************************************************************/
