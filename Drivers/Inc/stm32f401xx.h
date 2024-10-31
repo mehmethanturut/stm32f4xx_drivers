@@ -998,6 +998,115 @@ typedef struct
 
 
 
+typedef struct{
+    struct       //SPI control register 1
+    {
+        uint32_t CPHA               :1;
+        uint32_t CPOL               :1;
+        uint32_t MSTR               :1;
+        uint32_t BR                 :3;
+        uint32_t SPE                :1;
+        uint32_t LSB_FIRST          :1;
+        uint32_t SSI                :1;
+        uint32_t SSM                :1;
+        uint32_t RX_ONLY            :1;
+        uint32_t DFF                :1;
+        uint32_t CRC_NEXT           :1;
+        uint32_t CRC_EN             :1;
+        uint32_t BIDI_OE            :1;
+        uint32_t BIDI_MODE          :1;
+        uint32_t res1               :16;
+    }SPI_CR1_t;
+
+
+
+    struct       //SPI control register 2
+    {
+        uint32_t RXDMAEN            :1;
+        uint32_t TXDMAEN            :1;
+        uint32_t SSOE               :1;
+        uint32_t res                :1;
+        uint32_t FRF                :1;
+        uint32_t ERRIE              :1;
+        uint32_t RXNEIE             :1;
+        uint32_t TXEIE              :1;
+        uint32_t res1               :24;
+    }SPI_CR2_t;
+
+
+
+    struct       //SPI status register
+    {
+        uint32_t RXNE               :1;
+        uint32_t TXE                :1;
+        uint32_t CHSIDE             :1;
+        uint32_t UDR                :1;
+        uint32_t CRC_ERR            :1;
+        uint32_t MODF               :1;
+        uint32_t OVF                :1;
+        uint32_t BSY                :1;
+        uint32_t res                :23;
+    }SPI_SR_t;
+
+
+
+    struct       //SPI data register
+    {
+        uint32_t DR                 :16;
+        uint32_t res                :16;
+    }SPI_DR_t;
+    
+
+
+    struct       //SPI CRC polynomial register
+    {
+        uint32_t CRCPOLY            :16;
+        uint32_t res                :16;
+    }SPI_CRCPR_t;
+
+
+    struct       //SPI RX CRC register
+    {
+        uint32_t RXCRC              :16;
+        uint32_t res                :16;
+    }SPI_CRCPR_t;
+
+
+    struct       //SPI TX CRC register
+    {
+        uint32_t TXCRC              :16;
+        uint32_t res                :16;
+    }SPI_TXCRCR_t;
+
+
+
+    struct       //SPI_I2S configuration register
+    {
+        uint32_t CHLEN              :1;
+        uint32_t DATLEN             :2;
+        uint32_t CKPOL              :1;
+        uint32_t I2S_STD            :2;
+        uint32_t res                :1;
+        uint32_t PCM_SYNC           :1;
+        uint32_t I2S_CFG            :2;
+        uint32_t I2SE               :1;
+        uint32_t I2S_MOD            :1;
+        uint32_t res                :20;
+    }SPI_I2SCFGR_t;
+
+
+
+    struct       //SPI_I2S prescaler register
+    {
+        uint32_t I2S_DIV            :8;
+        uint32_t ODD                :1;
+        uint32_t MCKOE              :1;
+        uint32_t res                :22 ;
+    }SPI_I2SPR_t;
+}SPI_RegDef_t
+
+
+
 
 
 /*
@@ -1022,8 +1131,8 @@ typedef struct
 #define SYSCFG	( (SYSCFG_RegDef_t*) SYSCFG_BASEADDR )
 
 #define SPI1    ( (SPI_RegDef_t*) SPI1_BASEADDR )
-#define SPI2    ( (SPI_RegDef_t*) SPI2_BASEADDR )
-#define SPI3    ( (SPI_RegDef_t*) SPI3_BASEADDR )
+#define SPI2    ( (SPI_RegDef_t*) SPI2_BASEADDR ) 
+#define SPI3    ( (SPI_RegDef_t*) SPI3_BASEADDR )   
 #define SPI4    ( (SPI_RegDef_t*) SPI4_BASEADDR )
 
 #define I2C1    ( (I2C_RegDef_t*) I2C1_BASEADDR )
@@ -1144,6 +1253,16 @@ typedef struct
 #define GPIOE_REG_RESET()                 do{ (RCC->RCC_AHB1RSTR_t.GPIOE_RST=1);    (RCC->RCC_AHB1RSTR_t.GPIOE_RST=0);}while(0)
 #define GPIOH_REG_RESET()                 do{ (RCC->RCC_AHB1RSTR_t.GPIOH_RST=1);    (RCC->RCC_AHB1RSTR_t.GPIOH_RST=0);}while(0)
 
+
+/*
+    SPI peripherals reset macros
+*/
+
+#define SPI1_REG_RESET()                  do{ (RCC->RCC_APB2RSTR_t.SPI1_RST=1);     (RCC->RCC_APB2RSTR_t.SPI1_RST=0);}while(0)
+#define SPI2_REG_RESET()                  do{ (RCC->RCC_APB1RSTR_t.SPI2_RST=1);     (RCC->RCC_APB1RSTR_t.SPI2_RST=0);}while(0)
+#define SPI3_REG_RESET()                  do{ (RCC->RCC_APB1RSTR_t.SPI3_RST=1);     (RCC->RCC_APB1RSTR_t.SPI3_RST=0);}while(0)
+#define SPI4_REG_RESET()                  do{ (RCC->RCC_APB2RSTR_t.SPI4_RST=1);     (RCC->RCC_APB2RSTR_t.SPI4_RST=0);}while(0)
+
 /*
     IRQ numbers for stm32f401x
 */
@@ -1205,6 +1324,6 @@ typedef struct
 
 #include "stm32f401xx_gpio_driver.h"
 
-
+#include "Stm32f401xx_spi_driver.h"
 
 #endif /* INC_STM32F401XX_H_ */
