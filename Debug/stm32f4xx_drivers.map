@@ -76,7 +76,7 @@ Discarded input sections
  .data          0x00000000        0x0 ./Drivers/Src/stm32f401xx_gpio_driver.o
  .bss           0x00000000        0x0 ./Drivers/Src/stm32f401xx_gpio_driver.o
  .text.GPIO_PeriClkCtrl
-                0x00000000       0xc8 ./Drivers/Src/stm32f401xx_gpio_driver.o
+                0x00000000      0x158 ./Drivers/Src/stm32f401xx_gpio_driver.o
  .text.GPIO_Init
                 0x00000000      0x308 ./Drivers/Src/stm32f401xx_gpio_driver.o
  .text.GPIO_DeInit
@@ -94,16 +94,16 @@ Discarded input sections
  .text.GPIO_IRQITConfig
                 0x00000000      0x10c ./Drivers/Src/stm32f401xx_gpio_driver.o
  .text.GPIO_IRQPriorityConfig
-                0x00000000       0x56 ./Drivers/Src/stm32f401xx_gpio_driver.o
+                0x00000000       0x50 ./Drivers/Src/stm32f401xx_gpio_driver.o
  .text.GPIO_IRQHandling
                 0x00000000       0x44 ./Drivers/Src/stm32f401xx_gpio_driver.o
- .debug_info    0x00000000     0x2661 ./Drivers/Src/stm32f401xx_gpio_driver.o
+ .debug_info    0x00000000     0x2672 ./Drivers/Src/stm32f401xx_gpio_driver.o
  .debug_abbrev  0x00000000      0x1d0 ./Drivers/Src/stm32f401xx_gpio_driver.o
  .debug_aranges
                 0x00000000       0x70 ./Drivers/Src/stm32f401xx_gpio_driver.o
  .debug_rnglists
                 0x00000000       0x53 ./Drivers/Src/stm32f401xx_gpio_driver.o
- .debug_macro   0x00000000       0x86 ./Drivers/Src/stm32f401xx_gpio_driver.o
+ .debug_macro   0x00000000       0x95 ./Drivers/Src/stm32f401xx_gpio_driver.o
  .debug_macro   0x00000000      0xaba ./Drivers/Src/stm32f401xx_gpio_driver.o
  .debug_macro   0x00000000       0x22 ./Drivers/Src/stm32f401xx_gpio_driver.o
  .debug_macro   0x00000000       0x8e ./Drivers/Src/stm32f401xx_gpio_driver.o
@@ -111,35 +111,55 @@ Discarded input sections
  .debug_macro   0x00000000      0x103 ./Drivers/Src/stm32f401xx_gpio_driver.o
  .debug_macro   0x00000000       0x6a ./Drivers/Src/stm32f401xx_gpio_driver.o
  .debug_macro   0x00000000      0x1df ./Drivers/Src/stm32f401xx_gpio_driver.o
- .debug_macro   0x00000000      0x344 ./Drivers/Src/stm32f401xx_gpio_driver.o
+ .debug_macro   0x00000000      0x3dc ./Drivers/Src/stm32f401xx_gpio_driver.o
  .debug_macro   0x00000000       0xc4 ./Drivers/Src/stm32f401xx_gpio_driver.o
- .debug_line    0x00000000      0x940 ./Drivers/Src/stm32f401xx_gpio_driver.o
- .debug_str     0x00000000     0x6549 ./Drivers/Src/stm32f401xx_gpio_driver.o
+ .debug_line    0x00000000      0x972 ./Drivers/Src/stm32f401xx_gpio_driver.o
+ .debug_str     0x00000000     0x685c ./Drivers/Src/stm32f401xx_gpio_driver.o
  .comment       0x00000000       0x44 ./Drivers/Src/stm32f401xx_gpio_driver.o
  .debug_frame   0x00000000      0x1c8 ./Drivers/Src/stm32f401xx_gpio_driver.o
  .ARM.attributes
                 0x00000000       0x34 ./Drivers/Src/stm32f401xx_gpio_driver.o
- .group         0x00000000        0xc ./Src/main.o
- .group         0x00000000        0xc ./Src/main.o
- .group         0x00000000        0xc ./Src/main.o
- .group         0x00000000        0xc ./Src/main.o
- .group         0x00000000        0xc ./Src/main.o
- .group         0x00000000        0xc ./Src/main.o
- .group         0x00000000        0xc ./Src/main.o
- .group         0x00000000        0xc ./Src/main.o
+ .group         0x00000000        0xc ./Drivers/Src/stm32f401xx_spi_driver.o
+ .group         0x00000000        0xc ./Drivers/Src/stm32f401xx_spi_driver.o
+ .group         0x00000000        0xc ./Drivers/Src/stm32f401xx_spi_driver.o
+ .group         0x00000000        0xc ./Drivers/Src/stm32f401xx_spi_driver.o
+ .group         0x00000000        0xc ./Drivers/Src/stm32f401xx_spi_driver.o
+ .group         0x00000000        0xc ./Drivers/Src/stm32f401xx_spi_driver.o
+ .group         0x00000000        0xc ./Drivers/Src/stm32f401xx_spi_driver.o
+ .group         0x00000000        0xc ./Drivers/Src/stm32f401xx_spi_driver.o
+ .group         0x00000000        0xc ./Drivers/Src/stm32f401xx_spi_driver.o
+ .text          0x00000000        0x0 ./Drivers/Src/stm32f401xx_spi_driver.o
+ .data          0x00000000        0x0 ./Drivers/Src/stm32f401xx_spi_driver.o
+ .bss           0x00000000        0x0 ./Drivers/Src/stm32f401xx_spi_driver.o
+ .text.SPI_PeriClkCtrl
+                0x00000000       0xf0 ./Drivers/Src/stm32f401xx_spi_driver.o
+ .debug_info    0x00000000     0x1608 ./Drivers/Src/stm32f401xx_spi_driver.o
+ .debug_abbrev  0x00000000       0xe0 ./Drivers/Src/stm32f401xx_spi_driver.o
+ .debug_aranges
+                0x00000000       0x20 ./Drivers/Src/stm32f401xx_spi_driver.o
+ .debug_rnglists
+                0x00000000       0x14 ./Drivers/Src/stm32f401xx_spi_driver.o
+ .debug_macro   0x00000000       0x91 ./Drivers/Src/stm32f401xx_spi_driver.o
+ .debug_macro   0x00000000      0xaba ./Drivers/Src/stm32f401xx_spi_driver.o
+ .debug_macro   0x00000000       0x22 ./Drivers/Src/stm32f401xx_spi_driver.o
+ .debug_macro   0x00000000       0x8e ./Drivers/Src/stm32f401xx_spi_driver.o
+ .debug_macro   0x00000000       0x51 ./Drivers/Src/stm32f401xx_spi_driver.o
+ .debug_macro   0x00000000      0x103 ./Drivers/Src/stm32f401xx_spi_driver.o
+ .debug_macro   0x00000000       0x6a ./Drivers/Src/stm32f401xx_spi_driver.o
+ .debug_macro   0x00000000      0x1df ./Drivers/Src/stm32f401xx_spi_driver.o
+ .debug_macro   0x00000000      0x3dc ./Drivers/Src/stm32f401xx_spi_driver.o
+ .debug_macro   0x00000000       0xc4 ./Drivers/Src/stm32f401xx_spi_driver.o
+ .debug_line    0x00000000      0x518 ./Drivers/Src/stm32f401xx_spi_driver.o
+ .debug_str     0x00000000     0x6264 ./Drivers/Src/stm32f401xx_spi_driver.o
+ .comment       0x00000000       0x44 ./Drivers/Src/stm32f401xx_spi_driver.o
+ .debug_frame   0x00000000       0x38 ./Drivers/Src/stm32f401xx_spi_driver.o
+ .ARM.attributes
+                0x00000000       0x34 ./Drivers/Src/stm32f401xx_spi_driver.o
  .group         0x00000000        0xc ./Src/main.o
  .text          0x00000000        0x0 ./Src/main.o
  .data          0x00000000        0x0 ./Src/main.o
  .bss           0x00000000        0x0 ./Src/main.o
  .debug_macro   0x00000000      0xaba ./Src/main.o
- .debug_macro   0x00000000       0x22 ./Src/main.o
- .debug_macro   0x00000000       0x8e ./Src/main.o
- .debug_macro   0x00000000       0x51 ./Src/main.o
- .debug_macro   0x00000000      0x103 ./Src/main.o
- .debug_macro   0x00000000       0x6a ./Src/main.o
- .debug_macro   0x00000000      0x1df ./Src/main.o
- .debug_macro   0x00000000      0x344 ./Src/main.o
- .debug_macro   0x00000000       0xc4 ./Src/main.o
  .text          0x00000000       0x14 ./Startup/startup_stm32f401retx.o
  .data          0x00000000        0x0 ./Startup/startup_stm32f401retx.o
  .bss           0x00000000        0x0 ./Startup/startup_stm32f401retx.o
@@ -429,6 +449,7 @@ LOAD C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
 LOAD C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+fp/hard/crtbegin.o
 LOAD C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/crt0.o
 LOAD ./Drivers/Src/stm32f401xx_gpio_driver.o
+LOAD ./Drivers/Src/stm32f401xx_spi_driver.o
 LOAD ./Src/main.o
 LOAD ./Startup/startup_stm32f401retx.o
 START GROUP
@@ -678,13 +699,13 @@ LOAD C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
 LOAD C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libm.a
 LOAD C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+fp/hard\libgcc.a
 
-.debug_info     0x00000000       0xb7
- .debug_info    0x00000000       0x87 ./Src/main.o
- .debug_info    0x00000087       0x30 ./Startup/startup_stm32f401retx.o
+.debug_info     0x00000000       0x78
+ .debug_info    0x00000000       0x48 ./Src/main.o
+ .debug_info    0x00000048       0x30 ./Startup/startup_stm32f401retx.o
 
-.debug_abbrev   0x00000000       0x6b
- .debug_abbrev  0x00000000       0x47 ./Src/main.o
- .debug_abbrev  0x00000047       0x24 ./Startup/startup_stm32f401retx.o
+.debug_abbrev   0x00000000       0x60
+ .debug_abbrev  0x00000000       0x3c ./Src/main.o
+ .debug_abbrev  0x0000003c       0x24 ./Startup/startup_stm32f401retx.o
 
 .debug_aranges  0x00000000       0x48
  .debug_aranges
@@ -699,17 +720,16 @@ LOAD C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_rnglists
                 0x00000013       0x19 ./Startup/startup_stm32f401retx.o
 
-.debug_macro    0x00000000       0x86
- .debug_macro   0x00000000       0x86 ./Src/main.o
+.debug_macro    0x00000000       0x11
+ .debug_macro   0x00000000       0x11 ./Src/main.o
 
-.debug_line     0x00000000      0x500
- .debug_line    0x00000000      0x485 ./Src/main.o
- .debug_line    0x00000485       0x7b ./Startup/startup_stm32f401retx.o
+.debug_line     0x00000000       0xc0
+ .debug_line    0x00000000       0x45 ./Src/main.o
+ .debug_line    0x00000045       0x7b ./Startup/startup_stm32f401retx.o
 
-.debug_str      0x00000000     0x5419
- .debug_str     0x00000000     0x53da ./Src/main.o
-                               0x5535 (size before relaxing)
- .debug_str     0x000053da       0x3f ./Startup/startup_stm32f401retx.o
+.debug_str      0x00000000     0x2e41
+ .debug_str     0x00000000     0x2e02 ./Src/main.o
+ .debug_str     0x00002e02       0x3f ./Startup/startup_stm32f401retx.o
                                  0x84 (size before relaxing)
 
 .comment        0x00000000       0x43

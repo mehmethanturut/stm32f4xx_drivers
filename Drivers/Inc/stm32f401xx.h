@@ -76,8 +76,10 @@
 #define WWDG_BASEADDR                  (APB1PERIPH_BASEADDR+ 0X2C00) /**< Base address of window watchdog */
 #define IWDG_BASEADDR                  (APB1PERIPH_BASEADDR+ 0X3000) /**< Base address of independent watchdog */
 #define I2S2ext_BASEADDR               (APB1PERIPH_BASEADDR+ 0X3400) /**< Base address of I2S2ext */
-#define SPI2_I2S2_BASEADDR             (APB1PERIPH_BASEADDR+ 0X3800) /**< Base address of SPI2/I2S2 */
-#define SPI3_I2S3_BASEADDR             (APB1PERIPH_BASEADDR+ 0X3C00) /**< Base address of SPI3/I2S3 */
+#define SPI2_BASEADDR                  (APB1PERIPH_BASEADDR+ 0X3800) /**< Base address of SPI2/I2S2 */
+#define I2S2_BASEADDR                  (APB1PERIPH_BASEADDR+ 0X3800) /**< Base address of SPI2/I2S2 */
+#define SPI3_BASEADDR                  (APB1PERIPH_BASEADDR+ 0X3C00) /**< Base address of SPI3/I2S3 */
+#define I2S3_BASEADDR                  (APB1PERIPH_BASEADDR+ 0X3C00) /**< Base address of SPI3/I2S3 */
 #define I2S3ext_BASEADDR               (APB1PERIPH_BASEADDR+ 0X4000) /**< Base address of I2S3ext */
 #define USART2_BASEADDR                (APB1PERIPH_BASEADDR+ 0X4400) /**< Base address of USART2 */
 #define I2C1_BASEADDR                  (APB1PERIPH_BASEADDR+ 0X5400) /**< Base address of I2C1 */
@@ -753,7 +755,7 @@ typedef struct
     } RCC_DCKCFGR_t;
 
 
-} RCCRegDef_t; /**< RCC Register Definition */
+} RCC_RegDef_t; /**< RCC Register Definition */
 
 
 /* 
@@ -1076,7 +1078,7 @@ typedef struct{
     {
         uint32_t RXCRC              :16;
         uint32_t res                :16;
-    }SPI_CRCPR_t;
+    }SPI_RXCRCR_t;
 
 
     struct       //SPI TX CRC register
@@ -1098,7 +1100,7 @@ typedef struct{
         uint32_t I2S_CFG            :2;
         uint32_t I2SE               :1;
         uint32_t I2S_MOD            :1;
-        uint32_t res                :20;
+        uint32_t res1               :20;
     }SPI_I2SCFGR_t;
 
 
@@ -1110,7 +1112,7 @@ typedef struct{
         uint32_t MCKOE              :1;
         uint32_t res                :22 ;
     }SPI_I2SPR_t;
-}SPI_RegDef_t
+}SPI_RegDef_t;
 
 
 
