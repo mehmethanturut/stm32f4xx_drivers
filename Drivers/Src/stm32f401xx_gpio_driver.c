@@ -1,12 +1,13 @@
-/*
- * stm32f401xx_gpio.c
- *
- *  Created on: Oct 26, 2024
- *      Author: Mehmethan Türüt
+/**
+ * @file stm32f401xx_gpio_driver.c
+ * @brief Source file for the GPIO driver for STM32F401xx microcontrollers.
+ * 
+ * This file contains function definitions to configure and manage the GPIO peripheral 
+ * on STM32F401xx devices, including initialization, data handling, and interrupt management.
+ * 
+ * Created on: Oct 26, 2024
+ * Author: Mehmethan Türüt
  */
-
-
-
 
 #include "../Inc/stm32f401xx_gpio_driver.h"
 
@@ -56,6 +57,32 @@ void GPIO_PeriClkCtrl(GPIO_RegDef_t *pGPIOx, uint8_t EnorDi){
             GPIOH_PCLK_EN();
         }
     }
+    else{
+        if (pGPIOx==GPIOA)
+        {
+            GPIOA_PCLK_DI();
+        }
+        else if (pGPIOx==GPIOB)
+        {
+            GPIOB_PCLK_DI();
+        }
+        else if (pGPIOx==GPIOC)
+        {
+            GPIOC_PCLK_DI();
+        }
+        else if (pGPIOx==GPIOD)
+        {
+            GPIOD_PCLK_DI();
+        }
+        else if (pGPIOx==GPIOE)
+        {
+            GPIOE_PCLK_DI();
+        }
+        else if (pGPIOx==GPIOH)
+        {
+            GPIOH_PCLK_DI();
+        }
+    }
 }
 
 
@@ -76,12 +103,15 @@ void GPIO_PeriClkCtrl(GPIO_RegDef_t *pGPIOx, uint8_t EnorDi){
 
  *********************************************************************************************/
 void GPIO_Init(GPIO_Handle_t *pGPIOHandle){
+
+    GPIO_PeriClkCtrl(pGPIOHandle->pGPIOx,ENABLE);
+
     uint32_t *pTemp;
     //1. configure mode 
     if(pGPIOHandle->GPIO_PinConfig.GPIO_PinMode<=GPIO_MODE_ANALOG){
         //non interrupt mode
         pTemp =(uint32_t*)&(pGPIOHandle->pGPIOx->GPIOx_MODER_t);
-        *pTemp &=   ~(3)<<(2*(pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
+        *pTemp &=   ~((3)<<(2*(pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber)));
         *pTemp |=   pGPIOHandle->GPIO_PinConfig.GPIO_PinMode<<(2*(pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
 
     }
@@ -132,18 +162,18 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle){
 
     //2. Configure the speed
     pTemp =(uint32_t*)&(pGPIOHandle->pGPIOx->GPIOx_OSPEEDR_t);
-    *pTemp &=   ~(3)<<(2*(pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
+    *pTemp &=   ~((3)<<(2*(pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber)));
     *pTemp |=   pGPIOHandle->GPIO_PinConfig.GPIO_PinSpeed<<(2*(pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
     
     //3. Configure the pull up/down settings
 
     pTemp =(uint32_t*)&(pGPIOHandle->pGPIOx->GPIOx_PUPDR_t);
-    *pTemp &=   ~(3)<<(2*(pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
+    *pTemp &=   ~((3)<<(2*(pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber)));
     *pTemp |=   pGPIOHandle->GPIO_PinConfig.GPIO_PinPuPdControl<<(2*(pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
     
     //4. Configure the Output type
-    pTemp =(uint32_t*)&(pGPIOHandle->pGPIOx->GPIOx_PUPDR_t);
-    *pTemp &=   ~(1)<<((pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
+    pTemp =(uint32_t*)&(pGPIOHandle->pGPIOx->GPIOx_OTYPER_t);
+    *pTemp &=   ~((1)<<((pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber)));
     *pTemp |=   pGPIOHandle->GPIO_PinConfig.GPIO_PinOPType<<((pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
     
     //5. configure alternate functionality mode
@@ -152,23 +182,17 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle){
     {
         if (pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber>7)
         {
-            pTemp =(uint32_t*)&(pGPIOHandle->pGPIOx->GPIOx_AFRH_t);
-            *pTemp &=   ~(0xf)<<(4*(pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
+            pTemp =(uint32_t*)(&(pGPIOHandle->pGPIOx->GPIOx_AFRH_t));
+            *pTemp &=   ~((0xf)<<(4*(pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber)));
             *pTemp |=   pGPIOHandle->GPIO_PinConfig.GPIO_PinAltFunMode<<(4*(pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
 
         }
         else{
-            pTemp =(uint32_t*)&(pGPIOHandle->pGPIOx->GPIOx_AFRL_t);
-            *pTemp &=   ~(0xf)<<(4*(pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
+            pTemp =(uint32_t*)(&(pGPIOHandle->pGPIOx->GPIOx_AFRL_t));
+            *pTemp &=   ~((0xf)<<(4*(pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber)));
             *pTemp |=   pGPIOHandle->GPIO_PinConfig.GPIO_PinAltFunMode<<(4*(pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
         }
-    }
-    
-
-
-
-
-    
+    } 
 }
 
 
