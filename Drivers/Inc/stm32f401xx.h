@@ -160,7 +160,7 @@ volatile typedef struct
         uint32_t OT13      :1; /**< Output type for pin 13 */
         uint32_t OT14      :1; /**< Output type for pin 14 */
         uint32_t OT15      :1; /**< Output type for pin 15 */
-        uint32_t reserved  :16; /**< Reserved bits */
+        uint32_t res       :16; /**< Reserved bits */
     } GPIOx_OTYPER_t;
 
     struct{         //GPIO port output speed register
@@ -297,7 +297,7 @@ volatile typedef struct
         uint32_t LCK14      :1; /**< Lock configuration for pin 14 */
         uint32_t LCK15      :1; /**< Lock configuration for pin 15 */
         uint32_t LCKK       :1; /**< Lock key bit */
-        uint32_t res   :16; /**< Reserved bits */
+        uint32_t res        :15; /**< Reserved bits */
     } GPIOx_LCKR_t;
 
     struct{         //GPIO alternate function low register
@@ -448,7 +448,7 @@ typedef struct
 
     struct{         //RCC AHB2 peripheral reset register
         uint32_t res              :7; /**< Reserved */
-        uint32_t OTGFSRST        :1; /**< Reset OTGFS */
+        uint32_t OTGFSRST         :1; /**< Reset OTGFS */
         uint32_t res1             :24; /**< Reserved */
     } RCC_AHB2RSTR_t;
 
@@ -523,7 +523,7 @@ typedef struct
 
     struct{                 //RCC AHB2 peripheral clock enable register
         uint32_t res              :7; /**< Reserved */
-        uint32_t OTGFSEN         :1; /**< Enable clock for OTGFS */
+        uint32_t OTGFSEN          :1; /**< Enable clock for OTGFS */
         uint32_t res1             :24; /**< Reserved */
     } RCC_AHB2ENR_t;
 
@@ -651,21 +651,21 @@ typedef struct
 
     struct{                 // RCC APB2 peripheral clock enabled in low power mode register
         uint32_t TIM1LPEN        :1; /**< Low power mode clock enable for TIM1 */
-        uint32_t res              :3; /**< Reserved */
+        uint32_t res             :3; /**< Reserved */
         uint32_t USART1LPEN      :1; /**< Low power mode clock enable for USART1 */
         uint32_t USART6LPEN      :1; /**< Low power mode clock enable for USART6 */
-        uint32_t res1             :2; /**< Reserved */
+        uint32_t res1            :2; /**< Reserved */
         uint32_t ADC1LPEN        :1; /**< Low power mode clock enable for ADC1 */
-        uint32_t res2             :2; /**< Reserved */
+        uint32_t res2            :2; /**< Reserved */
         uint32_t SDIOLPEN        :1; /**< Low power mode clock enable for SDIO */
         uint32_t SPI1LPEN        :1; /**< Low power mode clock enable for SPI1 */
         uint32_t SPI4LPEN        :1; /**< Low power mode clock enable for SPI4 */
         uint32_t SYSCFGLPEN      :1; /**< Low power mode clock enable for SYSCFG */
-        uint32_t res3             :1; /**< Reserved */
+        uint32_t res3            :1; /**< Reserved */
         uint32_t TIM9LPEN        :1; /**< Low power mode clock enable for TIM9 */
         uint32_t TIM10LPEN       :1; /**< Low power mode clock enable for TIM10 */
         uint32_t TIM11LPEN       :1; /**< Low power mode clock enable for TIM11 */
-        uint32_t res4             :13; /**< Reserved */
+        uint32_t res4            :13; /**< Reserved */
     } RCC_APB2LPENR_t;
 
 
@@ -894,10 +894,10 @@ typedef struct{
         uint32_t SWIER16      :1; /**< Mode for pin 13 */
         uint32_t SWIER17      :1; /**< Mode for pin 14 */
         uint32_t SWIER18      :1; /**< Mode for pin 15 */
-        uint32_t res       :2;
+        uint32_t res          :2;
         uint32_t SWIER21      :1; /**< Mode for pin 14 */
         uint32_t SWIER22      :1; /**< Mode for pin 15 */
-        uint32_t res1      :9;
+        uint32_t res1         :9;
     }EXTI_SWIER_t;
 
     struct                 //Pending register
@@ -1007,111 +1007,142 @@ typedef struct
 ****************** SPI register definition structures******************
 */
 
-typedef struct{
+volatile typedef struct{
     struct       //SPI control register 1
     {
-        uint32_t CPHA               :1;
-        uint32_t CPOL               :1;
-        uint32_t MSTR               :1;
-        uint32_t BR                 :3;
-        uint32_t SPE                :1;
-        uint32_t LSBFIRST           :1;
-        uint32_t SSI                :1;
-        uint32_t SSM                :1;
-        uint32_t RXONLY             :1;
-        uint32_t DFF                :1;
-        uint32_t CRCNEXT            :1;
-        uint32_t CRCEN              :1;
-        uint32_t BIDIOE             :1;
-        uint32_t BIDIMODE           :1;
-        uint32_t res1               :16;
+        uint16_t CPHA               :1;
+        uint16_t CPOL               :1;
+        uint16_t MSTR               :1;
+        uint16_t BR                 :3;
+        uint16_t SPE                :1;
+        uint16_t LSBFIRST           :1;
+        uint16_t SSI                :1;
+        uint16_t SSM                :1;
+        uint16_t RXONLY             :1;
+        uint16_t DFF                :1;
+        uint16_t CRCNEXT            :1;
+        uint16_t CRCEN              :1;
+        uint16_t BIDIOE             :1;
+        uint16_t BIDIMODE           :1;
     }SPI_CR1_t;
 
-
+    struct 
+    {
+        uint16_t res;
+    }RESERVED0_t;
 
     struct       //SPI control register 2
     {
-        uint32_t RXDMAEN            :1;
-        uint32_t TXDMAEN            :1;
-        uint32_t SSOE               :1;
-        uint32_t res                :1;
-        uint32_t FRF                :1;
-        uint32_t ERRIE              :1;
-        uint32_t RXNEIE             :1;
-        uint32_t TXEIE              :1;
-        uint32_t res1               :24;
+        uint16_t RXDMAEN            :1;
+        uint16_t TXDMAEN            :1;
+        uint16_t SSOE               :1;
+        uint16_t res                :1;
+        uint16_t FRF                :1;
+        uint16_t ERRIE              :1;
+        uint16_t RXNEIE             :1;
+        uint16_t TXEIE              :1;
+        uint16_t res1               :8;
     }SPI_CR2_t;
 
-
+    struct 
+    {
+        uint16_t res;
+    }RESERVED1_t;
 
     struct       //SPI status register
     {
-        uint32_t RXNE               :1;
-        uint32_t TXE                :1;
-        uint32_t CHSIDE             :1;
-        uint32_t UDR                :1;
-        uint32_t CRCERR             :1;
-        uint32_t MODF               :1;
-        uint32_t OVF                :1;
-        uint32_t BSY                :1;
-        uint32_t res                :23;
+        uint16_t RXNE               :1;
+        uint16_t TXE                :1;
+        uint16_t CHSIDE             :1;
+        uint16_t UDR                :1;
+        uint16_t CRCERR             :1;
+        uint16_t MODF               :1;
+        uint16_t OVF                :1;
+        uint16_t BSY                :1;
+        uint16_t res                :7;
     }SPI_SR_t;
 
+    struct 
+    {
+        uint16_t res;
+    }RESERVED2_t;
 
 
     struct       //SPI data register
     {
-        uint32_t DR                 :16;
-        uint32_t res                :16;
+        uint16_t DR                 :16;
     }SPI_DR_t;
     
-
+    struct 
+    {
+        uint16_t res;
+    }RESERVED3_t;
 
     struct       //SPI CRC polynomial register
     {
-        uint32_t CRCPOLY            :16;
-        uint32_t res                :16;
+        uint16_t CRCPOLY            :16;
     }SPI_CRCPR_t;
+
+    struct 
+    {
+        uint16_t res;
+    }RESERVED4_t;
 
 
     struct       //SPI RX CRC register
     {
-        uint32_t RXCRC              :16;
-        uint32_t res                :16;
+        uint16_t RXCRC              :16;
     }SPI_RXCRCR_t;
 
+    struct 
+    {
+        uint16_t res;
+    }RESERVED5_t;
 
     struct       //SPI TX CRC register
     {
-        uint32_t TXCRC              :16;
-        uint32_t res                :16;
+        uint16_t TXCRC              :16;
     }SPI_TXCRCR_t;
+
+
+    struct 
+    {
+        uint16_t res;
+    }RESERVED6_t;
 
 
 
     struct       //SPI_I2S configuration register
     {
-        uint32_t CHLEN              :1;
-        uint32_t DATLEN             :2;
-        uint32_t CKPOL              :1;
-        uint32_t I2SSTD             :2;
-        uint32_t res                :1;
-        uint32_t PCMSYNC            :1;
-        uint32_t I2SCFG             :2;
-        uint32_t I2SE               :1;
-        uint32_t I2SMOD             :1;
-        uint32_t res1               :20;
+        uint16_t CHLEN              :1;
+        uint16_t DATLEN             :2;
+        uint16_t CKPOL              :1;
+        uint16_t I2SSTD             :2;
+        uint16_t res                :1;
+        uint16_t PCMSYNC            :1;
+        uint16_t I2SCFG             :2;
+        uint16_t I2SE               :1;
+        uint16_t I2SMOD             :1;
+        uint16_t res1               :4;
     }SPI_I2SCFGR_t;
 
-
+    struct 
+    {
+        uint16_t res;
+    }RESERVED7_t;
 
     struct       //SPI_I2S prescaler register
     {
-        uint32_t I2SDIV             :8;
-        uint32_t ODD                :1;
-        uint32_t MCKOE              :1;
-        uint32_t res                :22 ;
+        uint16_t I2SDIV             :8;
+        uint16_t ODD                :1;
+        uint16_t MCKOE              :1;
+        uint16_t res                :6;
     }SPI_I2SPR_t;
+
+    struct 
+    {
+        uint16_t res;
+    }RESERVED8_t;
 }SPI_RegDef_t;
 
 
@@ -1138,12 +1169,13 @@ typedef struct{
 /** 
  * @brief RCC peripheral definition.
  */
-#define RCC                   ((RCC_RegDef_t*)    RCC_BASEADDR)
+#define RCC     ((RCC_RegDef_t*)    RCC_BASEADDR)
 
 
 #define EXTI	( (EXTI_RegDef_t*) EXTI_BASEADDR )
 
 #define SYSCFG	( (SYSCFG_RegDef_t*) SYSCFG_BASEADDR )
+
 
 #define SPI1    ( (SPI_RegDef_t*) SPI1_BASEADDR )
 #define SPI2    ( (SPI_RegDef_t*) SPI2_BASEADDR ) 
@@ -1312,6 +1344,24 @@ typedef struct{
 #define NVIC_IRQ_PRIO14         14
 #define NVIC_IRQ_PRIO15         15
 
+/*
+    SPI peripheral enable macros
+*/
+#define SPI1_ENABLE()            (SPI1->SPI_CR1_t.SPE=1)
+#define SPI2_ENABLE()            (SPI2->SPI_CR1_t.SPE=1)
+#define SPI3_ENABLE()            (SPI3->SPI_CR1_t.SPE=1)
+#define SPI4_ENABLE()            (SPI4->SPI_CR1_t.SPE=1)
+
+/*
+    SPI peripheral disable macros
+*/
+#define SPI1_DISABLE()            (SPI1->SPI_CR1_t.SPE=0)
+#define SPI2_DISABLE()            (SPI2->SPI_CR1_t.SPE=0)
+#define SPI3_DISABLE()            (SPI3->SPI_CR1_t.SPE=0)
+#define SPI4_DISABLE()            (SPI4->SPI_CR1_t.SPE=0)
+
+
+
 
 /*
         returns port code
@@ -1324,16 +1374,17 @@ typedef struct{
                                             (x  ==   GPIOE)  ? 4:\
                                             (x  ==   GPIOH)  ? 7:0 )
 
+
 /**
  * @brief Generic macros.
  */
   
 #define ENABLE          1
 #define DISABLE         0
-#define SET             ENABLE
-#define RESET           DISABLE
-#define GPIO_PIN_SET    SET
-#define GPIO_PIN_RESET  RESET
+#define SET             1
+#define RESET           0
+#define GPIO_PIN_SET    1
+#define GPIO_PIN_RESET  0
 
   
   

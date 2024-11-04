@@ -29,6 +29,7 @@ typedef struct
     uint8_t SPI_CPOL;
     uint8_t SPI_CPHA;
     uint8_t SPI_SSM;
+    uint8_t SPI_SSI;
 }SPI_Config_t;
 
 
@@ -91,6 +92,12 @@ typedef struct
 */
 #define SPI_SSM_EN          1   //software slave management enable
 #define SPI_SSM_DI          0   //software slave management disable
+
+/*
+@SPI_SSI
+*/
+#define SPI_SSI_SLAVE       0
+#define SPI_SSI_MASTER      1
 /*******************************************************************************************
                             APIs supported by this driver 
 ********************************************************************************************/
@@ -126,8 +133,8 @@ void SPI_DeInit(SPI_RegDef_t *pSPIx);
  * 
  * @return The pin state (0 or 1).
  */
-void SPI_SendData(GPIO_RegDef_t *pSPIx, uint8_t *pTxBuffer, uint32_t Len);
-void SPI_ReceiveData(GPIO_RegDef_t *pSPIx, uint8_t *pRxBuffer, uint32_t Len);
+void SPI_SendData(SPI_RegDef_t *pSPIx, uint8_t *pTxBuffer, uint32_t Len);
+void SPI_ReceiveData(SPI_RegDef_t *pSPIx, uint8_t *pRxBuffer, uint32_t Len);
 
 
 /**

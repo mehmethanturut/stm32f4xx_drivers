@@ -72,13 +72,18 @@ void SPI_PeriClkCtrl(SPI_RegDef_t *pSPIx, uint8_t EnorDi){
  */
 void SPI_Init(SPI_Handle_t *pSPIHandle){
 
+    SPI_PeriClkCtrl(pSPIHandle->pSPIx,ENABLE);
 
     uint32_t *pTemp;
     pTemp =(uint32_t*) &(pSPIHandle->pSPIx->SPI_CR1_t);
     *pTemp = 0;
 
+    //0.    configure ssm
+    pSPIHandle->pSPIx->SPI_CR1_t.SSM=pSPIHandle->SPI_Config.SPI_SSM;
+
     //1. configure the SPI device mode
-    pSPIHandle->pSPIx->SPI_CR1_t.MSTR=pSPIHandle->SPI_Config.SPI_DeviceMode;
+    pSPIHandle->pSPIx->SPI_CR1_t.MSTR=(pSPIHandle->SPI_Config.SPI_DeviceMode);
+
 
     //2. configure the SPI bus config
     if (pSPIHandle->SPI_Config.SPI_BusConfig==SPI_BUS_CONFIG_FD)
@@ -110,6 +115,11 @@ void SPI_Init(SPI_Handle_t *pSPIHandle){
 
     //6. configure the CPHA
     pSPIHandle->pSPIx->SPI_CR1_t.CPHA=pSPIHandle->SPI_Config.SPI_CPHA;
+
+    //7. configure the ssi
+    if(pSPIHandle->SPI_Config.SPI_SSM){
+        pSPIHandle->pSPIx->SPI_CR1_t.SSI=pSPIHandle->SPI_Config.SPI_SSI;
+    }
     
     
 }
@@ -140,15 +150,56 @@ void SPI_DeInit(SPI_RegDef_t *pSPIx){
 }
 
 /**
- * @brief Reads the value of a specific GPIO pin.
+ * @brief Sends data over SPI.
  * 
- * @param[in] pGPIOx Pointer to the GPIO port base address.
- * @param[in] PinNumber Pin number to be read.
+ * This function transmits data through the specified SPI peripheral. The data to be sent 
+ * is provided via a buffer, and the length of the data is specified by the caller.
  * 
- * @return The pin state (0 or 1).
+ * @param[in] pSPIx Pointer to the SPI peripheral base address.
+ * @param[in] pTxBuffer Pointer to the buffer holding the data to be transmitted.
+ * @param[in] Len Length of the data to be transmitted.
+ * 
+ * @return None
+ *  *
+ * @Note  This is blocking call
  */
-void SPI_SendData(GPIO_RegDef_t *pSPIx, uint8_t *pTxBuffer, uint32_t Len);
-void SPI_ReceiveData(GPIO_RegDef_t *pSPIx, uint8_t *pRxBuffer, uint32_t Len);
+void SPI_SendData(SPI_RegDef_t *pSPIx, uint8_t *pTxBuffer, uint32_t Len){
+
+    while(Len){
+        while(1){
+            if (!(pSPIx->SPI_SR_t.TXE))
+            {
+                break;
+            }        
+        }
+        if (!(pSPIx->SPI_CR1_t.DFF))
+        {
+            pSPIx->SPI_DR_t.DR=*pTxBuffer;
+            Len--;
+            pTxBuffer++;
+        }
+        else if(pSPIx->SPI_CR1_t.DFF){
+            pSPIx->SPI_DR_t.DR=*(uint16_t*)pTxBuffer;
+            Len-=2;
+            (uint16_t*)pTxBuffer++;
+        }
+    }
+}
+
+/**
+ * @brief Receives data over SPI.
+ * 
+ * This function receives data through the specified SPI peripheral. The data is received
+ * into a buffer provided by the caller, and the length of data to be received is specified.
+ * 
+ * @param[in] pSPIx Pointer to the SPI peripheral base address.
+ * @param[out] pRxBuffer Pointer to the buffer where the received data will be stored.
+ * @param[in] Len Length of the data to be received.
+ * 
+ * @return None
+ */
+
+void SPI_ReceiveData(SPI_RegDef_t *pSPIx, uint8_t *pRxBuffer, uint32_t Len);
 
 
 /**
