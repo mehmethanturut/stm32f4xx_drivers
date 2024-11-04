@@ -1,4 +1,4 @@
 ../Drivers/Src/stm32f401xx_spi_driver.c:29:6:SPI_PeriClkCtrl	10
 ../Drivers/Src/stm32f401xx_spi_driver.c:73:6:SPI_Init	5
-../Drivers/Src/stm32f401xx_spi_driver.c:133:6:SPI_DeInit	5
-../Drivers/Src/stm32f401xx_spi_driver.c:166:6:SPI_SendData	5
+../Drivers/Src/stm32f401xx_spi_driver.c:135:6:SPI_DeInit	5
+../Drivers/Src/stm32f401xx_spi_driver.c:168:6:SPI_SendData	5

@@ -121,6 +121,8 @@ void SPI_Init(SPI_Handle_t *pSPIHandle){
         pSPIHandle->pSPIx->SPI_CR1_t.SSI=pSPIHandle->SPI_Config.SPI_SSI;
     }
     
+    //8.    Enable SPI by setting the SPE bit
+    pSPIHandle->pSPIx->SPI_CR1_t.SPE=1;
     
 }
 
@@ -165,12 +167,13 @@ void SPI_DeInit(SPI_RegDef_t *pSPIx){
  */
 void SPI_SendData(SPI_RegDef_t *pSPIx, uint8_t *pTxBuffer, uint32_t Len){
 
+
     while(Len){
         while(1){
-            if (!(pSPIx->SPI_SR_t.TXE))
-            {
+            if ((pSPIx->SPI_SR_t.TXE))
+                {
                 break;
-            }        
+                } 
         }
         if (!(pSPIx->SPI_CR1_t.DFF))
         {
