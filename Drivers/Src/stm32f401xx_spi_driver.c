@@ -307,6 +307,120 @@ uint8_t SPI_ReceiveDataIT(SPI_Handle_t *pSPIHandle, uint8_t *pRxBuffer, uint32_t
 }
 
 /**
+ * @brief Handles SPI Transmit Buffer Empty (TXE) interrupt.
+ *
+ * This function checks if the SPI is in 8-bit or 16-bit data format mode. If in
+ * 8-bit mode, it loads one byte of data from the transmit buffer to the SPI data
+ * register. If in 16-bit mode, it loads two bytes of data from the transmit buffer
+ * to the SPI data register. After each data transmission, the transmit buffer pointer
+ * is incremented, and the transmission length is decremented.
+ *
+ * When the transmission length reaches zero, the transmission is closed, and
+ * the user callback for transmission completion (`SPI_EVENT_TX_COMPLETE`) is invoked.
+ *
+ * @param[in] pSPIHandle Pointer to the SPI handle structure.
+ */
+static void SPI_TXE_IT_HANDLE(SPI_Handle_t *pSPIHandle)
+{
+    // Check if data frame format is 8-bit
+    if (!(pSPIHandle->pSPIx->SPI_CR1_t.DFF))
+    {
+        // Load 1 byte of data to the SPI data register
+        pSPIHandle->pSPIx->SPI_DR_t.DR = *(pSPIHandle->pTxBuffer);
+        pSPIHandle->TxLen--;           // Decrement transmission length
+        pSPIHandle->pTxBuffer++;       // Increment transmit buffer pointer
+    }
+    // Check if data frame format is 16-bit
+    else if (pSPIHandle->pSPIx->SPI_CR1_t.DFF)
+    {
+        // Load 2 bytes of data to the SPI data register
+        pSPIHandle->pSPIx->SPI_DR_t.DR = *(uint16_t*)pSPIHandle->pTxBuffer;
+        pSPIHandle->TxLen -= 2;        // Decrement transmission length by 2
+        (uint16_t*)pSPIHandle->pTxBuffer++; // Increment transmit buffer pointer
+    }
+
+    // Check if all data has been transmitted
+    if (!(pSPIHandle->TxLen))
+    {
+        SPI_CloseTransmission(pSPIHandle); // Close transmission
+        SPI_AppEventCallback(pSPIHandle, SPI_EVENT_TX_COMPLETE); // Notify completion
+    }
+}
+
+/**
+ * @brief Handles SPI Receive Buffer Not Empty (RXNE) interrupt.
+ *
+ * This function checks if the SPI is in 8-bit or 16-bit data format mode. If in
+ * 8-bit mode, it reads one byte of data from the SPI data register into the receive
+ * buffer. If in 16-bit mode, it reads two bytes of data from the SPI data register
+ * into the receive buffer. After each data reception, the receive buffer pointer
+ * is incremented, and the reception length is decremented.
+ *
+ * When the reception length reaches zero, the reception is closed, and
+ * the user callback for reception completion (`SPI_EVENT_RX_COMPLETE`) is invoked.
+ *
+ * @param[in] pSPIHandle Pointer to the SPI handle structure.
+ */
+static void SPI_RXNE_IT_HANDLE(SPI_Handle_t *pSPIHandle)
+{
+    // Check if data frame format is 8-bit
+    if (!(pSPIHandle->pSPIx->SPI_CR1_t.DFF))
+    {
+        // Read 1 byte of data from the SPI data register
+        *(pSPIHandle->pRxBuffer) = (uint8_t)(pSPIHandle->pSPIx->SPI_DR_t.DR);
+        pSPIHandle->RxLen--;           // Decrement reception length
+        pSPIHandle->pRxBuffer++;       // Increment receive buffer pointer
+    }
+    // Check if data frame format is 16-bit
+    else if (pSPIHandle->pSPIx->SPI_CR1_t.DFF)
+    {
+        // Read 2 bytes of data from the SPI data register
+        *(uint16_t*)pSPIHandle->pRxBuffer = pSPIHandle->pSPIx->SPI_DR_t.DR;
+        pSPIHandle->RxLen -= 2;        // Decrement reception length by 2
+        (uint16_t*)pSPIHandle->pRxBuffer++; // Increment receive buffer pointer
+    }
+
+    // Check if all data has been received
+    if (!(pSPIHandle->RxLen))
+    {
+        SPI_CloseReception(pSPIHandle); // Close reception
+        SPI_AppEventCallback(pSPIHandle, SPI_EVENT_RX_COMPLETE); // Notify completion
+    }
+}
+
+/**
+ * @brief Handles SPI Overflow (OVF) interrupt.
+ *
+ * This function clears the overflow flag if the SPI is not currently in a 
+ * transmission state. It does so by reading the data register (DR) and the 
+ * overflow flag (OVF) from the status register (SR). This prevents further
+ * overflow errors by resetting the internal overflow condition.
+ *
+ * Once the overflow flag is cleared, it calls the user callback for overflow
+ * error handling (`SPI_EVENT_OVF_ERR`).
+ *
+ * @param[in] pSPIHandle Pointer to the SPI handle structure.
+ */
+static void SPI_OVF_IT_HANDLE(SPI_Handle_t *pSPIHandle)
+{
+    uint8_t temp;
+    
+    // Clear overflow flag if SPI is not busy transmitting
+    if (pSPIHandle->TxState != SPI_BSY_IN_TX)
+    {
+        temp = pSPIHandle->pSPIx->SPI_DR_t.DR;  // Read data register to clear flag
+        temp = pSPIHandle->pSPIx->SPI_SR_t.OVF; // Read overflow flag from status register
+    }
+
+    // Suppress unused variable warning
+    (void)temp;
+
+    // Notify application about the overflow error
+    SPI_AppEventCallback(pSPIHandle, SPI_EVENT_OVF_ERR);
+}
+
+
+/**
  * @brief Clears the overrun flag for the SPI peripheral.
  * 
  * @param[in] pSPIx Pointer to the SPI peripheral base address.
