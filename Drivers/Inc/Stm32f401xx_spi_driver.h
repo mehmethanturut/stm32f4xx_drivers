@@ -44,21 +44,48 @@ typedef struct
     uint8_t RxState;          /**< Reception state */
 } SPI_Handle_t;
 
-/** @defgroup SPI_DeviceMode SPI Device Mode */
+/**
+ * @defgroup SPI_DeviceMode SPI Device Mode
+ * @brief Defines SPI device operating modes.
+ * 
+ * This group provides macros to set the SPI device to either master or slave mode.
+ * @{
+ */
 #define SPI_DEVICE_MODE_SLAVE  0 /**< SPI Slave mode */
 #define SPI_DEVICE_MODE_MASTER 1 /**< SPI Master mode */
+/** @} */
 
-/** @defgroup SPI_EVENTS SPI Events */
+/**
+ * @defgroup SPI_EVENTS SPI Events
+ * @brief Defines possible events in SPI communication.
+ * 
+ * This group provides macros representing various events that can occur during SPI operations.
+ * @{
+ */
 #define SPI_EVENT_TX_COMPLETE  1 /**< Transmission complete */
 #define SPI_EVENT_RX_COMPLETE  2 /**< Reception complete */
 #define SPI_EVENT_OVF_ERR      3 /**< Overflow error */
+/** @} */
 
-/** @defgroup SPI_BusConfig SPI Bus Configuration */
+/**
+ * @defgroup SPI_BusConfig SPI Bus Configuration
+ * @brief Defines SPI bus configurations.
+ * 
+ * This group provides macros to configure the SPI bus as full duplex, half duplex, or simplex RX only.
+ * @{
+ */
 #define SPI_BUS_CONFIG_FD      1 /**< Full duplex */
 #define SPI_BUS_CONFIG_HD      2 /**< Half duplex */
 #define SPI_BUS_CONFIG_SX_RX   3 /**< Simplex RX only */
+/** @} */
 
-/** @defgroup SPI_SclkSpeed SPI SCLK Speed */
+/**
+ * @defgroup SPI_SclkSpeed SPI SCLK Speed
+ * @brief Defines SPI clock speeds.
+ * 
+ * This group provides macros to set the SCLK speed using different division factors.
+ * @{
+ */
 #define SPI_SCLK_DIV2          0 /**< SCLK speed DIV2 */
 #define SPI_SCLK_DIV4          1 /**< SCLK speed DIV4 */
 #define SPI_SCLK_DIV8          2 /**< SCLK speed DIV8 */
@@ -67,26 +94,63 @@ typedef struct
 #define SPI_SCLK_DIV64         5 /**< SCLK speed DIV64 */
 #define SPI_SCLK_DIV128        6 /**< SCLK speed DIV128 */
 #define SPI_SCLK_DIV256        7 /**< SCLK speed DIV256 */
+/** @} */
 
-/** @defgroup SPI_DFF SPI Data Frame Format */
+/**
+ * @defgroup SPI_DFF SPI Data Frame Format
+ * @brief Defines SPI data frame formats.
+ * 
+ * This group provides macros to select between 8-bit and 16-bit data frame formats.
+ * @{
+ */
 #define SPI_DFF_8              0 /**< 8-bit data frame format */
 #define SPI_DFF_16             1 /**< 16-bit data frame format */
+/** @} */
 
-/** @defgroup SPI_CPOL SPI Clock Polarity */
+/**
+ * @defgroup SPI_CPOL SPI Clock Polarity
+ * @brief Defines SPI clock polarity configurations.
+ * 
+ * This group provides macros to set the polarity of the SPI clock.
+ * @{
+ */
 #define SPI_CPOL_HIGH          1 /**< Clock polarity high */
 #define SPI_CPOL_LOW           0 /**< Clock polarity low */
+/** @} */
 
-/** @defgroup SPI_CPHA SPI Clock Phase */
+/**
+ * @defgroup SPI_CPHA SPI Clock Phase
+ * @brief Defines SPI clock phase configurations.
+ * 
+ * This group provides macros to set the phase of the SPI clock.
+ * @{
+ */
 #define SPI_CPHA_HIGH          1 /**< Clock phase high */
 #define SPI_CPHA_LOW           0 /**< Clock phase low */
+/** @} */
 
-/** @defgroup SPI_SSM SPI Software Slave Management */
+/**
+ * @defgroup SPI_SSM SPI Software Slave Management
+ * @brief Defines software slave management settings for SPI.
+ * 
+ * This group provides macros to enable or disable software-based slave management.
+ * @{
+ */
 #define SPI_SSM_EN             1 /**< Software slave management enable */
 #define SPI_SSM_DI             0 /**< Software slave management disable */
+/** @} */
 
-/** @defgroup SPI_SSI SPI Slave Select */
+/**
+ * @defgroup SPI_SSI SPI Slave Select
+ * @brief Defines SPI slave select configurations.
+ * 
+ * This group provides macros to set the slave select option in master and slave modes.
+ * @{
+ */
 #define SPI_SSI_SLAVE          0 /**< Slave select for slave mode */
 #define SPI_SSI_MASTER         1 /**< Slave select for master mode */
+/** @} */
+
 
 /**
  * @brief Enables or disables the peripheral clock for the given SPI port.

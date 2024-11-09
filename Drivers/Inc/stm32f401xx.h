@@ -1596,14 +1596,6 @@ volatile typedef struct{
 
 
 /**
- * @file stm32f401xx.h
- * @brief This file contains the base addresses, peripheral enable/disable macros, reset macros, IRQ numbers, and priority macros for STM32F401RE peripherals.
- * 
- * @details This file provides definitions for various peripheral base addresses, clock enable and disable macros, reset macros, and IRQ configurations.
- * It is intended for use in low-level programming for STM32F401RE microcontrollers.
- */
-
-/**
  * @defgroup Peripheral_Base_Addresses Peripheral Base Addresses
  * @brief Base addresses of peripherals mapped in memory for STM32F401RE.
  * @{

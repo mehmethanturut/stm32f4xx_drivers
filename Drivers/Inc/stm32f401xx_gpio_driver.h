@@ -41,62 +41,83 @@ typedef struct
     GPIO_PinConfig_t GPIO_PinConfig; /**< GPIO pin configuration. */
 } GPIO_Handle_t;
 
-/** @defgroup GPIO_PIN_NUMBERS GPIO possible PIN numbers
+/**
+ * @defgroup GPIO_PIN_NUMBERS GPIO possible PIN numbers
+ * @brief Defines constants for GPIO pin numbers.
+ * 
+ * This group provides macros for the 16 possible GPIO pin numbers on STM32 microcontrollers.
  * @{
  */
-#define GPIO_PIN_NO_0       0
-#define GPIO_PIN_NO_1       1
-#define GPIO_PIN_NO_2       2
-#define GPIO_PIN_NO_3       3
-#define GPIO_PIN_NO_4       4
-#define GPIO_PIN_NO_5       5
-#define GPIO_PIN_NO_6       6
-#define GPIO_PIN_NO_7       7
-#define GPIO_PIN_NO_8       8
-#define GPIO_PIN_NO_9       9
-#define GPIO_PIN_NO_10      10
-#define GPIO_PIN_NO_11      11
-#define GPIO_PIN_NO_12      12
-#define GPIO_PIN_NO_13      13
-#define GPIO_PIN_NO_14      14
-#define GPIO_PIN_NO_15      15
+#define GPIO_PIN_NO_0       0   /**< GPIO Pin 0 */
+#define GPIO_PIN_NO_1       1   /**< GPIO Pin 1 */
+#define GPIO_PIN_NO_2       2   /**< GPIO Pin 2 */
+#define GPIO_PIN_NO_3       3   /**< GPIO Pin 3 */
+#define GPIO_PIN_NO_4       4   /**< GPIO Pin 4 */
+#define GPIO_PIN_NO_5       5   /**< GPIO Pin 5 */
+#define GPIO_PIN_NO_6       6   /**< GPIO Pin 6 */
+#define GPIO_PIN_NO_7       7   /**< GPIO Pin 7 */
+#define GPIO_PIN_NO_8       8   /**< GPIO Pin 8 */
+#define GPIO_PIN_NO_9       9   /**< GPIO Pin 9 */
+#define GPIO_PIN_NO_10      10  /**< GPIO Pin 10 */
+#define GPIO_PIN_NO_11      11  /**< GPIO Pin 11 */
+#define GPIO_PIN_NO_12      12  /**< GPIO Pin 12 */
+#define GPIO_PIN_NO_13      13  /**< GPIO Pin 13 */
+#define GPIO_PIN_NO_14      14  /**< GPIO Pin 14 */
+#define GPIO_PIN_NO_15      15  /**< GPIO Pin 15 */
 /** @} */
 
-/** @defgroup GPIO_PIN_MODES GPIO possible modes
+/**
+ * @defgroup GPIO_PIN_MODES GPIO possible modes
+ * @brief Defines GPIO operating modes.
+ * 
+ * This group provides macros to set different modes of operation for GPIO pins, such as input, output, and interrupt modes.
  * @{
  */
-#define GPIO_MODE_IN        0   /**< Input mode. */
-#define GPIO_MODE_OUT       1   /**< Output mode. */
-#define GPIO_MODE_ALTFN     2   /**< Alternate function mode. */
-#define GPIO_MODE_ANALOG    3   /**< Analog mode. */
-#define GPIO_MODE_IT_FT     4   /**< Interrupt mode with falling edge trigger. */
-#define GPIO_MODE_IT_RT     5   /**< Interrupt mode with rising edge trigger. */
-#define GPIO_MODE_IT_RFT    6   /**< Interrupt mode with rising and falling edge trigger. */
+#define GPIO_MODE_IN        0   /**< Input mode */
+#define GPIO_MODE_OUT       1   /**< Output mode */
+#define GPIO_MODE_ALTFN     2   /**< Alternate function mode */
+#define GPIO_MODE_ANALOG    3   /**< Analog mode */
+#define GPIO_MODE_IT_FT     4   /**< Interrupt mode with falling edge trigger */
+#define GPIO_MODE_IT_RT     5   /**< Interrupt mode with rising edge trigger */
+#define GPIO_MODE_IT_RFT    6   /**< Interrupt mode with rising and falling edge trigger */
 /** @} */
 
-/** @defgroup GPIO_PIN_OUTPUT_TYPES GPIO possible output types
+/**
+ * @defgroup GPIO_PIN_OUTPUT_TYPES GPIO possible output types
+ * @brief Defines GPIO output types.
+ * 
+ * This group provides macros to specify the type of GPIO output: push-pull or open-drain.
  * @{
  */
-#define GPIO_OP_TYPE_PP     0   /**< Push-pull output. */
-#define GPIO_OP_TYPE_OD     1   /**< Open-drain output. */
+#define GPIO_OP_TYPE_PP     0   /**< Push-pull output */
+#define GPIO_OP_TYPE_OD     1   /**< Open-drain output */
 /** @} */
 
-/** @defgroup GPIO_PIN_OUTPUT_SPEEDS GPIO possible output speeds
+/**
+ * @defgroup GPIO_PIN_OUTPUT_SPEEDS GPIO possible output speeds
+ * @brief Defines GPIO output speed levels.
+ * 
+ * This group provides macros to configure the speed of GPIO outputs, such as low, medium, fast, and high speeds.
  * @{
  */
-#define GPIO_SPEED_LOW      0   /**< Low speed. */
-#define GPIO_SPEED_MED      1   /**< Medium speed. */
-#define GPIO_SPEED_FAST     2   /**< Fast speed. */
-#define GPIO_SPEED_HIGH     3   /**< High speed. */
+#define GPIO_SPEED_LOW      0   /**< Low speed */
+#define GPIO_SPEED_MED      1   /**< Medium speed */
+#define GPIO_SPEED_FAST     2   /**< Fast speed */
+#define GPIO_SPEED_HIGH     3   /**< High speed */
 /** @} */
 
-/** @defgroup GPIO_PIN_PUPD GPIO pin pull-up/pull-down configuration
+/**
+ * @defgroup GPIO_PIN_PUPD GPIO pin pull-up/pull-down configuration
+ * @brief Defines GPIO pull-up/pull-down settings.
+ * 
+ * This group provides macros to configure the internal pull-up or pull-down resistors for GPIO pins.
  * @{
  */
-#define GPIO_NO_PUPD        0   /**< No pull-up, pull-down. */
-#define GPIO_PIN_PU         1   /**< Pull-up enabled. */
-#define GPIO_PIN_PD         2   /**< Pull-down enabled. */
+#define GPIO_NO_PUPD        0   /**< No pull-up, pull-down */
+#define GPIO_PIN_PU         1   /**< Pull-up enabled */
+#define GPIO_PIN_PD         2   /**< Pull-down enabled */
 /** @} */
+
 
 /** 
  * @brief Enables or disables peripheral clock for a GPIO port.
