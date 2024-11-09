@@ -41,6 +41,13 @@ typedef struct
 {
     SPI_RegDef_t *pSPIx;
     SPI_Config_t SPI_Config;
+    uint8_t *pTxBuffer;
+    uint8_t *pRxBuffer;
+    uint32_t TxLen;
+    uint32_t RxLen;
+    uint8_t TxState;
+    uint8_t RxState;
+    
 }SPI_Handle_t;
 
 
@@ -50,6 +57,12 @@ typedef struct
 #define SPI_DEVICE_MODE_SLAVE    0
 #define SPI_DEVICE_MODE_MASTER   1
 
+/*
+@SPI_EVENTS
+*/
+#define SPI_EVENT_TX_COMPLETE   1
+#define SPI_EVENT_RX_COMPLETE   2
+#define SPI_EVENT_OVF_ERR       3
 /*
 @SPI_BusConfig
 */
@@ -137,6 +150,8 @@ void SPI_SendData(SPI_RegDef_t *pSPIx, uint8_t *pTxBuffer, uint32_t Len);
 void SPI_ReceiveData(SPI_RegDef_t *pSPIx, uint8_t *pRxBuffer, uint32_t Len);
 
 
+uint8_t SPI_SendDataIT(SPI_Handle_t *pSPIHandle, uint8_t *pTxBuffer, uint32_t Len);
+uint8_t SPI_ReceiveDataIT(SPI_Handle_t *pSPIHandle, uint8_t *pRxBuffer, uint32_t Len);
 /**
  * @brief Configures the interrupt for a specific IRQ number.
  * 
@@ -159,6 +174,12 @@ void SPI_IRQPriorityConfig(uint8_t IRQNumber, uint32_t IRQPriority);
  * @param[in] pSPIHandle Pointer to the SPI handle structure.
  */
 void SPI_IRQHandling(SPI_Handle_t *pSPIHandle);
+
+void SPI_ClearOVRFlag(SPI_RegDef_t *pSPIx);
+void SPI_CloseTransmission(SPI_Handle_t *pSPIHandle);
+void SPI_CloseReception(SPI_Handle_t *pSPIHandle);
+
+void SPI_AppEventCallback(SPI_Handle_t *pSPIHandle, uint8_t Event);
 
 
 #endif /* INC_STM32F401XX_SPI_DRIVER_H_ */

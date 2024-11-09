@@ -5,13 +5,13 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../Src/main.c 
+../Src/002Testapp_SPI_Sl_arduino.c 
 
 OBJS += \
-./Src/main.o 
+./Src/002Testapp_SPI_Sl_arduino.o 
 
 C_DEPS += \
-./Src/main.d 
+./Src/002Testapp_SPI_Sl_arduino.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -21,7 +21,7 @@ Src/%.o Src/%.su Src/%.cyclo: ../Src/%.c Src/subdir.mk
 clean: clean-Src
 
 clean-Src:
-	-$(RM) ./Src/main.cyclo ./Src/main.d ./Src/main.o ./Src/main.su
+	-$(RM) ./Src/002Testapp_SPI_Sl_arduino.cyclo ./Src/002Testapp_SPI_Sl_arduino.d ./Src/002Testapp_SPI_Sl_arduino.o ./Src/002Testapp_SPI_Sl_arduino.su
 
 .PHONY: clean-Src
 

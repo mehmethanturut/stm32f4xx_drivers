@@ -1,10 +1,10 @@
 /**
  * @file stm32f401xx.h
  * @brief Header file defining hardware registers and base addresses for STM32F401xx microcontroller.
- * 
+ *
  * This file provides definitions and macros for base addresses, peripheral structures,
  * and clock configurations for STM32F401xx devices.
- * 
+ *
  * Created on: Oct 25, 2024
  * Author: Mehmethan Türüt
  */
@@ -13,13 +13,15 @@
 #define INC_STM32F401XX_H_
 
 #include <stdint.h>
+#include <stddef.h>
 
 /*
-*****************************processor specific details**********************
-*/
+ * ************************ Processor-specific details **********************
+ */
 
 /** 
  * @defgroup NVIC_ISERx ARM Cortex Mx NVIC ISERx register addresses
+ * @brief Interrupt Set-Enable Registers (ISER) for enabling interrupts in the NVIC.
  * @{
  */
 #define NVIC_ISER0      ((volatile uint32_t*)0xE000E100)
@@ -30,6 +32,7 @@
 
 /** 
  * @defgroup NVIC_ICERx ARM Cortex Mx NVIC ICERx register addresses
+ * @brief Interrupt Clear-Enable Registers (ICER) for disabling interrupts in the NVIC.
  * @{
  */
 #define NVIC_ICER0      ((volatile uint32_t*)0xE000E180)
@@ -44,8 +47,9 @@
  */
 #define NVIC_PR_BASEADDR        ((volatile uint32_t*)0xE000E400)
 
-/** 
+/**
  * @defgroup MEMORY_BASEADDR Base addresses of Flash, SRAM, and ROM
+ * @brief Memory layout for Flash, SRAM, and ROM on STM32F401xx.
  * @{
  */
 #define FLASH_BASEADDR                 0x08000000U /**< Base address of Flash memory */
@@ -55,6 +59,7 @@
 
 /**
  * @defgroup BUS_BASEADDR Base addresses for APB and AHB buses
+ * @brief Base addresses of the Advanced Peripheral Bus (APB) and Advanced High-performance Bus (AHB).
  * @{
  */
 #define PERIPH_BASEADDR                0x40000000U /**< Base address of peripheral memory */
@@ -64,8 +69,11 @@
 #define AHB2PERIPH_BASEADDR            0x50000000U /**< Base address of AHB2 peripheral memory */
 /** @} */
 
+
+
 /**
  * @defgroup INDIV_PERIPH_BASEADDR Individual peripheral base addresses
+ * @brief Base addresses for various individual peripherals on STM32F401xx.
  * @{
  */
 #define TIM2_BASEADDR                  APB1PERIPH_BASEADDR /**< Base address of TIM2 */
@@ -114,17 +122,29 @@
 
 #define USB_OTG_FS_BASEADDR            (AHB2PERIPH_BASEADDR) /**< Base address of USB OTG FS */
 
+
+
+
+
+
 /* 
 ******************GPIO register definition structures******************
 */
 
 
 /** 
- * @brief Structure for GPIO port mode register.
+ * @brief GPIO register definition structure.
+ * 
+ * This structure defines the registers for a GPIO port on the STM32F401xx.
  */
 volatile typedef struct 
 {
-    struct{         //GPIO port mode register
+    /** 
+     * @brief Structure for GPIO port mode register.
+     * 
+     * Defines the mode configuration for each pin in the GPIO port.
+     */
+    struct{  
         uint32_t MODER0       :2; /**< Mode for pin 0 */
         uint32_t MODER1       :2; /**< Mode for pin 1 */
         uint32_t MODER2       :2; /**< Mode for pin 2 */
@@ -143,7 +163,14 @@ volatile typedef struct
         uint32_t MODER15      :2; /**< Mode for pin 15 */
     } GPIOx_MODER_t;
 
-    struct{         //GPIO port output type register
+
+
+    /** 
+     * @brief Structure for GPIO port output type register.
+     * 
+     * Defines the output type for each pin in the GPIO port.
+     */
+    struct{         
         uint32_t OT0       :1; /**< Output type for pin 0 */
         uint32_t OT1       :1; /**< Output type for pin 1 */
         uint32_t OT2       :1; /**< Output type for pin 2 */
@@ -163,7 +190,13 @@ volatile typedef struct
         uint32_t res       :16; /**< Reserved bits */
     } GPIOx_OTYPER_t;
 
-    struct{         //GPIO port output speed register
+
+    /**
+     * @brief GPIO port output speed register.
+     * 
+     * Configures the output speed for each pin in the GPIO port.
+     */
+    struct{         
         uint32_t OSPEEDR0       :2; /**< Speed for pin 0 */
         uint32_t OSPEEDR1       :2; /**< Speed for pin 1 */
         uint32_t OSPEEDR2       :2; /**< Speed for pin 2 */
@@ -181,8 +214,14 @@ volatile typedef struct
         uint32_t OSPEEDR14      :2; /**< Speed for pin 14 */
         uint32_t OSPEEDR15      :2; /**< Speed for pin 15 */
     } GPIOx_OSPEEDR_t;
-
-    struct{         //GPIO port pull-up/pull-down register
+  
+  
+    /**
+     * @brief GPIO port pull-up/pull-down register.
+     * 
+     * Configures the pull-up or pull-down resistors for each pin in the GPIO port.
+     */
+    struct{         
         uint32_t PUPDR0       :2; /**< Pull-up/pull-down for pin 0 */
         uint32_t PUPDR1       :2; /**< Pull-up/pull-down for pin 1 */
         uint32_t PUPDR2       :2; /**< Pull-up/pull-down for pin 2 */
@@ -201,7 +240,13 @@ volatile typedef struct
         uint32_t PUPDR15      :2; /**< Pull-up/pull-down for pin 15 */
     } GPIOx_PUPDR_t;
 
-    const  struct{         //GPIO port input data register
+
+    /**
+     * @brief GPIO port input data register.
+     * 
+     * Reads the input data for each pin in the GPIO port.
+     */
+    const  struct{         
         uint32_t IDR0       :1; /**< Input data for pin 0 */
         uint32_t IDR1       :1; /**< Input data for pin 1 */
         uint32_t IDR2       :1; /**< Input data for pin 2 */
@@ -220,8 +265,14 @@ volatile typedef struct
         uint32_t IDR15      :1; /**< Input data for pin 15 */
         uint32_t reserved   :16; /**< Reserved bits */
     } GPIOx_IDR_t;
-
-    struct{         //GPIO port output data register
+   
+   
+    /**
+     * @brief GPIO port output data register.
+     * 
+     * Controls the output data for each pin in the GPIO port.
+     */
+    struct{         
         uint32_t ODR0       :1; /**< Output data for pin 0 */
         uint32_t ODR1       :1; /**< Output data for pin 1 */
         uint32_t ODR2       :1; /**< Output data for pin 2 */
@@ -242,7 +293,11 @@ volatile typedef struct
     } GPIOx_ODR_t;
 
 
-
+    /**
+     * @brief GPIO port bit set/reset register.
+     * 
+     * Used to set or reset specific bits in the GPIO port.
+     */
 
     struct{         //GPIO port bit set/reset register
         uint32_t BS0       :1; /**< Bit set for pin 0 */
@@ -279,7 +334,12 @@ volatile typedef struct
         uint32_t BR15      :1; /**< Bit reset for pin 15 */
     } GPIOx_BSRR_t;
 
-    struct{         //GPIO port configuration lock register
+    /**
+     * @brief GPIO port configuration lock register.
+     * 
+     * Locks the configuration of the GPIO port until the next reset.
+     */
+    struct{        
         uint32_t LCK0       :1; /**< Lock configuration for pin 0 */
         uint32_t LCK1       :1; /**< Lock configuration for pin 1 */
         uint32_t LCK2       :1; /**< Lock configuration for pin 2 */
@@ -300,6 +360,11 @@ volatile typedef struct
         uint32_t res        :15; /**< Reserved bits */
     } GPIOx_LCKR_t;
 
+    /**
+     * @brief GPIO alternate function low register.
+     * 
+     * Configures the alternate functions for pins 0 to 7 in the GPIO port.
+     */
     struct{         //GPIO alternate function low register
         uint32_t ARFL0     :4; /**< Alternate function low for pin 0 */
         uint32_t ARFL1     :4; /**< Alternate function low for pin 1 */
@@ -310,7 +375,12 @@ volatile typedef struct
         uint32_t ARFL6     :4; /**< Alternate function low for pin 6 */
         uint32_t ARFL7     :4; /**< Alternate function low for pin 7 */
     } GPIOx_AFRL_t;
-
+   
+    /**
+     * @brief GPIO alternate function high register.
+     * 
+     * Configures the alternate functions for pins 8 to 15 in the GPIO port.
+     */
     struct{         //GPIO alternate function high register
         uint32_t ARFH8      :4; /**< Alternate function high for pin 8 */
         uint32_t ARFH9      :4; /**< Alternate function high for pin 9 */
@@ -330,9 +400,22 @@ volatile typedef struct
 /* 
 ******************RCC register definition structures******************
 */
+
+/**
+ * @brief RCC Register Definition structure.
+ * 
+ * This structure contains all the register configurations for the 
+ * Reset and Clock Control (RCC) peripheral on the STM32F401xx.
+ */
 typedef struct
 {
-    struct{         //RCC clock control register
+
+    /**
+     * @brief RCC clock control register (RCC_CR).
+     * 
+     * Controls the clock configuration and status for HSI, HSE, and PLL.
+     */
+    struct{         
         uint32_t HSION           :1; /**< High-speed internal clock enable */
         uint32_t HSIRDY          :1; /**< HSI clock ready flag */
         uint32_t res             :1; /**< Reserved */
@@ -350,7 +433,13 @@ typedef struct
         uint32_t res2            :4; /**< Reserved */
     } RCC_CR_t;
 
-    struct{         //RCC PLL configuration register
+
+    /**
+     * @brief RCC PLL configuration register (RCC_PLLCFGR).
+     * 
+     * Configures the main PLL (PLL) multiplication and division factors.
+     */
+    struct{         
         uint32_t PLLM0            :1; /**< PLL input clock divider bit 0 */
         uint32_t PLLM1            :1; /**< PLL input clock divider bit 1 */
         uint32_t PLLM2            :1; /**< PLL input clock divider bit 2 */
@@ -371,7 +460,13 @@ typedef struct
         uint32_t res3             :4; /**< Reserved */
     } RCC_PLLCFGR_t;
 
-    struct{         //RCC clock configuration register
+
+    /**
+     * @brief RCC clock configuration register (RCC_CFGR).
+     * 
+     * Controls the system clock, AHB, APB1, APB2 prescalers, and other clock outputs.
+     */
+    struct{         
         uint32_t SW0              :1; /**< System clock switch bit 0 */
         uint32_t SW1              :1; /**< System clock switch bit 1 */
         uint32_t SWS0             :1; /**< System clock switch status bit 0 */
@@ -387,8 +482,13 @@ typedef struct
         uint32_t MCO2PRE          :3; /**< MCO2 prescaler */
         uint32_t MCO2             :2; /**< Microcontroller clock output 2 */
     } RCC_CFGR_t;
-
-    struct{         //RCC clock interrupt register
+  
+    /**
+     * @brief RCC clock interrupt register (RCC_CIR).
+     * 
+     * Manages clock interrupt flags and enables for LSI, LSE, HSI, HSE, and PLL.
+     */
+    struct{         
         uint32_t LSIRDYF         :1; /**< LSI ready interrupt flag */
         uint32_t LSERDYF         :1; /**< LSE ready interrupt flag */
         uint32_t HSIRDYF         :1; /**< HSI ready interrupt flag */
@@ -415,7 +515,12 @@ typedef struct
         uint32_t res3            :8; /**< Reserved */
     } RCC_CIR_t;
 
-    struct{         //RCC AHB1 peripheral reset register
+    /**
+     * @brief RCC AHB1 peripheral reset register (RCC_AHB1RSTR).
+     * 
+     * Controls the reset of peripherals on the AHB1 bus.
+     */
+    struct{         
         uint32_t GPIOARST        :1; /**< Reset GPIOA */
         uint32_t GPIOBRST        :1; /**< Reset GPIOB */
         uint32_t GPIOCRST        :1; /**< Reset GPIOC */
@@ -432,12 +537,21 @@ typedef struct
     } RCC_AHB1RSTR_t;
 
 
-
+   /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved.
+     */
     struct 
     {
         uint32_t res;
     }RESERVED0_t;
-
+  
+   /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved.
+     */
     struct 
     {
         uint32_t res;
@@ -445,16 +559,24 @@ typedef struct
 
 
 
-
-    struct{         //RCC AHB2 peripheral reset register
+    /**
+     * @brief RCC AHB2 peripheral reset register (RCC_AHB2RSTR).
+     * 
+     * Controls the reset state for AHB2 peripherals.
+     */
+    struct{         
         uint32_t res              :7; /**< Reserved */
         uint32_t OTGFSRST         :1; /**< Reset OTGFS */
         uint32_t res1             :24; /**< Reserved */
     } RCC_AHB2RSTR_t;
 
 
-
-       struct{                 //RCC APB1 peripheral reset register
+    /**
+     * @brief RCC APB1 peripheral reset register (RCC_APB1RSTR).
+     * 
+     * Controls the reset state for APB1 peripherals.
+     */
+    struct{                 
         uint32_t TIM2RST         :1; /**< Reset TIM2 */
         uint32_t TIM3RST         :1; /**< Reset TIM3 */
         uint32_t TIM4RST         :1; /**< Reset TIM4 */
@@ -475,7 +597,12 @@ typedef struct
         uint32_t res5            :3; /**< Reserved */
     } RCC_APB1RSTR_t;
 
-    struct{                 //RCC APB2 peripheral reset register
+    /**
+     * @brief RCC APB2 peripheral reset register (RCC_APB2RSTR).
+     * 
+     * Controls the reset state for APB2 peripherals.
+     */
+    struct{                
         uint32_t TIM1RST         :1; /**< Reset TIM1 */
         uint32_t res             :3; /**< Reserved */
         uint32_t USART1RST       :1; /**< Reset USART1 */
@@ -494,18 +621,32 @@ typedef struct
         uint32_t res4            :13; /**< Reserved */
     } RCC_APB2RSTR_t;
 
-
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved.
+     */
     struct 
     {
         uint32_t res;
     }RESERVED2_t;
-
+   
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved.
+     */
     struct 
     {
         uint32_t res;
     }RESERVED3_t;
 
-    struct{                 //RCC AHB1 peripheral clock enable register
+    /**
+     * @brief RCC AHB1 peripheral clock enable register (RCC_AHB1ENR).
+     * 
+     * Controls the clock enable for AHB1 peripherals.
+     */
+    struct{                 
         uint32_t GPIOAEN         :1; /**< Enable clock for GPIOA */
         uint32_t GPIOBEN         :1; /**< Enable clock for GPIOB */
         uint32_t GPIOCEN         :1; /**< Enable clock for GPIOC */
@@ -521,23 +662,42 @@ typedef struct
         uint32_t res3            :9; /**< Reserved */
     } RCC_AHB1ENR_t;
 
-    struct{                 //RCC AHB2 peripheral clock enable register
+    /**
+     * @brief RCC AHB2 peripheral clock enable register (RCC_AHB2ENR).
+     * 
+     * Controls the clock enable for AHB2 peripherals.
+     */
+    struct{                 
         uint32_t res              :7; /**< Reserved */
         uint32_t OTGFSEN          :1; /**< Enable clock for OTGFS */
         uint32_t res1             :24; /**< Reserved */
     } RCC_AHB2ENR_t;
 
-
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved.
+     */
     struct 
     {
         uint32_t res;
     }RESERVED4_t;
-
+   
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved.
+     */
     struct 
     {
         uint32_t res;
     }RESERVED5_t;
 
+    /**
+     * @brief RCC APB1 peripheral clock enable register (RCC_APB1ENR).
+     * 
+     * Controls the clock enable for APB1 peripherals.
+     */
     struct{                 //RCC APB1 peripheral clock enable register
         uint32_t TIM2EN          :1; /**< Enable clock for TIM2 */
         uint32_t TIM3EN          :1; /**< Enable clock for TIM3 */
@@ -559,6 +719,11 @@ typedef struct
         uint32_t res5            :3; /**< Reserved */
     } RCC_APB1ENR_t;
 
+    /**
+     * @brief RCC APB2 peripheral clock enable register (RCC_APB2ENR).
+     * 
+     * Controls the clock enable for APB2 peripherals.
+     */
     struct{                 //RCC APB2 peripheral clock enable register
         uint32_t TIM1EN          :1; /**< Enable clock for TIM1 */
         uint32_t res             :3; /**< Reserved */
@@ -579,19 +744,32 @@ typedef struct
     } RCC_APB2ENR_t;
 
 
-
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved.
+     */
     struct 
     {
         uint32_t res;
     }RESERVED6_t;
 
-
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved.
+     */
     struct 
     {
         uint32_t res;
     }RESERVED7_t;
 
-    struct{                 //RCC AHB1 peripheral clock enable in low power mode register
+    /**
+     * @brief RCC AHB1 peripheral clock low power enable register (RCC_AHB1LPENR).
+     * 
+     * Controls the clock enable during low power mode for AHB1 peripherals.
+     */
+    struct{                 
         uint32_t GPIOALPEN       :1; /**< Low power mode clock enable for GPIOA */
         uint32_t GPIOBLPEN       :1; /**< Low power mode clock enable for GPIOB */
         uint32_t GPIOCLPEN       :1; /**< Low power mode clock enable for GPIOC */
@@ -610,25 +788,44 @@ typedef struct
         uint32_t res4            :9; /**< Reserved */
     } RCC_AHB1LPENR_t;
 
-    struct{                 //RCC AHB2 peripheral clock enable in low power mode register
+    /**
+     * @brief RCC AHB2 peripheral clock low power enable register (RCC_AHB2LPENR).
+     * 
+     * Controls the clock enable during low power mode for AHB2 peripherals.
+     */
+    struct{                 
         uint32_t res             :7; /**< Reserved */
         uint32_t OTGFSEN         :1; /**< Low power mode clock enable for OTGFS */
         uint32_t res1            :24; /**< Reserved */
     } RCC_AHB2LPENR_t;
 
 
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved.
+     */
     struct 
     {
         uint32_t res;
     }RESERVED8_t;
 
-
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved.
+     */
     struct 
     {
         uint32_t res;
     }RESERVED9_t;
 
-    struct{                 //RCC APB1 peripheral clock enable in low power mode register
+    /**
+     * @brief RCC APB1 peripheral clock low power enable register (RCC_APB1LPENR).
+     * 
+     * Controls the clock enable during low power mode for APB1 peripherals.
+     */
+    struct{                 
         uint32_t TIM2LPEN        :1; /**< Low power mode clock enable for TIM2 */
         uint32_t TIM3LPEN        :1; /**< Low power mode clock enable for TIM3 */
         uint32_t TIM4LPEN        :1; /**< Low power mode clock enable for TIM4 */
@@ -649,7 +846,13 @@ typedef struct
         uint32_t res5            :3; /**< Reserved */
     } RCC_APB1LPENR_t;
 
-    struct{                 // RCC APB2 peripheral clock enabled in low power mode register
+
+    /**
+     * @brief RCC APB2 peripheral clock low power enable register (RCC_APB2LPENR).
+     * 
+     * Controls the clock enable during low power mode for APB2 peripherals.
+     */
+    struct{                 
         uint32_t TIM1LPEN        :1; /**< Low power mode clock enable for TIM1 */
         uint32_t res             :3; /**< Reserved */
         uint32_t USART1LPEN      :1; /**< Low power mode clock enable for USART1 */
@@ -669,19 +872,32 @@ typedef struct
     } RCC_APB2LPENR_t;
 
 
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved.
+     */
     struct 
     {
         uint32_t res;
     }RESERVED10_t;
 
-
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved.
+     */
     struct 
     {
         uint32_t res;
     }RESERVED11_t;
 
-
-    struct{         //RCC Backup domain control register
+    /**
+     * @brief RCC Backup domain control register (RCC_BDCR).
+     * 
+     * Controls the settings for the backup domain, including LSE oscillator and RTC.
+     */
+    struct{        
         uint32_t LSEON            :1; /**< LSE oscillator enable */
         uint32_t LSERDY           :1; /**< LSE oscillator ready */
         uint32_t LSEBYP           :1; /**< LSE oscillator bypass */
@@ -693,7 +909,13 @@ typedef struct
         uint32_t res2             :15; /**< Reserved */
     } RCC_BDCR_t;
 
-    struct{         //RCC clock control & status register
+
+    /**
+     * @brief RCC clock control and status register (RCC_CSR).
+     * 
+     * Manages the settings for the low-speed internal oscillator and reset flags.
+     */
+    struct{         
         uint32_t LSION            :1; /**< LSI oscillator enable */
         uint32_t LSIRDY           :1; /**< LSI oscillator ready */
         uint32_t res              :22; /**< Reserved */
@@ -707,17 +929,35 @@ typedef struct
         uint32_t LPWRRSTF         :1; /**< Low-power reset flag */
     } RCC_CSR_t;
 
+
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved.
+     */
     struct 
     {
         uint32_t res; /**< Reserved */
     } RESERVED12_t;
 
+
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved.
+     */
     struct 
     {
         uint32_t res; /**< Reserved */
     } RESERVED13_t;
 
-    struct{         // RCC spread spectrum clock generation register
+
+    /**
+     * @brief RCC spread spectrum clock generation register (RCC_SSCGR).
+     * 
+     * Configures spread spectrum modulation settings.
+     */
+    struct{         
         uint32_t MODPER           :13; /**< Modulation period */
         uint32_t INCSTEP          :15; /**< Increment step */
         uint32_t res              :2; /**< Reserved */
@@ -725,7 +965,13 @@ typedef struct
         uint32_t SSCGEN           :1; /**< Spread spectrum clock generator enable */
     } RCC_SSCGR_t;
 
-    struct{         //RCC PLLI2S configuration register
+
+    /**
+     * @brief RCC PLLI2S configuration register (RCC_PLLI2SCFGR).
+     * 
+     * Configures the multiplication and division factors for the PLLI2S.
+     */
+    struct{         
         uint32_t res               :3; /**< Reserved */
         uint32_t PLL2SN0           :1; /**< PLLI2S multiplication factor bit 0 */
         uint32_t PLL2SN1           :1; /**< PLLI2S multiplication factor bit 1 */
@@ -743,12 +989,24 @@ typedef struct
         uint32_t res2              :1; /**< Reserved */
     } RCC_PLLI2SCFGR_t;
 
+
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved.
+     */
        struct 
     {
         uint32_t res; /**< Reserved */
     } RESERVED14_t;
 
-    struct{         // RCC Dedicated Clocks Configuration Register
+
+    /**
+     * @brief RCC dedicated clocks configuration register (RCC_DCKCFGR).
+     * 
+     * Configures specific peripheral clocks.
+     */
+    struct{         
         uint32_t res               :24; /**< Reserved */
         uint32_t TIMPRE            :1; /**< Timer prescaler selection */
         uint32_t PLL2SN1           :7; /**< Reserved */
@@ -762,168 +1020,207 @@ typedef struct
 ****************** EXTI register definition structures******************
 */
 
+/**
+ * @brief EXTI Register Definition structure.
+ * 
+ * Defines the structure for External Interrupt (EXTI) registers, which handle
+ * the configuration of external interrupt and event masking.
+ */
 typedef struct{
-    struct                     //Interrupt mask register
+
+      /**
+     * @brief Interrupt mask register (EXTI_IMR).
+     * 
+     * Enables or disables interrupt requests from each pin.
+     */
+    struct                     
     {
-        uint32_t MR0       :1; /**< Mode for pin 0 */
-        uint32_t MR1       :1; /**< Mode for pin 1 */
-        uint32_t MR2       :1; /**< Mode for pin 2 */
-        uint32_t MR3       :1; /**< Mode for pin 3 */
-        uint32_t MR4       :1; /**< Mode for pin 4 */
-        uint32_t MR5       :1; /**< Mode for pin 5 */
-        uint32_t MR6       :1; /**< Mode for pin 6 */
-        uint32_t MR7       :1; /**< Mode for pin 7 */
-        uint32_t MR8       :1; /**< Mode for pin 8 */
-        uint32_t MR9       :1; /**< Mode for pin 9 */
-        uint32_t MR10      :1; /**< Mode for pin 10 */
-        uint32_t MR11      :1; /**< Mode for pin 11 */
-        uint32_t MR12      :1; /**< Mode for pin 12 */
-        uint32_t MR13      :1; /**< Mode for pin 13 */
-        uint32_t MR14      :1; /**< Mode for pin 14 */
-        uint32_t MR15      :1; /**< Mode for pin 15 */
-        uint32_t MR16      :1; /**< Mode for pin 13 */
-        uint32_t MR17      :1; /**< Mode for pin 14 */
-        uint32_t MR18      :1; /**< Mode for pin 15 */
-        uint32_t res       :2;
-        uint32_t MR21      :1; /**< Mode for pin 14 */
-        uint32_t MR22      :1; /**< Mode for pin 15 */
-        uint32_t res1      :9;
+        uint32_t MR0       :1; /**< Interrupt mask for pin 0 */
+        uint32_t MR1       :1; /**< Interrupt mask for pin 1 */
+        uint32_t MR2       :1; /**< Interrupt mask for pin 2 */
+        uint32_t MR3       :1; /**< Interrupt mask for pin 3 */
+        uint32_t MR4       :1; /**< Interrupt mask for pin 4 */
+        uint32_t MR5       :1; /**< Interrupt mask for pin 5 */
+        uint32_t MR6       :1; /**< Interrupt mask for pin 6 */
+        uint32_t MR7       :1; /**< Interrupt mask for pin 7 */
+        uint32_t MR8       :1; /**< Interrupt mask for pin 8 */
+        uint32_t MR9       :1; /**< Interrupt mask for pin 9 */
+        uint32_t MR10      :1; /**< Interrupt mask for pin 10 */
+        uint32_t MR11      :1; /**< Interrupt mask for pin 11 */
+        uint32_t MR12      :1; /**< Interrupt mask for pin 12 */
+        uint32_t MR13      :1; /**< Interrupt mask for pin 13 */
+        uint32_t MR14      :1; /**< Interrupt mask for pin 14 */
+        uint32_t MR15      :1; /**< Interrupt mask for pin 15 */
+        uint32_t MR16      :1; /**< Interrupt mask for pin 16 */
+        uint32_t MR17      :1; /**< Interrupt mask for pin 17 */
+        uint32_t MR18      :1; /**< Interrupt mask for pin 18 */
+        uint32_t res       :2; /**< Reserved bits */
+        uint32_t MR21      :1; /**< Interrupt mask pin 21 */
+        uint32_t MR22      :1; /**< Interrupt mask pin 22 */
+        uint32_t res1      :9; /**< Reserved bits */
     }EXTI_IMR_t;
 
-    struct                     //Event mask register
+
+    /**
+     * @brief Event mask register (EXTI_EMR).
+     * 
+     * Enables or disables event requests from each pin.
+     */
+    struct                     
     {
-        uint32_t MR0       :1; /**< Mode for pin 0 */
-        uint32_t MR1       :1; /**< Mode for pin 1 */
-        uint32_t MR2       :1; /**< Mode for pin 2 */
-        uint32_t MR3       :1; /**< Mode for pin 3 */
-        uint32_t MR4       :1; /**< Mode for pin 4 */
-        uint32_t MR5       :1; /**< Mode for pin 5 */
-        uint32_t MR6       :1; /**< Mode for pin 6 */
-        uint32_t MR7       :1; /**< Mode for pin 7 */
-        uint32_t MR8       :1; /**< Mode for pin 8 */
-        uint32_t MR9       :1; /**< Mode for pin 9 */
-        uint32_t MR10      :1; /**< Mode for pin 10 */
-        uint32_t MR11      :1; /**< Mode for pin 11 */
-        uint32_t MR12      :1; /**< Mode for pin 12 */
-        uint32_t MR13      :1; /**< Mode for pin 13 */
-        uint32_t MR14      :1; /**< Mode for pin 14 */
-        uint32_t MR15      :1; /**< Mode for pin 15 */
-        uint32_t MR16      :1; /**< Mode for pin 13 */
-        uint32_t MR17      :1; /**< Mode for pin 14 */
-        uint32_t MR18      :1; /**< Mode for pin 15 */
-        uint32_t res       :2;
-        uint32_t MR21      :1; /**< Mode for pin 14 */
-        uint32_t MR22      :1; /**< Mode for pin 15 */
-        uint32_t res1      :9;
+        uint32_t MR0       :1; /**< Event mask for pin 0 */
+        uint32_t MR1       :1; /**< Event mask for pin 1 */
+        uint32_t MR2       :1; /**< Event mask for pin 2 */
+        uint32_t MR3       :1; /**< Event mask for pin 3 */
+        uint32_t MR4       :1; /**< Event mask for pin 4 */
+        uint32_t MR5       :1; /**< Event mask for pin 5 */
+        uint32_t MR6       :1; /**< Event mask for pin 6 */
+        uint32_t MR7       :1; /**< Event mask for pin 7 */
+        uint32_t MR8       :1; /**< Event mask for pin 8 */
+        uint32_t MR9       :1; /**< Event mask for pin 9 */
+        uint32_t MR10      :1; /**< Event mask for pin 10 */
+        uint32_t MR11      :1; /**< Event mask for pin 11 */
+        uint32_t MR12      :1; /**< Event mask for pin 12 */
+        uint32_t MR13      :1; /**< Event mask for pin 13 */
+        uint32_t MR14      :1; /**< Event mask for pin 14 */
+        uint32_t MR15      :1; /**< Event mask for pin 15 */
+        uint32_t MR16      :1; /**< Event mask for pin 16 */
+        uint32_t MR17      :1; /**< Event mask for pin 17 */
+        uint32_t MR18      :1; /**< Event mask for pin 18 */
+        uint32_t res       :2; /**< Reserved bits */
+        uint32_t MR21      :1; /**< Event mask pin 21 */
+        uint32_t MR22      :1; /**< Event mask pin 22 */
+        uint32_t res1      :9; /**< Reserved bits */
     }EXTI_EMR_t;
 
-    struct                     //Rising trigger selection register
+
+    /**
+     * @brief Rising trigger selection register (EXTI_RTSR).
+     * 
+     * Configures rising-edge trigger for each pin.
+     */
+    struct                     
     {
-        uint32_t TR0       :1; /**< Mode for pin 0 */
-        uint32_t TR1       :1; /**< Mode for pin 1 */
-        uint32_t TR2       :1; /**< Mode for pin 2 */
-        uint32_t TR3       :1; /**< Mode for pin 3 */
-        uint32_t TR4       :1; /**< Mode for pin 4 */
-        uint32_t TR5       :1; /**< Mode for pin 5 */
-        uint32_t TR6       :1; /**< Mode for pin 6 */
-        uint32_t TR7       :1; /**< Mode for pin 7 */
-        uint32_t TR8       :1; /**< Mode for pin 8 */
-        uint32_t TR9       :1; /**< Mode for pin 9 */
-        uint32_t TR10      :1; /**< Mode for pin 10 */
-        uint32_t TR11      :1; /**< Mode for pin 11 */
-        uint32_t TR12      :1; /**< Mode for pin 12 */
-        uint32_t TR13      :1; /**< Mode for pin 13 */
-        uint32_t TR14      :1; /**< Mode for pin 14 */
-        uint32_t TR15      :1; /**< Mode for pin 15 */
-        uint32_t TR16      :1; /**< Mode for pin 13 */
-        uint32_t TR17      :1; /**< Mode for pin 14 */
-        uint32_t TR18      :1; /**< Mode for pin 15 */
-        uint32_t res       :2;
-        uint32_t TR21      :1; /**< Mode for pin 14 */
-        uint32_t TR22      :1; /**< Mode for pin 15 */
-        uint32_t res1      :9;
+       uint32_t TR0       :1; /**< Rising trigger for pin 0 */
+        uint32_t TR1       :1; /**< Rising trigger for pin 1 */
+        uint32_t TR2       :1; /**< Rising trigger for pin 2 */
+        uint32_t TR3       :1; /**< Rising trigger for pin 3 */
+        uint32_t TR4       :1; /**< Rising trigger for pin 4 */
+        uint32_t TR5       :1; /**< Rising trigger for pin 5 */
+        uint32_t TR6       :1; /**< Rising trigger for pin 6 */
+        uint32_t TR7       :1; /**< Rising trigger for pin 7 */
+        uint32_t TR8       :1; /**< Rising trigger for pin 8 */
+        uint32_t TR9       :1; /**< Rising trigger for pin 9 */
+        uint32_t TR10      :1; /**< Rising trigger for pin 10 */
+        uint32_t TR11      :1; /**< Rising trigger for pin 11 */
+        uint32_t TR12      :1; /**< Rising trigger for pin 12 */
+        uint32_t TR13      :1; /**< Rising trigger for pin 13 */
+        uint32_t TR14      :1; /**< Rising trigger for pin 14 */
+        uint32_t TR15      :1; /**< Rising trigger for pin 15 */
+        uint32_t TR16      :1; /**< Rising trigger for pin 16 */
+        uint32_t TR17      :1; /**< Rising trigger for pin 17 */
+        uint32_t TR18      :1; /**< Rising trigger for pin 18 */
+        uint32_t res       :2; /**< Reserved bits */
+        uint32_t TR21      :1; /**< Rising trigger pin 21 */
+        uint32_t TR22      :1; /**< Rising trigger pin 22 */
+        uint32_t res1      :9; /**< Reserved bits */
     }EXTI_RTSR_t;
 
 
-
-    struct                     //Falling trigger selection register
+    /**
+     * @brief Falling trigger selection register (EXTI_FTSR).
+     * 
+     * Configures falling-edge trigger for each pin.
+     */
+    struct                     
     {
-        uint32_t TR0       :1; /**< Mode for pin 0 */
-        uint32_t TR1       :1; /**< Mode for pin 1 */
-        uint32_t TR2       :1; /**< Mode for pin 2 */
-        uint32_t TR3       :1; /**< Mode for pin 3 */
-        uint32_t TR4       :1; /**< Mode for pin 4 */
-        uint32_t TR5       :1; /**< Mode for pin 5 */
-        uint32_t TR6       :1; /**< Mode for pin 6 */
-        uint32_t TR7       :1; /**< Mode for pin 7 */
-        uint32_t TR8       :1; /**< Mode for pin 8 */
-        uint32_t TR9       :1; /**< Mode for pin 9 */
-        uint32_t TR10      :1; /**< Mode for pin 10 */
-        uint32_t TR11      :1; /**< Mode for pin 11 */
-        uint32_t TR12      :1; /**< Mode for pin 12 */
-        uint32_t TR13      :1; /**< Mode for pin 13 */
-        uint32_t TR14      :1; /**< Mode for pin 14 */
-        uint32_t TR15      :1; /**< Mode for pin 15 */
-        uint32_t TR16      :1; /**< Mode for pin 13 */
-        uint32_t TR17      :1; /**< Mode for pin 14 */
-        uint32_t TR18      :1; /**< Mode for pin 15 */
-        uint32_t res       :2;
-        uint32_t TR21      :1; /**< Mode for pin 14 */
-        uint32_t TR22      :1; /**< Mode for pin 15 */
-        uint32_t res1      :9;
+        uint32_t TR0       :1; /**< Falling trigger for pin 0 */
+        uint32_t TR1       :1; /**< Falling trigger for pin 1 */
+        uint32_t TR2       :1; /**< Falling trigger for pin 2 */
+        uint32_t TR3       :1; /**< Falling trigger for pin 3 */
+        uint32_t TR4       :1; /**< Falling trigger for pin 4 */
+        uint32_t TR5       :1; /**< Falling trigger for pin 5 */
+        uint32_t TR6       :1; /**< Falling trigger for pin 6 */
+        uint32_t TR7       :1; /**< Falling trigger for pin 7 */
+        uint32_t TR8       :1; /**< Falling trigger for pin 8 */
+        uint32_t TR9       :1; /**< Falling trigger for pin 9 */
+        uint32_t TR10      :1; /**< Falling trigger for pin 10 */
+        uint32_t TR11      :1; /**< Falling trigger for pin 11 */
+        uint32_t TR12      :1; /**< Falling trigger for pin 12 */
+        uint32_t TR13      :1; /**< Falling trigger for pin 13 */
+        uint32_t TR14      :1; /**< Falling trigger for pin 14 */
+        uint32_t TR15      :1; /**< Falling trigger for pin 15 */
+        uint32_t TR16      :1; /**< Falling trigger for pin 16 */
+        uint32_t TR17      :1; /**< Falling trigger for pin 17 */
+        uint32_t TR18      :1; /**< Falling trigger for pin 18 */
+        uint32_t res       :2; /**< Reserved bits */
+        uint32_t TR21      :1; /**< Falling trigger for pin 21 */
+        uint32_t TR22      :1; /**< Falling trigger for pin 22 */
+        uint32_t res1      :9; /**< Reserved bits */
     }EXTI_FTSR_t;
 
-    struct                 //Software interrupt event register
+
+    /**
+     * @brief Software interrupt event register (EXTI_SWIER).
+     * 
+     * Allows software to trigger interrupt events on each pin.
+     */
+    struct                
     {
-        uint32_t SWIER0       :1; /**< Mode for pin 0 */
-        uint32_t SWIER1       :1; /**< Mode for pin 1 */
-        uint32_t SWIER2       :1; /**< Mode for pin 2 */
-        uint32_t SWIER3       :1; /**< Mode for pin 3 */
-        uint32_t SWIER4       :1; /**< Mode for pin 4 */
-        uint32_t SWIER5       :1; /**< Mode for pin 5 */
-        uint32_t SWIER6       :1; /**< Mode for pin 6 */
-        uint32_t SWIER7       :1; /**< Mode for pin 7 */
-        uint32_t SWIER8       :1; /**< Mode for pin 8 */
-        uint32_t SWIER9       :1; /**< Mode for pin 9 */
-        uint32_t SWIER10      :1; /**< Mode for pin 10 */
-        uint32_t SWIER11      :1; /**< Mode for pin 11 */
-        uint32_t SWIER12      :1; /**< Mode for pin 12 */
-        uint32_t SWIER13      :1; /**< Mode for pin 13 */
-        uint32_t SWIER14      :1; /**< Mode for pin 14 */
-        uint32_t SWIER15      :1; /**< Mode for pin 15 */
-        uint32_t SWIER16      :1; /**< Mode for pin 13 */
-        uint32_t SWIER17      :1; /**< Mode for pin 14 */
-        uint32_t SWIER18      :1; /**< Mode for pin 15 */
-        uint32_t res          :2;
-        uint32_t SWIER21      :1; /**< Mode for pin 14 */
-        uint32_t SWIER22      :1; /**< Mode for pin 15 */
-        uint32_t res1         :9;
+        uint32_t SWIER0    :1; /**< Software interrupt event for pin 0 */
+        uint32_t SWIER1    :1; /**< Software interrupt event for pin 1 */
+        uint32_t SWIER2    :1; /**< Software interrupt event for pin 2 */
+        uint32_t SWIER3    :1; /**< Software interrupt event for pin 3 */
+        uint32_t SWIER4    :1; /**< Software interrupt event for pin 4 */
+        uint32_t SWIER5    :1; /**< Software interrupt event for pin 5 */
+        uint32_t SWIER6    :1; /**< Software interrupt event for pin 6 */
+        uint32_t SWIER7    :1; /**< Software interrupt event for pin 7 */
+        uint32_t SWIER8    :1; /**< Software interrupt event for pin 8 */
+        uint32_t SWIER9    :1; /**< Software interrupt event for pin 9 */
+        uint32_t SWIER10   :1; /**< Software interrupt event for pin 10 */
+        uint32_t SWIER11   :1; /**< Software interrupt event for pin 11 */
+        uint32_t SWIER12   :1; /**< Software interrupt event for pin 12 */
+        uint32_t SWIER13   :1; /**< Software interrupt event for pin 13 */
+        uint32_t SWIER14   :1; /**< Software interrupt event for pin 14 */
+        uint32_t SWIER15   :1; /**< Software interrupt event for pin 15 */
+        uint32_t SWIER16   :1; /**< Software interrupt event for pin 16 */
+        uint32_t SWIER17   :1; /**< Software interrupt event for pin 17 */
+        uint32_t SWIER18   :1; /**< Software interrupt event for pin 18 */
+        uint32_t res       :2; /**< Reserved bits */
+        uint32_t SWIER21   :1; /**< Software interrupt event for pin 21 */
+        uint32_t SWIER22   :1; /**< Software interrupt event for pin 22 */
+        uint32_t res1      :9; /**< Reserved bits */
     }EXTI_SWIER_t;
 
-    struct                 //Pending register
+    /**
+     * @brief Pending register (EXTI_PR).
+     * 
+     * Indicates pending interrupt requests for each pin.
+     */
+    struct                
     {
-        uint32_t PR0       :1; /**< Mode for pin 0 */
-        uint32_t PR1       :1; /**< Mode for pin 1 */
-        uint32_t PR2       :1; /**< Mode for pin 2 */
-        uint32_t PR3       :1; /**< Mode for pin 3 */
-        uint32_t PR4       :1; /**< Mode for pin 4 */
-        uint32_t PR5       :1; /**< Mode for pin 5 */
-        uint32_t PR6       :1; /**< Mode for pin 6 */
-        uint32_t PR7       :1; /**< Mode for pin 7 */
-        uint32_t PR8       :1; /**< Mode for pin 8 */
-        uint32_t PR9       :1; /**< Mode for pin 9 */
-        uint32_t PR10      :1; /**< Mode for pin 10 */
-        uint32_t PR11      :1; /**< Mode for pin 11 */
-        uint32_t PR12      :1; /**< Mode for pin 12 */
-        uint32_t PR13      :1; /**< Mode for pin 13 */
-        uint32_t PR14      :1; /**< Mode for pin 14 */
-        uint32_t PR15      :1; /**< Mode for pin 15 */
-        uint32_t PR16      :1; /**< Mode for pin 13 */
-        uint32_t PR17      :1; /**< Mode for pin 14 */
-        uint32_t PR18      :1; /**< Mode for pin 15 */
+        uint32_t PR0       :1; /**< Pending interrupt for pin 0 */
+        uint32_t PR1       :1; /**< Pending interrupt for pin 1 */
+        uint32_t PR2       :1; /**< Pending interrupt for pin 2 */
+        uint32_t PR3       :1; /**< Pending interrupt for pin 3 */
+        uint32_t PR4       :1; /**< Pending interrupt for pin 4 */
+        uint32_t PR5       :1; /**< Pending interrupt for pin 5 */
+        uint32_t PR6       :1; /**< Pending interrupt for pin 6 */
+        uint32_t PR7       :1; /**< Pending interrupt for pin 7 */
+        uint32_t PR8       :1; /**< Pending interrupt for pin 8 */
+        uint32_t PR9       :1; /**< Pending interrupt for pin 9 */
+        uint32_t PR10      :1; /**< Pending interrupt for pin 10 */
+        uint32_t PR11      :1; /**< Pending interrupt for pin 11 */
+        uint32_t PR12      :1; /**< Pending interrupt for pin 12 */
+        uint32_t PR13      :1; /**< Pending interrupt for pin 13 */
+        uint32_t PR14      :1; /**< Pending interrupt for pin 14 */
+        uint32_t PR15      :1; /**< Pending interrupt for pin 15 */
+        uint32_t PR16      :1; /**< Pending interrupt for pin 16 */
+        uint32_t PR17      :1; /**< Pending interrupt for pin 17 */
+        uint32_t PR18      :1; /**< Pending interrupt for pin 18 */
         uint32_t res       :2;
-        uint32_t PR21      :1; /**< Mode for pin 14 */
-        uint32_t PR22      :1; /**< Mode for pin 15 */
+        uint32_t PR21      :1; /**< Pending interrupt for pin 21 */
+        uint32_t PR22      :1; /**< Pending interrupt for pin 22 */
         uint32_t res1      :9;
     }EXTI_PR_t;
 }EXTI_RegDef_t;
@@ -934,24 +1231,45 @@ typedef struct{
 ****************** SYSCFG register definition structures******************
 */
 
+/**
+ * @brief SYSCFG Register Definition structure.
+ * 
+ * This structure represents the configuration registers for the System Configuration (SYSCFG)
+ * peripheral, including memory remap, peripheral mode, external interrupt configuration,
+ * and compensation cell control.
+ */
 typedef struct
 {
-    struct      //SYSCFG memory remap register
+    /**
+     * @brief SYSCFG memory remap register (SYSCFG_MEMRMP).
+     * 
+     * Configures memory remap settings for boot configuration.
+     */
+    struct      
     {
         uint32_t MEM_MODE           :2;
         uint32_t res               :30;
     }SYSCFG_MEMRMP_t;
 
 
-    struct      //SYSCFG peripheral mode configuration register
+    /**
+     * @brief SYSCFG peripheral mode configuration register (SYSCFG_PMC).
+     * 
+     * Controls peripheral mode settings, including ADC configuration.
+     */
+    struct      
     {
         uint32_t res               :16;
         uint32_t ADC1DC2           :1;
         uint32_t res1              :15;
     }SYSCFG_PMC_t;
 
-
-    struct      //SYSCFG external interrupt configuration register 1
+    /**
+     * @brief SYSCFG external interrupt configuration register 1 (SYSCFG_EXTICR1).
+     * 
+     * Configures the source input for external interrupt line 0 to 3.
+     */
+    struct      
     {
         uint32_t EXTI0              :4;
         uint32_t EXTI1              :4;
@@ -960,8 +1278,12 @@ typedef struct
         uint32_t res               :16;
     }SYSCFG_EXTICR1_t;
 
-
-    struct      //SYSCFG external interrupt configuration register 2
+    /**
+     * @brief SYSCFG external interrupt configuration register 2 (SYSCFG_EXTICR2).
+     * 
+     * Configures the source input for external interrupt line 4 to 7.
+     */
+    struct      
     {
         uint32_t EXTI4              :4;
         uint32_t EXTI5              :4;
@@ -971,8 +1293,12 @@ typedef struct
     }SYSCFG_EXTICR2_t;
 
 
-
-    struct      //SYSCFG external interrupt configuration register 3
+    /**
+     * @brief SYSCFG external interrupt configuration register 3 (SYSCFG_EXTICR3).
+     * 
+     * Configures the source input for external interrupt line 8 to 11.
+     */
+    struct      
     {
         uint32_t EXTI8              :4;
         uint32_t EXTI9              :4;
@@ -982,8 +1308,12 @@ typedef struct
     }SYSCFG_EXTICR3_t;
 
 
-
-    struct      //SYSCFG external interrupt configuration register 4
+    /**
+     * @brief SYSCFG external interrupt configuration register 4 (SYSCFG_EXTICR4).
+     * 
+     * Configures the source input for external interrupt line 12 to 15.
+     */
+    struct      
     {
         uint32_t EXTI12             :4;
         uint32_t EXTI13             :4;
@@ -992,7 +1322,13 @@ typedef struct
         uint32_t res               :16;
     }SYSCFG_EXTICR4_t;
 
-    struct      // Compensation cell control register
+
+    /**
+     * @brief SYSCFG compensation cell control register (SYSCFG_CMPCR).
+     * 
+     * Controls the compensation cell for I/O speed performance.
+     */
+    struct      
     {
         uint32_t CMP_PD            :1;
         uint32_t res               :7;
@@ -1007,8 +1343,19 @@ typedef struct
 ****************** SPI register definition structures******************
 */
 
+/**
+ * @brief SPI Register Definition structure.
+ * 
+ * Contains register configurations for the Serial Peripheral Interface (SPI).
+ */
 volatile typedef struct{
-    struct       //SPI control register 1
+
+    /**
+     * @brief SPI control register 1 (SPI_CR1).
+     * 
+     * Configures the SPI mode, clock polarity, phase, and other options.
+     */
+    struct       
     {
         uint16_t CPHA               :1;
         uint16_t CPOL               :1;
@@ -1026,12 +1373,23 @@ volatile typedef struct{
         uint16_t BIDIMODE           :1;
     }SPI_CR1_t;
 
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved.
+     */
     struct 
     {
         uint16_t res;
     }RESERVED0_t;
 
-    struct       //SPI control register 2
+
+    /**
+     * @brief SPI control register 2 (SPI_CR2).
+     * 
+     * Enables DMA, sets frame format, and configures interrupt options.
+     */
+    struct       
     {
         uint16_t RXDMAEN            :1;
         uint16_t TXDMAEN            :1;
@@ -1044,12 +1402,23 @@ volatile typedef struct{
         uint16_t res1               :8;
     }SPI_CR2_t;
 
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved.
+     */
     struct 
     {
         uint16_t res;
     }RESERVED1_t;
 
-    struct       //SPI status register
+
+    /**
+     * @brief SPI status register (SPI_SR).
+     * 
+     * Shows the current status of the SPI, including flags for RX, TX, and errors.
+     */
+    struct          
     {
         uint16_t RXNE               :1;
         uint16_t TXE                :1;
@@ -1062,57 +1431,111 @@ volatile typedef struct{
         uint16_t res                :7;
     }SPI_SR_t;
 
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved.
+     */
     struct 
     {
         uint16_t res;
     }RESERVED2_t;
 
 
-    struct       //SPI data register
+
+    /**
+     * @brief SPI data register (SPI_DR).
+     * 
+     * Holds the data to be transmitted or received.
+     */
+    struct       
     {
         uint16_t DR                 :16;
     }SPI_DR_t;
     
+
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved.
+     */
     struct 
     {
         uint16_t res;
     }RESERVED3_t;
 
-    struct       //SPI CRC polynomial register
+
+    /**
+     * @brief SPI CRC polynomial register (SPI_CRCPR).
+     * 
+     * Holds the polynomial for the CRC calculation.
+     */
+    struct       
     {
         uint16_t CRCPOLY            :16;
     }SPI_CRCPR_t;
 
+
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved.
+     */
     struct 
     {
         uint16_t res;
     }RESERVED4_t;
 
 
-    struct       //SPI RX CRC register
+    /**
+     * @brief SPI RX CRC register (SPI_RXCRCR).
+     * 
+     * Holds the Rx CRC calculation.
+     */
+    struct       
     {
         uint16_t RXCRC              :16;
     }SPI_RXCRCR_t;
 
+
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved.
+     */
     struct 
     {
         uint16_t res;
     }RESERVED5_t;
 
-    struct       //SPI TX CRC register
+
+    /**
+     * @brief SPI TX CRC register (SPI_TXCRCR).
+     * 
+     * Holds the Tx CRC calculation.
+     */
+    struct       
     {
         uint16_t TXCRC              :16;
     }SPI_TXCRCR_t;
 
-
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved.
+     */
     struct 
     {
         uint16_t res;
     }RESERVED6_t;
 
 
-
-    struct       //SPI_I2S configuration register
+    /**
+     * @brief SPI_I2S configuration register (SPI_I2SCFGR).
+     * 
+     * Configures the I2S mode settings if I2S is used instead of SPI.
+     */
+    struct       
     {
         uint16_t CHLEN              :1;
         uint16_t DATLEN             :2;
@@ -1126,11 +1549,22 @@ volatile typedef struct{
         uint16_t res1               :4;
     }SPI_I2SCFGR_t;
 
+
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved.
+     */
     struct 
     {
         uint16_t res;
     }RESERVED7_t;
 
+    /**
+     * @brief SPI_I2S prescaler register (SPI_I2SPR).
+     * 
+     * Configures the prescaler for the I2S clock.
+     */
     struct       //SPI_I2S prescaler register
     {
         uint16_t I2SDIV             :8;
@@ -1139,6 +1573,12 @@ volatile typedef struct{
         uint16_t res                :6;
     }SPI_I2SPR_t;
 
+
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved.
+     */
     struct 
     {
         uint16_t res;
@@ -1155,46 +1595,46 @@ volatile typedef struct{
 
 
 
-
-/** 
- * @brief GPIO peripheral definitions for GPIOA, GPIOB, etc.
- */
-#define GPIOA                 ((GPIO_RegDef_t*)  GPIOA_BASEADDR)
-#define GPIOB                 ((GPIO_RegDef_t*)  GPIOB_BASEADDR)
-#define GPIOC                 ((GPIO_RegDef_t*)  GPIOC_BASEADDR)
-#define GPIOD                 ((GPIO_RegDef_t*)  GPIOD_BASEADDR)
-#define GPIOE                 ((GPIO_RegDef_t*)  GPIOE_BASEADDR)
-#define GPIOH                 ((GPIO_RegDef_t*)  GPIOH_BASEADDR)
-
-/** 
- * @brief RCC peripheral definition.
- */
-#define RCC     ((RCC_RegDef_t*)    RCC_BASEADDR)
-
-
-#define EXTI	( (EXTI_RegDef_t*) EXTI_BASEADDR )
-
-#define SYSCFG	( (SYSCFG_RegDef_t*) SYSCFG_BASEADDR )
-
-
-#define SPI1    ( (SPI_RegDef_t*) SPI1_BASEADDR )
-#define SPI2    ( (SPI_RegDef_t*) SPI2_BASEADDR ) 
-#define SPI3    ( (SPI_RegDef_t*) SPI3_BASEADDR )   
-#define SPI4    ( (SPI_RegDef_t*) SPI4_BASEADDR )
-
-#define I2C1    ( (I2C_RegDef_t*) I2C1_BASEADDR )
-#define I2C2    ( (I2C_RegDef_t*) I2C2_BASEADDR )
-#define I2C3    ( (I2C_RegDef_t*) I2C3_BASEADDR )
-
-#define USART1  ( (USART_RegDef_t*)USART1_BASEADDR )
-#define USART6  ( (USART_RegDef_t*)USART6_BASEADDR )
-
-
-/** 
- * @defgroup CLOCK_ENABLE_MACROS Clock enable macros for GPIO, I2C, SPI, etc.
+/**
+ * @defgroup Peripheral_Base_Addresses Peripheral Base Addresses
+ * @brief Base addresses of peripherals mapped in memory for STM32F401RE.
  * @{
  */
+
+#define GPIOA               ((GPIO_RegDef_t*) GPIOA_BASEADDR)  /**< GPIO Port A base address */
+#define GPIOB               ((GPIO_RegDef_t*) GPIOB_BASEADDR)  /**< GPIO Port B base address */
+#define GPIOC               ((GPIO_RegDef_t*) GPIOC_BASEADDR)  /**< GPIO Port C base address */
+#define GPIOD               ((GPIO_RegDef_t*) GPIOD_BASEADDR)  /**< GPIO Port D base address */
+#define GPIOE               ((GPIO_RegDef_t*) GPIOE_BASEADDR)  /**< GPIO Port E base address */
+#define GPIOH               ((GPIO_RegDef_t*) GPIOH_BASEADDR)  /**< GPIO Port H base address */
+
+#define RCC                 ((RCC_RegDef_t*) RCC_BASEADDR)     /**< RCC base address */
+#define EXTI                ((EXTI_RegDef_t*) EXTI_BASEADDR)   /**< EXTI base address */
+#define SYSCFG              ((SYSCFG_RegDef_t*) SYSCFG_BASEADDR) /**< SYSCFG base address */
+
+#define SPI1                ((SPI_RegDef_t*) SPI1_BASEADDR)    /**< SPI1 base address */
+#define SPI2                ((SPI_RegDef_t*) SPI2_BASEADDR)    /**< SPI2 base address */
+#define SPI3                ((SPI_RegDef_t*) SPI3_BASEADDR)    /**< SPI3 base address */
+#define SPI4                ((SPI_RegDef_t*) SPI4_BASEADDR)    /**< SPI4 base address */
+
+#define USART1              ((USART_RegDef_t*) USART1_BASEADDR) /**< USART1 base address */
+#define USART6              ((USART_RegDef_t*) USART6_BASEADDR) /**< USART6 base address */
+
+#define I2C1                ((I2C_RegDef_t*) I2C1_BASEADDR)    /**< I2C1 base address */
+#define I2C2                ((I2C_RegDef_t*) I2C2_BASEADDR)    /**< I2C2 base address */
+#define I2C3                ((I2C_RegDef_t*) I2C3_BASEADDR)    /**< I2C3 base address */
+
+/** @} */
+
+
+
+/**
+ * @brief Enables/disables the clock for the given peripheral.
+ */
  
+/*
+************clock enable macros for GPIOx peripherals*************
+*/
 #define GPIOA_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIOAEN=1)
 #define GPIOB_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIOBEN=1)
 #define GPIOC_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIOCEN=1)
@@ -1288,8 +1728,11 @@ volatile typedef struct{
 
 #define SYSCFG_PCLK_DI()                   (RCC->RCC_APB2ENR_t.SYSCFGEN=0)
 
-/*
-    GPIO peripherals reset macros
+
+
+
+/**
+* @brief Resets given GPIOx port
 */
 
 #define GPIOA_REG_RESET()                 do{ (RCC->RCC_AHB1RSTR_t.GPIOARST=1);    (RCC->RCC_AHB1RSTR_t.GPIOARST=0);}while(0)
@@ -1300,8 +1743,8 @@ volatile typedef struct{
 #define GPIOH_REG_RESET()                 do{ (RCC->RCC_AHB1RSTR_t.GPIOHRST=1);    (RCC->RCC_AHB1RSTR_t.GPIOHRST=0);}while(0)
 
 
-/*
-    SPI peripherals reset macros
+/**
+* @brief Resets given SPIx port
 */
 
 #define SPI1_REG_RESET()                  do{ (RCC->RCC_APB2RSTR_t.SPI1RST=1);     (RCC->RCC_APB2RSTR_t.SPI1RST=0);}while(0)
@@ -1321,6 +1764,10 @@ volatile typedef struct{
 #define IRQ_NO_EXTI9_5          23
 #define IRQ_NO_EXTI15_10        40
 
+#define IRQ_NO_SPI1             35
+#define IRQ_NO_SPI2             36
+#define IRQ_NO_SPI3             51
+#define IRQ_NO_SPI4             84
 
 
 /*
@@ -1360,8 +1807,29 @@ volatile typedef struct{
 #define SPI3_DISABLE()            (SPI3->SPI_CR1_t.SPE=0)
 #define SPI4_DISABLE()            (SPI4->SPI_CR1_t.SPE=0)
 
+/*
+    SPI SSOE bit set macros
+*/
+#define SPI1_SSOE_HIGH()            (SPI1->SPI_CR2_t.SSOE=1)
+#define SPI2_SSOE_HIGH()            (SPI2->SPI_CR2_t.SSOE=1)
+#define SPI3_SSOE_HIGH()            (SPI3->SPI_CR2_t.SSOE=1)
+#define SPI4_SSOE_HIGH()            (SPI4->SPI_CR2_t.SSOE=1)
 
+/*
+    SPI SSOE bit reset macros
+*/
+#define SPI1_SSOE_LOW()            (SPI1->SPI_CR2_t.SSOE=0)
+#define SPI2_SSOE_LOW()            (SPI2->SPI_CR2_t.SSOE=0)
+#define SPI3_SSOE_LOW()            (SPI3->SPI_CR2_t.SSOE=0)
+#define SPI4_SSOE_LOW()            (SPI4->SPI_CR2_t.SSOE=0)
 
+/*
+    SPI busy flag macros
+*/
+#define SPI1_BUSY                   (SPI1->SPI_SR_t.BSY)
+#define SPI2_BUSY                   (SPI2->SPI_SR_t.BSY)
+#define SPI3_BUSY                   (SPI3->SPI_SR_t.BSY)
+#define SPI4_BUSY                   (SPI4->SPI_SR_t.BSY)
 
 /*
         returns port code
@@ -1385,6 +1853,13 @@ volatile typedef struct{
 #define RESET           0
 #define GPIO_PIN_SET    1
 #define GPIO_PIN_RESET  0
+
+/*
+    possible SPI app states
+*/
+#define SPI_READY       0
+#define SPI_BSY_IN_RX   1
+#define SPI_BSY_IN_TX   2
 
   
   
