@@ -1596,6 +1596,14 @@ volatile typedef struct{
 
 
 /**
+ * @file stm32f401xx.h
+ * @brief This file contains the base addresses, peripheral enable/disable macros, reset macros, IRQ numbers, and priority macros for STM32F401RE peripherals.
+ * 
+ * @details This file provides definitions for various peripheral base addresses, clock enable and disable macros, reset macros, and IRQ configurations.
+ * It is intended for use in low-level programming for STM32F401RE microcontrollers.
+ */
+
+/**
  * @defgroup Peripheral_Base_Addresses Peripheral Base Addresses
  * @brief Base addresses of peripherals mapped in memory for STM32F401RE.
  * @{
@@ -1626,245 +1634,195 @@ volatile typedef struct{
 
 /** @} */
 
-
-
 /**
+ * @defgroup Peripheral_Clock_Enable Peripheral Clock Enable Macros
  * @brief Enables/disables the clock for the given peripheral.
+ * @{
  */
- 
-/*
-************clock enable macros for GPIOx peripherals*************
-*/
-#define GPIOA_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIOAEN=1)
-#define GPIOB_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIOBEN=1)
-#define GPIOC_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIOCEN=1)
-#define GPIOD_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIODEN=1)
-#define GPIOE_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIOEEN=1)
-#define GPIOH_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIOHEN=1)
-  
- 
-/*
-************clock enable macros for I2Cx peripherals*************
-*/
- 
-#define I2C1_PCLK_EN()                   (RCC->RCC_APB1ENR_t.I2C1EN=1)
-#define I2C2_PCLK_EN()                   (RCC->RCC_APB1ENR_t.I2C2EN=1)
-#define I2C3_PCLK_EN()                   (RCC->RCC_APB1ENR_t.I2C3EN=1)
 
-/*
-************clock enable macros for SPIx peripherals*************
-*/
+/* Clock enable macros for GPIOx peripherals */
+#define GPIOA_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIOAEN=1) /**< Enable GPIOA clock */
+#define GPIOB_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIOBEN=1) /**< Enable GPIOB clock */
+#define GPIOC_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIOCEN=1) /**< Enable GPIOC clock */
+#define GPIOD_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIODEN=1) /**< Enable GPIOD clock */
+#define GPIOE_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIOEEN=1) /**< Enable GPIOE clock */
+#define GPIOH_PCLK_EN()                  (RCC->RCC_AHB1ENR_t.GPIOHEN=1) /**< Enable GPIOH clock */
 
-#define SPI1_PCLK_EN()                   (RCC->RCC_APB2ENR_t.SPI1EN=1)
-#define SPI2_PCLK_EN()                   (RCC->RCC_APB1ENR_t.SPI2EN=1)
-#define SPI3_PCLK_EN()                   (RCC->RCC_APB1ENR_t.SPI3EN=1)
-#define SPI4_PCLK_EN()                   (RCC->RCC_APB2ENR_t.SPI4EN=1)
+/* Clock enable macros for I2Cx peripherals */
+#define I2C1_PCLK_EN()                   (RCC->RCC_APB1ENR_t.I2C1EN=1) /**< Enable I2C1 clock */
+#define I2C2_PCLK_EN()                   (RCC->RCC_APB1ENR_t.I2C2EN=1) /**< Enable I2C2 clock */
+#define I2C3_PCLK_EN()                   (RCC->RCC_APB1ENR_t.I2C3EN=1) /**< Enable I2C3 clock */
 
+/* Clock enable macros for SPIx peripherals */
+#define SPI1_PCLK_EN()                   (RCC->RCC_APB2ENR_t.SPI1EN=1) /**< Enable SPI1 clock */
+#define SPI2_PCLK_EN()                   (RCC->RCC_APB1ENR_t.SPI2EN=1) /**< Enable SPI2 clock */
+#define SPI3_PCLK_EN()                   (RCC->RCC_APB1ENR_t.SPI3EN=1) /**< Enable SPI3 clock */
+#define SPI4_PCLK_EN()                   (RCC->RCC_APB2ENR_t.SPI4EN=1) /**< Enable SPI4 clock */
 
+/* Clock enable macros for USARTx peripherals */
+#define USART1_PCLK_EN()                 (RCC->RCC_APB2ENR_t.USART1EN=1) /**< Enable USART1 clock */
+#define USART6_PCLK_EN()                 (RCC->RCC_APB2ENR_t.USART6EN=1) /**< Enable USART6 clock */
 
-/*
-************clock enable macros for USARTx peripherals*************
-*/
+/* Clock enable macros for SYSCFG peripheral */
+#define SYSCFG_PCLK_EN()                 (RCC->RCC_APB2ENR_t.SYSCFGEN=1) /**< Enable SYSCFG clock */
 
-#define USART1_PCLK_EN()                   (RCC->RCC_APB2ENR_t.USART1EN=1)
-#define USART6_PCLK_EN()                   (RCC->RCC_APB2ENR_t.USART6EN=1)
-
-
-/*
-************clock enable macros for SYSCFG peripherals*************
-*/
-
-#define SYSCFG_PCLK_EN()                   (RCC->RCC_APB2ENR_t.SYSCFGEN=1)
-
-
-
-/*
-************clock disable macros for GPIO peripherals*************
-*/
-
-#define GPIOA_PCLK_DI()                  (RCC->RCC_AHB1ENR_t.GPIOAEN=0)
-#define GPIOB_PCLK_DI()                  (RCC->RCC_AHB1ENR_t.GPIOBEN=0)
-#define GPIOC_PCLK_DI()                  (RCC->RCC_AHB1ENR_t.GPIOCEN=0)
-#define GPIOD_PCLK_DI()                  (RCC->RCC_AHB1ENR_t.GPIODEN=0)
-#define GPIOE_PCLK_DI()                  (RCC->RCC_AHB1ENR_t.GPIOEEN=0)
-#define GPIOH_PCLK_DI()                  (RCC->RCC_AHB1ENR_t.GPIOHEN=0)
-
-
-
-/*
-************clock disable macros for I2Cx peripherals*************
-*/
-
-
-#define I2C1_PCLK_DI()                   (RCC->RCC_APB1ENR_t.I2C1EN=0)
-#define I2C2_PCLK_DI()                   (RCC->RCC_APB1ENR_t.I2C2EN=0)
-#define I2C3_PCLK_DI()                   (RCC->RCC_APB1ENR_t.I2C3EN=0)
-
-
-
-/*
-************clock disable macros for SPIx peripherals*************
-*/
-
-#define SPI1_PCLK_DI()                   (RCC->RCC_APB2ENR_t.SPI1EN=0)
-#define SPI2_PCLK_DI()                   (RCC->RCC_APB1ENR_t.SPI2EN=0)
-#define SPI3_PCLK_DI()                   (RCC->RCC_APB1ENR_t.SPI3EN=0)
-#define SPI4_PCLK_DI()                   (RCC->RCC_APB2ENR_t.SPI4EN=0)
-
-
-
-/*
-************clock disable macros for USARTx peripherals*************
-*/
-
-#define USART1_PCLK_DI()                   (RCC->RCC_APB2ENR_t.USART1EN=0)
-#define USART6_PCLK_DI()                   (RCC->RCC_APB2ENR_t.USART6EN=0)
-
-
-
-/*
-************clock disable macros for SYSCFG peripherals*************
-*/
-
-#define SYSCFG_PCLK_DI()                   (RCC->RCC_APB2ENR_t.SYSCFGEN=0)
-
-
-
+/** @} */
 
 /**
-* @brief Resets given GPIOx port
-*/
-
-#define GPIOA_REG_RESET()                 do{ (RCC->RCC_AHB1RSTR_t.GPIOARST=1);    (RCC->RCC_AHB1RSTR_t.GPIOARST=0);}while(0)
-#define GPIOB_REG_RESET()                 do{ (RCC->RCC_AHB1RSTR_t.GPIOBRST=1);    (RCC->RCC_AHB1RSTR_t.GPIOBRST=0);}while(0)
-#define GPIOC_REG_RESET()                 do{ (RCC->RCC_AHB1RSTR_t.GPIOCRST=1);    (RCC->RCC_AHB1RSTR_t.GPIOCRST=0);}while(0)
-#define GPIOD_REG_RESET()                 do{ (RCC->RCC_AHB1RSTR_t.GPIODRST=1);    (RCC->RCC_AHB1RSTR_t.GPIODRST=0);}while(0)
-#define GPIOE_REG_RESET()                 do{ (RCC->RCC_AHB1RSTR_t.GPIOERST=1);    (RCC->RCC_AHB1RSTR_t.GPIOERST=0);}while(0)
-#define GPIOH_REG_RESET()                 do{ (RCC->RCC_AHB1RSTR_t.GPIOHRST=1);    (RCC->RCC_AHB1RSTR_t.GPIOHRST=0);}while(0)
-
-
-/**
-* @brief Resets given SPIx port
-*/
-
-#define SPI1_REG_RESET()                  do{ (RCC->RCC_APB2RSTR_t.SPI1RST=1);     (RCC->RCC_APB2RSTR_t.SPI1RST=0);}while(0)
-#define SPI2_REG_RESET()                  do{ (RCC->RCC_APB1RSTR_t.SPI2RST=1);     (RCC->RCC_APB1RSTR_t.SPI2RST=0);}while(0)
-#define SPI3_REG_RESET()                  do{ (RCC->RCC_APB1RSTR_t.SPI3RST=1);     (RCC->RCC_APB1RSTR_t.SPI3RST=0);}while(0)
-#define SPI4_REG_RESET()                  do{ (RCC->RCC_APB2RSTR_t.SPI4RST=1);     (RCC->RCC_APB2RSTR_t.SPI4RST=0);}while(0)
-
-/*
-    IRQ numbers for stm32f401x
-*/
-
-#define IRQ_NO_EXTI0            6
-#define IRQ_NO_EXTI1            7
-#define IRQ_NO_EXTI2            8
-#define IRQ_NO_EXTI3            9
-#define IRQ_NO_EXTI4            10
-#define IRQ_NO_EXTI9_5          23
-#define IRQ_NO_EXTI15_10        40
-
-#define IRQ_NO_SPI1             35
-#define IRQ_NO_SPI2             36
-#define IRQ_NO_SPI3             51
-#define IRQ_NO_SPI4             84
-
-
-/*
-    IRQ priority macros for stm32f401x
-*/
-
-#define NVIC_IRQ_PRIO0          0
-#define NVIC_IRQ_PRIO1          1
-#define NVIC_IRQ_PRIO2          2
-#define NVIC_IRQ_PRIO3          3
-#define NVIC_IRQ_PRIO4          4
-#define NVIC_IRQ_PRIO5          5
-#define NVIC_IRQ_PRIO6          6
-#define NVIC_IRQ_PRIO7          7
-#define NVIC_IRQ_PRIO8          8
-#define NVIC_IRQ_PRIO9          9
-#define NVIC_IRQ_PRIO10         10
-#define NVIC_IRQ_PRIO11         11
-#define NVIC_IRQ_PRIO12         12
-#define NVIC_IRQ_PRIO13         13
-#define NVIC_IRQ_PRIO14         14
-#define NVIC_IRQ_PRIO15         15
-
-/*
-    SPI peripheral enable macros
-*/
-#define SPI1_ENABLE()            (SPI1->SPI_CR1_t.SPE=1)
-#define SPI2_ENABLE()            (SPI2->SPI_CR1_t.SPE=1)
-#define SPI3_ENABLE()            (SPI3->SPI_CR1_t.SPE=1)
-#define SPI4_ENABLE()            (SPI4->SPI_CR1_t.SPE=1)
-
-/*
-    SPI peripheral disable macros
-*/
-#define SPI1_DISABLE()            (SPI1->SPI_CR1_t.SPE=0)
-#define SPI2_DISABLE()            (SPI2->SPI_CR1_t.SPE=0)
-#define SPI3_DISABLE()            (SPI3->SPI_CR1_t.SPE=0)
-#define SPI4_DISABLE()            (SPI4->SPI_CR1_t.SPE=0)
-
-/*
-    SPI SSOE bit set macros
-*/
-#define SPI1_SSOE_HIGH()            (SPI1->SPI_CR2_t.SSOE=1)
-#define SPI2_SSOE_HIGH()            (SPI2->SPI_CR2_t.SSOE=1)
-#define SPI3_SSOE_HIGH()            (SPI3->SPI_CR2_t.SSOE=1)
-#define SPI4_SSOE_HIGH()            (SPI4->SPI_CR2_t.SSOE=1)
-
-/*
-    SPI SSOE bit reset macros
-*/
-#define SPI1_SSOE_LOW()            (SPI1->SPI_CR2_t.SSOE=0)
-#define SPI2_SSOE_LOW()            (SPI2->SPI_CR2_t.SSOE=0)
-#define SPI3_SSOE_LOW()            (SPI3->SPI_CR2_t.SSOE=0)
-#define SPI4_SSOE_LOW()            (SPI4->SPI_CR2_t.SSOE=0)
-
-/*
-    SPI busy flag macros
-*/
-#define SPI1_BUSY                   (SPI1->SPI_SR_t.BSY)
-#define SPI2_BUSY                   (SPI2->SPI_SR_t.BSY)
-#define SPI3_BUSY                   (SPI3->SPI_SR_t.BSY)
-#define SPI4_BUSY                   (SPI4->SPI_SR_t.BSY)
-
-/*
-        returns port code
-*/
-
-#define GPIO_BASEADDR_TO_CODE(x)          ( (x  ==   GPIOA)  ? 0:\
-                                            (x  ==   GPIOB)  ? 1:\
-                                            (x  ==   GPIOC)  ? 2:\
-                                            (x  ==   GPIOD)  ? 3:\
-                                            (x  ==   GPIOE)  ? 4:\
-                                            (x  ==   GPIOH)  ? 7:0 )
-
-
-/**
- * @brief Generic macros.
+ * @defgroup Peripheral_Clock_Disable Peripheral Clock Disable Macros
+ * @brief Disables the clock for the given peripheral.
+ * @{
  */
-  
-#define ENABLE          1
-#define DISABLE         0
-#define SET             1
-#define RESET           0
-#define GPIO_PIN_SET    1
-#define GPIO_PIN_RESET  0
 
-/*
-    possible SPI app states
-*/
-#define SPI_READY       0
-#define SPI_BSY_IN_RX   1
-#define SPI_BSY_IN_TX   2
+#define GPIOA_PCLK_DI()                  (RCC->RCC_AHB1ENR_t.GPIOAEN=0) /**< Disable GPIOA clock */
+#define GPIOB_PCLK_DI()                  (RCC->RCC_AHB1ENR_t.GPIOBEN=0) /**< Disable GPIOB clock */
+#define GPIOC_PCLK_DI()                  (RCC->RCC_AHB1ENR_t.GPIOCEN=0) /**< Disable GPIOC clock */
+#define GPIOD_PCLK_DI()                  (RCC->RCC_AHB1ENR_t.GPIODEN=0) /**< Disable GPIOD clock */
+#define GPIOE_PCLK_DI()                  (RCC->RCC_AHB1ENR_t.GPIOEEN=0) /**< Disable GPIOE clock */
+#define GPIOH_PCLK_DI()                  (RCC->RCC_AHB1ENR_t.GPIOHEN=0) /**< Disable GPIOH clock */
 
-  
-  
+#define I2C1_PCLK_DI()                   (RCC->RCC_APB1ENR_t.I2C1EN=0) /**< Disable I2C1 clock */
+#define I2C2_PCLK_DI()                   (RCC->RCC_APB1ENR_t.I2C2EN=0) /**< Disable I2C2 clock */
+#define I2C3_PCLK_DI()                   (RCC->RCC_APB1ENR_t.I2C3EN=0) /**< Disable I2C3 clock */
+
+#define SPI1_PCLK_DI()                   (RCC->RCC_APB2ENR_t.SPI1EN=0) /**< Disable SPI1 clock */
+#define SPI2_PCLK_DI()                   (RCC->RCC_APB1ENR_t.SPI2EN=0) /**< Disable SPI2 clock */
+#define SPI3_PCLK_DI()                   (RCC->RCC_APB1ENR_t.SPI3EN=0) /**< Disable SPI3 clock */
+#define SPI4_PCLK_DI()                   (RCC->RCC_APB2ENR_t.SPI4EN=0) /**< Disable SPI4 clock */
+
+#define USART1_PCLK_DI()                 (RCC->RCC_APB2ENR_t.USART1EN=0) /**< Disable USART1 clock */
+#define USART6_PCLK_DI()                 (RCC->RCC_APB2ENR_t.USART6EN=0) /**< Disable USART6 clock */
+
+#define SYSCFG_PCLK_DI()                 (RCC->RCC_APB2ENR_t.SYSCFGEN=0) /**< Disable SYSCFG clock */
+
+/** @} */
+
+/**
+ * @defgroup Peripheral_Reset Peripheral Reset Macros
+ * @brief Resets the given peripheral.
+ * @{
+ */
+
+#define GPIOA_REG_RESET()                do{ (RCC->RCC_AHB1RSTR_t.GPIOARST=1); (RCC->RCC_AHB1RSTR_t.GPIOARST=0);}while(0) /**< Reset GPIOA */
+#define GPIOB_REG_RESET()                do{ (RCC->RCC_AHB1RSTR_t.GPIOBRST=1); (RCC->RCC_AHB1RSTR_t.GPIOBRST=0);}while(0) /**< Reset GPIOB */
+#define GPIOC_REG_RESET()                do{ (RCC->RCC_AHB1RSTR_t.GPIOCRST=1); (RCC->RCC_AHB1RSTR_t.GPIOCRST=0);}while(0) /**< Reset GPIOC */
+#define GPIOD_REG_RESET()                do{ (RCC->RCC_AHB1RSTR_t.GPIODRST=1); (RCC->RCC_AHB1RSTR_t.GPIODRST=0);}while(0) /**< Reset GPIOD */
+#define GPIOE_REG_RESET()                do{ (RCC->RCC_AHB1RSTR_t.GPIOERST=1); (RCC->RCC_AHB1RSTR_t.GPIOERST=0);}while(0) /**< Reset GPIOE */
+#define GPIOH_REG_RESET()                do{ (RCC->RCC_AHB1RSTR_t.GPIOHRST=1); (RCC->RCC_AHB1RSTR_t.GPIOHRST=0);}while(0) /**< Reset GPIOH */
+
+#define SPI1_REG_RESET()                 do{ (RCC->RCC_APB2RSTR_t.SPI1RST=1); (RCC->RCC_APB2RSTR_t.SPI1RST=0);}while(0) /**< Reset SPI1 */
+#define SPI2_REG_RESET()                 do{ (RCC->RCC_APB1RSTR_t.SPI2RST=1); (RCC->RCC_APB1RSTR_t.SPI2RST=0);}while(0) /**< Reset SPI2 */
+#define SPI3_REG_RESET()                 do{ (RCC->RCC_APB1RSTR_t.SPI3RST=1); (RCC->RCC_APB1RSTR_t.SPI3RST=0);}while(0) /**< Reset SPI3 */
+#define SPI4_REG_RESET()                 do{ (RCC->RCC_APB2RSTR_t.SPI4RST=1); (RCC->RCC_APB2RSTR_t.SPI4RST=0);}while(0) /**< Reset SPI4 */
+
+/** @} */
+
+/**
+ * @defgroup IRQ_IRQ_Priorities IRQ and Priority Macros
+ * @brief Defines IRQ numbers and priority levels for peripherals.
+ * @{
+ */
+
+#define IRQ_NO_EXTI0            6   /**< EXTI0 IRQ number */
+#define IRQ_NO_EXTI1            7   /**< EXTI1 IRQ number */
+#define IRQ_NO_EXTI2            8   /**< EXTI2 IRQ number */
+#define IRQ_NO_EXTI3            9   /**< EXTI3 IRQ number */
+#define IRQ_NO_EXTI4            10  /**< EXTI4 IRQ number */
+#define IRQ_NO_EXTI9_5          23  /**< EXTI9_5 IRQ number */
+#define IRQ_NO_EXTI15_10        40  /**< EXTI15_10 IRQ number */
+
+#define IRQ_NO_SPI1             35  /**< SPI1 IRQ number */
+#define IRQ_NO_SPI2             36  /**< SPI2 IRQ number */
+#define IRQ_NO_SPI3             51  /**< SPI3 IRQ number */
+#define IRQ_NO_SPI4             84  /**< SPI4 IRQ number */
+
+#define NVIC_IRQ_PRIO0          0   /**< NVIC IRQ Priority 0 */
+#define NVIC_IRQ_PRIO1          1   /**< NVIC IRQ Priority 1 */
+#define NVIC_IRQ_PRIO2          2   /**< NVIC IRQ Priority 2 */
+// Define other IRQ priorities up to 15 as needed
+
+/** @} */
+
+/**
+ * @defgroup SPI_Peripheral_Control SPI Peripheral Control Macros
+ * @brief Enables, disables, and sets up SPI peripheral control bits.
+ * @{
+ */
+
+#define SPI1_ENABLE()            (SPI1->SPI_CR1_t.SPE=1) /**< Enable SPI1 peripheral */
+#define SPI2_ENABLE()            (SPI2->SPI_CR1_t.SPE=1) /**< Enable SPI2 peripheral */
+#define SPI3_ENABLE()            (SPI3->SPI_CR1_t.SPE=1) /**< Enable SPI3 peripheral */
+#define SPI4_ENABLE()            (SPI4->SPI_CR1_t.SPE=1) /**< Enable SPI4 peripheral */
+
+#define SPI1_DISABLE()           (SPI1->SPI_CR1_t.SPE=0) /**< Disable SPI1 peripheral */
+#define SPI2_DISABLE()           (SPI2->SPI_CR1_t.SPE=0) /**< Disable SPI2 peripheral */
+#define SPI3_DISABLE()           (SPI3->SPI_CR1_t.SPE=0) /**< Disable SPI3 peripheral */
+#define SPI4_DISABLE()           (SPI4->SPI_CR1_t.SPE=0) /**< Disable SPI4 peripheral */
+
+#define SPI1_SSOE_HIGH()         (SPI1->SPI_CR2_t.SSOE=1) /**< Set SPI1 SSOE high */
+#define SPI2_SSOE_HIGH()         (SPI2->SPI_CR2_t.SSOE=1) /**< Set SPI2 SSOE high */
+#define SPI3_SSOE_HIGH()         (SPI3->SPI_CR2_t.SSOE=1) /**< Set SPI3 SSOE high */
+#define SPI4_SSOE_HIGH()         (SPI4->SPI_CR2_t.SSOE=1) /**< Set SPI4 SSOE high */
+
+#define SPI1_SSOE_LOW()          (SPI1->SPI_CR2_t.SSOE=0) /**< Set SPI1 SSOE low */
+#define SPI2_SSOE_LOW()          (SPI2->SPI_CR2_t.SSOE=0) /**< Set SPI2 SSOE low */
+#define SPI3_SSOE_LOW()          (SPI3->SPI_CR2_t.SSOE=0) /**< Set SPI3 SSOE low */
+#define SPI4_SSOE_LOW()          (SPI4->SPI_CR2_t.SSOE=0) /**< Set SPI4 SSOE low */
+
+#define SPI1_BUSY                (SPI1->SPI_SR_t.BSY) /**< Check if SPI1 is busy */
+#define SPI2_BUSY                (SPI2->SPI_SR_t.BSY) /**< Check if SPI2 is busy */
+#define SPI3_BUSY                (SPI3->SPI_SR_t.BSY) /**< Check if SPI3 is busy */
+#define SPI4_BUSY                (SPI4->SPI_SR_t.BSY) /**< Check if SPI4 is busy */
+
+/**
+ * @brief Converts a GPIO base address to its corresponding port code.
+ * 
+ * This macro takes a GPIO base address and returns an integer code that corresponds to the specific GPIO port.
+ * The codes are used in various register configurations and operations where a specific port code is required.
+ * 
+ * @param x The base address of the GPIO port (e.g., GPIOA, GPIOB, GPIOC, etc.).
+ * @return The integer port code corresponding to the given GPIO base address:
+ *         - 0 for GPIOA
+ *         - 1 for GPIOB
+ *         - 2 for GPIOC
+ *         - 3 for GPIOD
+ *         - 4 for GPIOE
+ *         - 7 for GPIOH
+ *         - 0 if the base address does not match any defined port
+ */
+#define GPIO_BASEADDR_TO_CODE(x)          ( (x  ==   GPIOA)  ? 0: \
+                                            (x  ==   GPIOB)  ? 1: \
+                                            (x  ==   GPIOC)  ? 2: \
+                                            (x  ==   GPIOD)  ? 3: \
+                                            (x  ==   GPIOE)  ? 4: \
+                                            (x  ==   GPIOH)  ? 7 : 0 )
+
+
+/** @} */
+
+/**
+ * @defgroup SPI_App_States SPI Application States
+ * @brief Defines possible states of SPI peripheral during communication.
+ * @{
+ */
+
+#define SPI_READY       0 /**< SPI ready state */
+#define SPI_BSY_IN_RX   1 /**< SPI busy in reception */
+#define SPI_BSY_IN_TX   2 /**< SPI busy in transmission */
+
+/** @} */
+
+/** 
+ * @brief Generic macros for use in various peripheral setups.
+ */
+#define ENABLE          1   /**< Enable flag */
+#define DISABLE         0   /**< Disable flag */
+#define SET             1   /**< Set flag */
+#define RESET           0   /**< Reset flag */
+#define GPIO_PIN_SET    1   /**< GPIO pin set */
+#define GPIO_PIN_RESET  0   /**< GPIO pin reset */
+
 #include "stm32f401xx_gpio_driver.h"
-
 #include "Stm32f401xx_spi_driver.h"
 
 #endif /* INC_STM32F401XX_H_ */
