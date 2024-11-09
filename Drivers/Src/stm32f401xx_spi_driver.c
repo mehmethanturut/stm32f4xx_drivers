@@ -9,7 +9,7 @@
  * Author: Mehmethan Türüt
  */
 
-#include "stm32f401xx.h"
+#include "../Inc/stm32f401xx.h"
 
 /**
  * @brief Handles SPI TXE (Transmit buffer empty) interrupt.

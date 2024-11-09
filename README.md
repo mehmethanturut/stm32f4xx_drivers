@@ -1,178 +1,79 @@
-# STM32F401xx GPIO Driver
 
-This project provides a GPIO driver library for the STM32F401xx microcontroller. The library includes functions and macros to configure and control the GPIO peripherals on STM32F401xx-based boards, offering a reusable and easy-to-understand interface for developers.
+# STM32F401xx Peripheral Driver Library
 
-## Project Structure
+This repository provides custom peripheral drivers for STM32F401xx microcontrollers, specifically for GPIO and SPI functionalities. The drivers are written in C and are designed for flexibility, making them suitable for embedded systems development. This project is intended for educational purposes to demonstrate low-level programming and peripheral interfacing with STM32 MCUs.
 
-- **Inc/**
-  - `stm32f401xx.h`: Core hardware definitions, base addresses, and register structures for STM32F401xx peripherals.
-  - `stm32f401xx_gpio_driver.h`: Header file containing GPIO configurations, structures, macros, and function prototypes.
-- **Src/**
-  - `stm32f401xx_gpio_driver.c`: Source file implementing the GPIO functions defined in `stm32f401xx_gpio_driver.h`.
+## Repository Structure
+
+- **stm32f401xx.h**  
+  The main header file that includes other necessary driver headers (`stm32f401xx_gpio_driver.h`, `stm32f401xx_spi_driver.h`) for easy integration. Users only need to include `stm32f401xx.h` in their projects.
+
+- **stm32f401xx_gpio_driver.h / .c**  
+  GPIO driver files implementing functionality to configure, initialize, and control GPIO pins on the STM32F401xx MCU.
+
+- **stm32f401xx_spi_driver.h / .c**  
+  SPI driver files implementing the initialization and data handling functions for SPI communication.
+
+- **001test_app_for_spi_driver.c**  
+  A test application demonstrating the usage of the SPI driver by setting up basic SPI communication.
+
+- **002Testapp_SPI_Sl_arduino.c**  
+  Another test application that interfaces the STM32 SPI as a slave with an Arduino, demonstrating SPI slave communication.
+
+- **generate_documentation.bat**  
+  A script file to generate documentation for the project using Doxygen.
 
 ## Features
 
-- Initialize and deinitialize GPIO pins
-- Enable/disable GPIO peripheral clocks
-- Read/write data from/to GPIO pins or ports
-- Configure pin modes, output types, speeds, and pull-up/pull-down settings
-- Toggle GPIO pin output states
-- Configure and handle GPIO interrupts and priorities
+- **Unified Header Import**: Only `stm32f401xx.h` needs to be included in the user's project to access all drivers.
+- **GPIO Driver**: Configurable GPIO pins with options for mode, speed, pull-up/pull-down settings, and output type.
+- **SPI Driver**: Support for initializing SPI in master/slave modes with options for data frame format, clock polarity, and clock phase.
+- **Doxygen Documentation**: Automatically generate code documentation using Doxygen.
+- **Test Applications**: Example programs to test and demonstrate SPI communication, including an Arduino interface.
 
-## Getting Started
+## Installation
 
-### Prerequisites
-
-- **STM32CubeIDE** or another IDE supporting STM32 development
-- **STM32F401xx** board (e.g., STM32F4 Discovery)
-
-### Installation
-
-1. Clone this repository.
-2. Open the project in your IDE.
-3. Link the provided `Inc` and `Src` directories to your project.
-
-### Usage
-
-1. Include `stm32f401xx_gpio_driver.h` in your source files where GPIO operations are needed:
-   
-   ```c
-   #include "stm32f401xx_gpio_driver.h"
-   ```
-
-2. Initialize GPIO pins using `GPIO_Init()`, configure their mode, speed, and other settings as needed.
-
-### Example
-
-```c
-#include "stm32f401xx_gpio_driver.h"
-
-int main(void) {
-    GPIO_Handle_t gpioLED;
-
-    gpioLED.pGPIOx = GPIOA;
-    gpioLED.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_5;
-    gpioLED.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_OUT;
-    gpioLED.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
-    gpioLED.GPIO_PinConfig.GPIO_PinOPType = GPIO_OP_TYPE_PP;
-    gpioLED.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
-
-    GPIO_PeriClkCtrl(GPIOA, ENABLE);
-    GPIO_Init(&gpioLED);
-
-    while (1) {
-        GPIO_ToggleOutputPin(GPIOA, GPIO_PIN_NO_5);
-        for (volatile int i = 0; i < 500000; i++); // Simple delay
-    }
-}
-```
-
-## Documentation
-
-Each function in this project is documented using [Doxygen](https://www.doxygen.nl/). To generate documentation:
-
-1. Ensure Doxygen is installed.
-
-2. Run the following .bat file in the project directory:
-   
+1. **Clone the repository**:
    ```bash
-   generate_documentation.bat
+   git clone https://github.com/mehmethanturut/stm32f4xx_drivers.git
+   cd stm32f4xx_drivers
    ```
 
-### Key Files
+2. **Set up your development environment**:  
+   Install the STM32CubeIDE or any compatible IDE supporting STM32 development.
 
-#### stm32f401xx.h
+3. **Add required files**:  
+   Include the provided `.h` driver files in your STM32 project.
 
-The `stm32f401xx.h` file provides core definitions, register mappings, and clock control configurations for the STM32F401xx microcontroller.
+## Usage
 
-- Defines NVIC, APB, AHB register addresses, and base addresses for Flash, SRAM, and peripherals.
-- Structures for configuring peripheral registers.
-- Includes clock control macros for enabling and disabling peripheral clocks.
+1. **Including Drivers**:  
+   Only include the main header file in your source files:
+   ```c
+   #include "stm32f401xx.h"
+   ```
 
-**File Content Highlights**:
+2. **Generating Documentation**:  
+   Run the `generate_documentation.bat` file to create the documentation. This will use Doxygen to generate HTML and/or LaTeX documentation files in a `docs` folder.
+   ```bash
+   ./generate_documentation.bat
+   ```
 
-- **NVIC Registers**:
-  
-  ```c
-  #define NVIC_ISER0 ((volatile uint32_t*)0xE000E100)
-  #define NVIC_ICER0 ((volatile uint32_t*)0xE000E180)
-  ```
+3. **Example Usage**:  
+   Use the `001test_app_for_spi_driver.c` to initialize SPI and test data transfer. The `002Testapp_SPI_Sl_arduino.c` provides an example of using the STM32 as an SPI slave in conjunction with an Arduino.
 
-- **Base Addresses**:
-  
-  ```c
-  #define FLASH_BASEADDR 0x08000000U
-  #define SRAM_BASEADDR  0x20000000U
-  ```
+4. **Configuring Parameters**:  
+   Modify GPIO or SPI configurations in the respective driver files as per your project requirements. Parameters for speed, mode, pull-up/pull-down, and frame format can be adjusted within the driver setup functions.
 
-- **Peripheral Structure Example**:
-  
-  ```c
-  typedef struct {
-      struct {
-          uint32_t MODER0 :2;
-          // ...
-      } GPIOx_MODER_t;
-      // Other GPIO configuration registers
-  } GPIO_RegDef_t;
-  ```
+## Configuration
 
-#### stm32f401xx_gpio_driver.h
+- **GPIO Configuration**: Set pin modes, speed, and pull settings in `stm32f401xx_gpio_driver.c`.
+- **SPI Configuration**: Configure data format, clock phase, and polarity in `stm32f401xx_spi_driver.c`.
 
-The `stm32f401xx_gpio_driver.h` file defines the GPIO driver interface, including configuration structures, function prototypes, and macros.
+## Contributing
 
-- **GPIO Pin Configuration Structure**: Configures each pin's mode, speed, output type, pull-up/pull-down settings, etc.
-- **GPIO Handle Structure**: Associates a GPIO port with its pin configuration.
-- **GPIO Macros**: Defines possible modes, output types, speeds, and pull-up/pull-down options.
-
-**File Content Highlights**:
-
-- **Pin Modes**:
-  
-  ```c
-  #define GPIO_MODE_IN 0
-  #define GPIO_MODE_OUT 1
-  ```
-
-- **Functions**:
-  
-  ```c
-  void GPIO_Init(GPIO_Handle_t *pGPIOHandle);
-  void GPIO_DeInit(GPIO_RegDef_t *pGPIOx);
-  uint8_t GPIO_ReadInputPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber);
-  ```
-
-#### stm32f401xx_gpio_driver.c
-
-The `stm32f401xx_gpio_driver.c` file implements the GPIO driver functions declared in `stm32f401xx_gpio_driver.h`.
-
-- **Clock Control**: Enables or disables the clock for GPIO ports.
-- **GPIO Initialization**: Sets up the GPIO pin configuration based on the structure provided.
-- **Data Read/Write**: Reads input data from pins and writes output data to pins.
-- **Interrupt Configuration**: Configures interrupts for GPIO pins and sets interrupt priorities.
-
-**File Content Highlights**:
-
-- **GPIO Initialization Example**:
-  
-  ```c
-  void GPIO_Init(GPIO_Handle_t *pGPIOHandle) {
-      // Function to initialize GPIO based on configuration
-  }
-  ```
-
-- **GPIO Write Example**:
-  
-  ```c
-  void GPIO_WriteOutputPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber, uint8_t value) {
-      // Write logic for the specified pin
-  }
-  ```
+Contributions are welcome! Please fork the repository, create a feature branch, and submit a pull request. Ensure that your code adheres to project coding standards and includes necessary documentation.
 
 ## License
 
-This project is open-source and available under the MIT License.
-
-## Author
-
-Developed by Mehmethan Türüt.
+This project is licensed under the MIT License.
