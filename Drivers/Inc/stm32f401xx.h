@@ -1247,10 +1247,9 @@ typedef struct
      */
     struct      
     {
-        uint32_t MEM_MODE           :2;
-        uint32_t res               :30;
-    }SYSCFG_MEMRMP_t;
-
+        uint32_t MEM_MODE           :2; /**< Memory Mapping Selection. */
+        uint32_t res                :30; /**< Reserved. */
+    } SYSCFG_MEMRMP_t;
 
     /**
      * @brief SYSCFG peripheral mode configuration register (SYSCFG_PMC).
@@ -1259,83 +1258,82 @@ typedef struct
      */
     struct      
     {
-        uint32_t res               :16;
-        uint32_t ADC1DC2           :1;
-        uint32_t res1              :15;
-    }SYSCFG_PMC_t;
+        uint32_t res                :16; /**< Reserved. */
+        uint32_t ADC1DC2            :1; /**< ADC1 DMA Channel 2 Configuration. */
+        uint32_t res1               :15; /**< Reserved. */
+    } SYSCFG_PMC_t;
 
     /**
      * @brief SYSCFG external interrupt configuration register 1 (SYSCFG_EXTICR1).
      * 
-     * Configures the source input for external interrupt line 0 to 3.
+     * Configures the source input for external interrupt lines 0 to 3.
      */
     struct      
     {
-        uint32_t EXTI0              :4;
-        uint32_t EXTI1              :4;
-        uint32_t EXTI2              :4;
-        uint32_t EXTI3              :4;
-        uint32_t res               :16;
-    }SYSCFG_EXTICR1_t;
+        uint32_t EXTI0              :4; /**< External Interrupt 0 Configuration. */
+        uint32_t EXTI1              :4; /**< External Interrupt 1 Configuration. */
+        uint32_t EXTI2              :4; /**< External Interrupt 2 Configuration. */
+        uint32_t EXTI3              :4; /**< External Interrupt 3 Configuration. */
+        uint32_t res                :16; /**< Reserved. */
+    } SYSCFG_EXTICR1_t;
 
     /**
      * @brief SYSCFG external interrupt configuration register 2 (SYSCFG_EXTICR2).
      * 
-     * Configures the source input for external interrupt line 4 to 7.
+     * Configures the source input for external interrupt lines 4 to 7.
      */
     struct      
     {
-        uint32_t EXTI4              :4;
-        uint32_t EXTI5              :4;
-        uint32_t EXTI6              :4;
-        uint32_t EXTI7              :4;
-        uint32_t res               :16;
-    }SYSCFG_EXTICR2_t;
-
+        uint32_t EXTI4              :4; /**< External Interrupt 4 Configuration. */
+        uint32_t EXTI5              :4; /**< External Interrupt 5 Configuration. */
+        uint32_t EXTI6              :4; /**< External Interrupt 6 Configuration. */
+        uint32_t EXTI7              :4; /**< External Interrupt 7 Configuration. */
+        uint32_t res                :16; /**< Reserved. */
+    } SYSCFG_EXTICR2_t;
 
     /**
      * @brief SYSCFG external interrupt configuration register 3 (SYSCFG_EXTICR3).
      * 
-     * Configures the source input for external interrupt line 8 to 11.
+     * Configures the source input for external interrupt lines 8 to 11.
      */
     struct      
     {
-        uint32_t EXTI8              :4;
-        uint32_t EXTI9              :4;
-        uint32_t EXTI10             :4;
-        uint32_t EXTI11             :4;
-        uint32_t res               :16;
-    }SYSCFG_EXTICR3_t;
-
+        uint32_t EXTI8              :4; /**< External Interrupt 8 Configuration. */
+        uint32_t EXTI9              :4; /**< External Interrupt 9 Configuration. */
+        uint32_t EXTI10             :4; /**< External Interrupt 10 Configuration. */
+        uint32_t EXTI11             :4; /**< External Interrupt 11 Configuration. */
+        uint32_t res                :16; /**< Reserved. */
+    } SYSCFG_EXTICR3_t;
 
     /**
      * @brief SYSCFG external interrupt configuration register 4 (SYSCFG_EXTICR4).
      * 
-     * Configures the source input for external interrupt line 12 to 15.
+     * Configures the source input for external interrupt lines 12 to 15.
      */
     struct      
     {
-        uint32_t EXTI12             :4;
-        uint32_t EXTI13             :4;
-        uint32_t EXTI14             :4;
-        uint32_t EXTI15             :4;
-        uint32_t res               :16;
-    }SYSCFG_EXTICR4_t;
-
+        uint32_t EXTI12             :4; /**< External Interrupt 12 Configuration. */
+        uint32_t EXTI13             :4; /**< External Interrupt 13 Configuration. */
+        uint32_t EXTI14             :4; /**< External Interrupt 14 Configuration. */
+        uint32_t EXTI15             :4; /**< External Interrupt 15 Configuration. */
+        uint32_t res                :16; /**< Reserved. */
+    } SYSCFG_EXTICR4_t;
 
     /**
      * @brief SYSCFG compensation cell control register (SYSCFG_CMPCR).
      * 
-     * Controls the compensation cell for I/O speed performance.
+     * Controls the compensation cell for optimizing I/O speed performance.
      */
     struct      
     {
-        uint32_t CMP_PD            :1;
-        uint32_t res               :7;
-        uint32_t READY             :1;
-        uint32_t res1              :23;
-    }SYSCFG_CMPCR_t;
-}SYSCFG_RegDef_t;
+        uint32_t CMP_PD             :1; /**< Compensation Cell Power-Down. */
+        uint32_t res                :7; /**< Reserved. */
+        uint32_t READY              :1; /**< Compensation Cell Ready Flag. */
+        uint32_t res1               :23; /**< Reserved. */
+    } SYSCFG_CMPCR_t;
+
+} SYSCFG_RegDef_t;
+
 
 
 
@@ -1353,25 +1351,26 @@ volatile typedef struct{
     /**
      * @brief SPI control register 1 (SPI_CR1).
      * 
-     * Configures the SPI mode, clock polarity, phase, and other options.
+     * Configures the SPI mode, clock polarity, phase, master/slave selection, 
+     * baud rate, data format, and CRC settings.
      */
     struct       
     {
-        uint16_t CPHA               :1;
-        uint16_t CPOL               :1;
-        uint16_t MSTR               :1;
-        uint16_t BR                 :3;
-        uint16_t SPE                :1;
-        uint16_t LSBFIRST           :1;
-        uint16_t SSI                :1;
-        uint16_t SSM                :1;
-        uint16_t RXONLY             :1;
-        uint16_t DFF                :1;
-        uint16_t CRCNEXT            :1;
-        uint16_t CRCEN              :1;
-        uint16_t BIDIOE             :1;
-        uint16_t BIDIMODE           :1;
-    }SPI_CR1_t;
+        uint16_t CPHA               :1; /**< Clock Phase. */
+        uint16_t CPOL               :1; /**< Clock Polarity. */
+        uint16_t MSTR               :1; /**< Master Selection. */
+        uint16_t BR                 :3; /**< Baud Rate Control. */
+        uint16_t SPE                :1; /**< SPI Enable. */
+        uint16_t LSBFIRST           :1; /**< Frame Format. */
+        uint16_t SSI                :1; /**< Internal Slave Select. */
+        uint16_t SSM                :1; /**< Software Slave Management. */
+        uint16_t RXONLY             :1; /**< Receive Only Mode. */
+        uint16_t DFF                :1; /**< Data Frame Format. */
+        uint16_t CRCNEXT            :1; /**< Transmit CRC Next. */
+        uint16_t CRCEN              :1; /**< Hardware CRC Calculation Enable. */
+        uint16_t BIDIOE             :1; /**< Output Enable in Bidirectional Mode. */
+        uint16_t BIDIMODE           :1; /**< Bidirectional Data Mode Enable. */
+    } SPI_CR1_t;
 
     /**
      * @brief RESERVED address.
@@ -1380,27 +1379,26 @@ volatile typedef struct{
      */
     struct 
     {
-        uint16_t res;
-    }RESERVED0_t;
-
+        uint16_t res; /**< Reserved. */
+    } RESERVED0_t;
 
     /**
      * @brief SPI control register 2 (SPI_CR2).
      * 
-     * Enables DMA, sets frame format, and configures interrupt options.
+     * Configures DMA, frame format, and interrupt options for SPI.
      */
     struct       
     {
-        uint16_t RXDMAEN            :1;
-        uint16_t TXDMAEN            :1;
-        uint16_t SSOE               :1;
-        uint16_t res                :1;
-        uint16_t FRF                :1;
-        uint16_t ERRIE              :1;
-        uint16_t RXNEIE             :1;
-        uint16_t TXEIE              :1;
-        uint16_t res1               :8;
-    }SPI_CR2_t;
+        uint16_t RXDMAEN            :1; /**< Rx Buffer DMA Enable. */
+        uint16_t TXDMAEN            :1; /**< Tx Buffer DMA Enable. */
+        uint16_t SSOE               :1; /**< SS Output Enable. */
+        uint16_t res                :1; /**< Reserved. */
+        uint16_t FRF                :1; /**< Frame Format. */
+        uint16_t ERRIE              :1; /**< Error Interrupt Enable. */
+        uint16_t RXNEIE             :1; /**< RX Buffer Not Empty Interrupt Enable. */
+        uint16_t TXEIE              :1; /**< TX Buffer Empty Interrupt Enable. */
+        uint16_t res1               :8; /**< Reserved. */
+    } SPI_CR2_t;
 
     /**
      * @brief RESERVED address.
@@ -1409,27 +1407,26 @@ volatile typedef struct{
      */
     struct 
     {
-        uint16_t res;
-    }RESERVED1_t;
-
+        uint16_t res; /**< Reserved. */
+    } RESERVED1_t;
 
     /**
      * @brief SPI status register (SPI_SR).
      * 
-     * Shows the current status of the SPI, including flags for RX, TX, and errors.
+     * Provides status flags for SPI, including RX, TX, and error indicators.
      */
     struct          
     {
-        uint16_t RXNE               :1;
-        uint16_t TXE                :1;
-        uint16_t CHSIDE             :1;
-        uint16_t UDR                :1;
-        uint16_t CRCERR             :1;
-        uint16_t MODF               :1;
-        uint16_t OVF                :1;
-        uint16_t BSY                :1;
-        uint16_t res                :7;
-    }SPI_SR_t;
+        uint16_t RXNE               :1; /**< Receive Buffer Not Empty. */
+        uint16_t TXE                :1; /**< Transmit Buffer Empty. */
+        uint16_t CHSIDE             :1; /**< Channel Side. */
+        uint16_t UDR                :1; /**< Underrun Flag. */
+        uint16_t CRCERR             :1; /**< CRC Error Flag. */
+        uint16_t MODF               :1; /**< Mode Fault. */
+        uint16_t OVF                :1; /**< Overrun Flag. */
+        uint16_t BSY                :1; /**< Busy Flag. */
+        uint16_t res                :7; /**< Reserved. */
+    } SPI_SR_t;
 
     /**
      * @brief RESERVED address.
@@ -1438,21 +1435,18 @@ volatile typedef struct{
      */
     struct 
     {
-        uint16_t res;
-    }RESERVED2_t;
-
-
+        uint16_t res; /**< Reserved. */
+    } RESERVED2_t;
 
     /**
      * @brief SPI data register (SPI_DR).
      * 
-     * Holds the data to be transmitted or received.
+     * Holds the data to be transmitted or received via SPI.
      */
     struct       
     {
-        uint16_t DR                 :16;
-    }SPI_DR_t;
-    
+        uint16_t DR                 :16; /**< Data Register. */
+    } SPI_DR_t;
 
     /**
      * @brief RESERVED address.
@@ -1461,20 +1455,18 @@ volatile typedef struct{
      */
     struct 
     {
-        uint16_t res;
-    }RESERVED3_t;
-
+        uint16_t res; /**< Reserved. */
+    } RESERVED3_t;
 
     /**
      * @brief SPI CRC polynomial register (SPI_CRCPR).
      * 
-     * Holds the polynomial for the CRC calculation.
+     * Holds the polynomial for the CRC calculation used in SPI.
      */
     struct       
     {
-        uint16_t CRCPOLY            :16;
-    }SPI_CRCPR_t;
-
+        uint16_t CRCPOLY            :16; /**< CRC Polynomial Register. */
+    } SPI_CRCPR_t;
 
     /**
      * @brief RESERVED address.
@@ -1483,20 +1475,18 @@ volatile typedef struct{
      */
     struct 
     {
-        uint16_t res;
-    }RESERVED4_t;
-
+        uint16_t res; /**< Reserved. */
+    } RESERVED4_t;
 
     /**
      * @brief SPI RX CRC register (SPI_RXCRCR).
      * 
-     * Holds the Rx CRC calculation.
+     * Holds the calculated CRC value for received data.
      */
     struct       
     {
-        uint16_t RXCRC              :16;
-    }SPI_RXCRCR_t;
-
+        uint16_t RXCRC              :16; /**< Receive CRC Register. */
+    } SPI_RXCRCR_t;
 
     /**
      * @brief RESERVED address.
@@ -1505,19 +1495,18 @@ volatile typedef struct{
      */
     struct 
     {
-        uint16_t res;
-    }RESERVED5_t;
-
+        uint16_t res; /**< Reserved. */
+    } RESERVED5_t;
 
     /**
      * @brief SPI TX CRC register (SPI_TXCRCR).
      * 
-     * Holds the Tx CRC calculation.
+     * Holds the calculated CRC value for transmitted data.
      */
     struct       
     {
-        uint16_t TXCRC              :16;
-    }SPI_TXCRCR_t;
+        uint16_t TXCRC              :16; /**< Transmit CRC Register. */
+    } SPI_TXCRCR_t;
 
     /**
      * @brief RESERVED address.
@@ -1526,29 +1515,30 @@ volatile typedef struct{
      */
     struct 
     {
-        uint16_t res;
-    }RESERVED6_t;
+        uint16_t res; /**< Reserved. */
+    } RESERVED6_t;
+
 
 
     /**
      * @brief SPI_I2S configuration register (SPI_I2SCFGR).
      * 
-     * Configures the I2S mode settings if I2S is used instead of SPI.
+     * Configures the I2S mode settings when I2S is used instead of SPI, including channel length,
+     * data length, clock polarity, and I2S standard selection.
      */
     struct       
     {
-        uint16_t CHLEN              :1;
-        uint16_t DATLEN             :2;
-        uint16_t CKPOL              :1;
-        uint16_t I2SSTD             :2;
-        uint16_t res                :1;
-        uint16_t PCMSYNC            :1;
-        uint16_t I2SCFG             :2;
-        uint16_t I2SE               :1;
-        uint16_t I2SMOD             :1;
-        uint16_t res1               :4;
-    }SPI_I2SCFGR_t;
-
+        uint16_t CHLEN              :1; /**< Channel Length (0: 16-bit, 1: 32-bit). */
+        uint16_t DATLEN             :2; /**< Data Length (0: 16-bit, 1: 24-bit, 2: 32-bit). */
+        uint16_t CKPOL              :1; /**< Clock Polarity. */
+        uint16_t I2SSTD             :2; /**< I2S Standard Selection. */
+        uint16_t res                :1; /**< Reserved. */
+        uint16_t PCMSYNC            :1; /**< PCM Frame Synchronization. */
+        uint16_t I2SCFG             :2; /**< I2S Configuration Mode. */
+        uint16_t I2SE               :1; /**< I2S Enable. */
+        uint16_t I2SMOD             :1; /**< I2S Mode Selection (0: SPI, 1: I2S). */
+        uint16_t res1               :4; /**< Reserved. */
+    } SPI_I2SCFGR_t;
 
     /**
      * @brief RESERVED address.
@@ -1557,22 +1547,21 @@ volatile typedef struct{
      */
     struct 
     {
-        uint16_t res;
-    }RESERVED7_t;
+        uint16_t res; /**< Reserved. */
+    } RESERVED7_t;
 
     /**
      * @brief SPI_I2S prescaler register (SPI_I2SPR).
      * 
-     * Configures the prescaler for the I2S clock.
+     * Configures the prescaler and clock odd setting for the I2S clock.
      */
-    struct       //SPI_I2S prescaler register
+    struct       
     {
-        uint16_t I2SDIV             :8;
-        uint16_t ODD                :1;
-        uint16_t MCKOE              :1;
-        uint16_t res                :6;
-    }SPI_I2SPR_t;
-
+        uint16_t I2SDIV             :8; /**< I2S Linear Prescaler. */
+        uint16_t ODD                :1; /**< Odd Factor for the Prescaler. */
+        uint16_t MCKOE              :1; /**< Master Clock Output Enable. */
+        uint16_t res                :6; /**< Reserved. */
+    } SPI_I2SPR_t;
 
     /**
      * @brief RESERVED address.
@@ -1581,9 +1570,292 @@ volatile typedef struct{
      */
     struct 
     {
-        uint16_t res;
-    }RESERVED8_t;
+        uint16_t res; /**< Reserved. */
+    } RESERVED8_t;
 }SPI_RegDef_t;
+
+
+
+
+/* 
+****************** I2C register definition structures******************
+*/
+
+/**
+ * @brief I2C Register Definition Structure.
+ * 
+ * This structure defines the configuration and control registers for the I2C peripheral.
+ */
+volatile typedef struct {
+
+    /**
+     * @brief I2C control register 1 (I2C_CR1).
+     * 
+     * This register configures the I2C mode, enables SMBus, ACK, and enables various 
+     * options like software reset and general call recognition.
+     */
+    struct       
+    {
+        uint16_t PE                 :1; /**< Peripheral Enable. */
+        uint16_t SMBUS              :1; /**< SMBus Mode. */
+        uint16_t res                :1; /**< Reserved. */
+        uint16_t SMBTYPE            :1; /**< SMBus Type. */
+        uint16_t ENARP              :1; /**< ARP Enable. */
+        uint16_t ENPEC              :1; /**< PEC Enable. */
+        uint16_t ENGC               :1; /**< General Call Enable. */
+        uint16_t NOSTRECTH          :1; /**< Clock Stretching Disable. */
+        uint16_t START              :1; /**< Start Generation. */
+        uint16_t STOP               :1; /**< Stop Generation. */
+        uint16_t ACK                :1; /**< Acknowledge Enable. */
+        uint16_t POS                :1; /**< Acknowledge/PEC Position. */
+        uint16_t PEC                :1; /**< Packet Error Checking. */
+        uint16_t ALERT              :1; /**< SMBus Alert. */
+        uint16_t res1               :1; /**< Reserved. */
+        uint16_t SWRST              :1; /**< Software Reset. */
+    } I2C_CR1_t;
+   
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved and should not be used.
+     */
+    struct 
+    {
+        uint16_t res; /**< Reserved. */
+    } RESERVED0_t;
+   
+    /**
+     * @brief I2C control register 2 (I2C_CR2).
+     * 
+     * This register configures frequency, error, event, and buffer interrupts, as well as 
+     * DMA and LAST data handling.
+     */
+    struct       
+    {
+        uint16_t FREQ               :6; /**< Peripheral Clock Frequency. */
+        uint16_t res                :2; /**< Reserved. */
+        uint16_t ITERREN            :1; /**< Error Interrupt Enable. */
+        uint16_t ITEVTEN            :1; /**< Event Interrupt Enable. */
+        uint16_t ITBUFEN            :1; /**< Buffer Interrupt Enable. */
+        uint16_t DMAEN              :1; /**< DMA Requests Enable. */
+        uint16_t LAST               :1; /**< DMA Last Transfer. */
+        uint16_t res1               :3; /**< Reserved. */
+    } I2C_CR2_t;
+
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved and should not be used.
+     */
+    struct 
+    {
+        uint16_t res; /**< Reserved. */
+    } RESERVED1_t;
+
+
+    /**
+     * @brief I2C own address register 1 (I2C_OAR1).
+     * 
+     * This register configures the 7-bit or 10-bit addressing mode and stores the device's own address.
+     */
+    struct       
+    {
+        uint16_t ADD0               :1; /**< Interface Address Bit 0. */
+        uint16_t ADD                :7; /**< Interface Address Bits 7:1 (7-bit mode) or Bits 9:3 (10-bit mode). */
+        uint16_t ADD10              :2; /**< Interface Address Bits 9:8 in 10-bit addressing mode. */
+        uint16_t res                :5; /**< Reserved. */
+        uint16_t ADDMODE            :1; /**< Addressing Mode (0: 7-bit, 1: 10-bit). */
+    } I2C_OAR1_t;
+
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved and should not be used.
+     */
+    struct 
+    {
+        uint16_t res; /**< Reserved. */
+    } RESERVED2_t;
+
+    /**
+     * @brief I2C own address register 2 (I2C_OAR2).
+     * 
+     * This register configures the second own address for dual-address mode.
+     */
+    struct       
+    {
+        uint16_t ENDUAL             :1; /**< Dual Addressing Mode Enable. */
+        uint16_t ADD2               :7; /**< Interface Second Address in 7-bit mode. */
+        uint16_t res                :8; /**< Reserved. */
+    } I2C_OAR2_t;
+
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved and should not be used.
+     */
+    struct 
+    {
+        uint16_t res; /**< Reserved. */
+    } RESERVED3_t;
+
+    /**
+     * @brief I2C data register (I2C_DR).
+     * 
+     * This register holds the data byte to be transmitted or received.
+     */
+    struct       
+    {
+        uint16_t DR                 :8; /**< Data Register. */
+        uint16_t res                :8; /**< Reserved. */
+    } I2C_DR_t;
+
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved and should not be used.
+     */
+    struct 
+    {
+        uint16_t res; /**< Reserved. */
+    } RESERVED4_t;
+
+    /**
+     * @brief I2C status register 1 (I2C_SR1).
+     * 
+     * This register provides status flags for the communication and error handling.
+     */
+    struct       
+    {
+        uint16_t SB                 :1; /**< Start Bit (Master Mode). */
+        uint16_t ADDR               :1; /**< Address Sent (Master) / Matched (Slave). */
+        uint16_t BTF                :1; /**< Byte Transfer Finished. */
+        uint16_t ADD10              :1; /**< 10-bit Header Sent (Master Mode). */
+        uint16_t STOPF              :1; /**< Stop Detection (Slave Mode). */
+        uint16_t res                :1; /**< Reserved. */
+        uint16_t RxNE               :1; /**< Data Register Not Empty (Receive). */
+        uint16_t TxE                :1; /**< Data Register Empty (Transmit). */
+        uint16_t BERR               :1; /**< Bus Error. */
+        uint16_t ARLO               :1; /**< Arbitration Lost (Master Mode). */
+        uint16_t AF                 :1; /**< Acknowledge Failure. */
+        uint16_t OVR                :1; /**< Overrun/Underrun. */
+        uint16_t PECERR             :1; /**< PEC Error in Reception. */
+        uint16_t res1               :1; /**< Reserved. */
+        uint16_t TIMEOUT            :1; /**< Timeout or Tlow Error. */
+        uint16_t SMBALERT           :1; /**< SMBus Alert. */
+    } I2C_SR1_t;
+
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved and should not be used.
+     */
+    struct 
+    {
+        uint16_t res; /**< Reserved. */
+    } RESERVED5_t;
+
+
+    /**
+     * @brief I2C status register 2 (I2C_SR2).
+     * 
+     * This register provides additional status flags, including the master/slave mode, busy flag, 
+     * and general call status.
+     */
+    struct       
+    {
+        uint16_t MSL                :1; /**< Master/Slave Mode. */
+        uint16_t BUSY               :1; /**< Bus Busy. */
+        uint16_t TRA                :1; /**< Transmitter/Receiver Mode. */
+        uint16_t res                :1; /**< Reserved. */
+        uint16_t GENCALL            :1; /**< General Call Address (Slave Mode). */
+        uint16_t SMBDEFAULT         :1; /**< SMBus Device Default Address. */
+        uint16_t SMBHOST            :1; /**< SMBus Host Header. */
+        uint16_t DUALF              :1; /**< Dual Address Flag. */
+        uint16_t PEC                :8; /**< Packet Error Checking Register. */
+    } I2C_SR2_t;
+
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved and should not be used.
+     */
+    struct 
+    {
+        uint16_t res; /**< Reserved. */
+    } RESERVED6_t;
+
+
+    /**
+     * @brief I2C clock control register (I2C_CCR).
+     * 
+     * This register configures the clock control and duty cycle settings for the I2C peripheral.
+     */
+    struct       
+    {
+        uint16_t CCR                :12; /**< Clock Control. */
+        uint16_t res                :2; /**< Reserved. */
+        uint16_t DUTY               :1; /**< Fast Mode Duty Cycle. */
+        uint16_t FS                 :1; /**< I2C Master Mode Selection (0: Standard, 1: Fast). */
+    } I2C_CCR_t;
+
+
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved and should not be used.
+     */
+    struct 
+    {
+        uint16_t res; /**< Reserved. */
+    } RESERVED7_t;
+
+
+    /**
+     * @brief I2C TRISE register (I2C_TRISE).
+     * 
+     * This register configures the maximum rise time in Fast/Standard mode.
+     */
+    struct       
+    {
+        uint16_t TRISE              :6; /**< Maximum Rise Time. */
+        uint16_t res                :10; /**< Reserved. */
+    } I2C_TRISE_t;
+
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved and should not be used.
+     */
+    struct 
+    {
+        uint16_t res; /**< Reserved. */
+    } RESERVED8_t;
+
+    /**
+     * @brief I2C filter register (I2C_FLTR).
+     * 
+     * This register configures the digital noise filter and analog noise filter.
+     */
+    struct       
+    {
+        uint16_t DNF                :4; /**< Digital Noise Filter. */
+        uint16_t ANOFF              :1; /**< Analog Noise Filter OFF. */
+        uint16_t res                :11; /**< Reserved. */
+    } I2C_FLTR_t;
+
+    /**
+     * @brief RESERVED address.
+     * 
+     * This address is reserved and should not be used.
+     */
+    struct 
+    {
+        uint16_t res; /**< Reserved. */
+    } RESERVED9_t;
+
+} I2C_RegDef_t;
+
 
 
 
