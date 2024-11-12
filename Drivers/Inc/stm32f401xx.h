@@ -127,275 +127,6 @@
 
 
 
-/* 
-******************GPIO register definition structures******************
-*/
-
-
-/** 
- * @brief GPIO register definition structure.
- * 
- * This structure defines the registers for a GPIO port on the STM32F401xx.
- */
-volatile typedef struct 
-{
-    /** 
-     * @brief Structure for GPIO port mode register.
-     * 
-     * Defines the mode configuration for each pin in the GPIO port.
-     */
-    struct{  
-        uint32_t MODER0       :2; /**< Mode for pin 0 */
-        uint32_t MODER1       :2; /**< Mode for pin 1 */
-        uint32_t MODER2       :2; /**< Mode for pin 2 */
-        uint32_t MODER3       :2; /**< Mode for pin 3 */
-        uint32_t MODER4       :2; /**< Mode for pin 4 */
-        uint32_t MODER5       :2; /**< Mode for pin 5 */
-        uint32_t MODER6       :2; /**< Mode for pin 6 */
-        uint32_t MODER7       :2; /**< Mode for pin 7 */
-        uint32_t MODER8       :2; /**< Mode for pin 8 */
-        uint32_t MODER9       :2; /**< Mode for pin 9 */
-        uint32_t MODER10      :2; /**< Mode for pin 10 */
-        uint32_t MODER11      :2; /**< Mode for pin 11 */
-        uint32_t MODER12      :2; /**< Mode for pin 12 */
-        uint32_t MODER13      :2; /**< Mode for pin 13 */
-        uint32_t MODER14      :2; /**< Mode for pin 14 */
-        uint32_t MODER15      :2; /**< Mode for pin 15 */
-    } GPIOx_MODER_t;
-
-
-
-    /** 
-     * @brief Structure for GPIO port output type register.
-     * 
-     * Defines the output type for each pin in the GPIO port.
-     */
-    struct{         
-        uint32_t OT0       :1; /**< Output type for pin 0 */
-        uint32_t OT1       :1; /**< Output type for pin 1 */
-        uint32_t OT2       :1; /**< Output type for pin 2 */
-        uint32_t OT3       :1; /**< Output type for pin 3 */
-        uint32_t OT4       :1; /**< Output type for pin 4 */
-        uint32_t OT5       :1; /**< Output type for pin 5 */
-        uint32_t OT6       :1; /**< Output type for pin 6 */
-        uint32_t OT7       :1; /**< Output type for pin 7 */
-        uint32_t OT8       :1; /**< Output type for pin 8 */
-        uint32_t OT9       :1; /**< Output type for pin 9 */
-        uint32_t OT10      :1; /**< Output type for pin 10 */
-        uint32_t OT11      :1; /**< Output type for pin 11 */
-        uint32_t OT12      :1; /**< Output type for pin 12 */
-        uint32_t OT13      :1; /**< Output type for pin 13 */
-        uint32_t OT14      :1; /**< Output type for pin 14 */
-        uint32_t OT15      :1; /**< Output type for pin 15 */
-        uint32_t res       :16; /**< Reserved bits */
-    } GPIOx_OTYPER_t;
-
-
-    /**
-     * @brief GPIO port output speed register.
-     * 
-     * Configures the output speed for each pin in the GPIO port.
-     */
-    struct{         
-        uint32_t OSPEEDR0       :2; /**< Speed for pin 0 */
-        uint32_t OSPEEDR1       :2; /**< Speed for pin 1 */
-        uint32_t OSPEEDR2       :2; /**< Speed for pin 2 */
-        uint32_t OSPEEDR3       :2; /**< Speed for pin 3 */
-        uint32_t OSPEEDR4       :2; /**< Speed for pin 4 */
-        uint32_t OSPEEDR5       :2; /**< Speed for pin 5 */
-        uint32_t OSPEEDR6       :2; /**< Speed for pin 6 */
-        uint32_t OSPEEDR7       :2; /**< Speed for pin 7 */
-        uint32_t OSPEEDR8       :2; /**< Speed for pin 8 */
-        uint32_t OSPEEDR9       :2; /**< Speed for pin 9 */
-        uint32_t OSPEEDR10      :2; /**< Speed for pin 10 */
-        uint32_t OSPEEDR11      :2; /**< Speed for pin 11 */
-        uint32_t OSPEEDR12      :2; /**< Speed for pin 12 */
-        uint32_t OSPEEDR13      :2; /**< Speed for pin 13 */
-        uint32_t OSPEEDR14      :2; /**< Speed for pin 14 */
-        uint32_t OSPEEDR15      :2; /**< Speed for pin 15 */
-    } GPIOx_OSPEEDR_t;
-  
-  
-    /**
-     * @brief GPIO port pull-up/pull-down register.
-     * 
-     * Configures the pull-up or pull-down resistors for each pin in the GPIO port.
-     */
-    struct{         
-        uint32_t PUPDR0       :2; /**< Pull-up/pull-down for pin 0 */
-        uint32_t PUPDR1       :2; /**< Pull-up/pull-down for pin 1 */
-        uint32_t PUPDR2       :2; /**< Pull-up/pull-down for pin 2 */
-        uint32_t PUPDR3       :2; /**< Pull-up/pull-down for pin 3 */
-        uint32_t PUPDR4       :2; /**< Pull-up/pull-down for pin 4 */
-        uint32_t PUPDR5       :2; /**< Pull-up/pull-down for pin 5 */
-        uint32_t PUPDR6       :2; /**< Pull-up/pull-down for pin 6 */
-        uint32_t PUPDR7       :2; /**< Pull-up/pull-down for pin 7 */
-        uint32_t PUPDR8       :2; /**< Pull-up/pull-down for pin 8 */
-        uint32_t PUPDR9       :2; /**< Pull-up/pull-down for pin 9 */
-        uint32_t PUPDR10      :2; /**< Pull-up/pull-down for pin 10 */
-        uint32_t PUPDR11      :2; /**< Pull-up/pull-down for pin 11 */
-        uint32_t PUPDR12      :2; /**< Pull-up/pull-down for pin 12 */
-        uint32_t PUPDR13      :2; /**< Pull-up/pull-down for pin 13 */
-        uint32_t PUPDR14      :2; /**< Pull-up/pull-down for pin 14 */
-        uint32_t PUPDR15      :2; /**< Pull-up/pull-down for pin 15 */
-    } GPIOx_PUPDR_t;
-
-
-    /**
-     * @brief GPIO port input data register.
-     * 
-     * Reads the input data for each pin in the GPIO port.
-     */
-    const  struct{         
-        uint32_t IDR0       :1; /**< Input data for pin 0 */
-        uint32_t IDR1       :1; /**< Input data for pin 1 */
-        uint32_t IDR2       :1; /**< Input data for pin 2 */
-        uint32_t IDR3       :1; /**< Input data for pin 3 */
-        uint32_t IDR4       :1; /**< Input data for pin 4 */
-        uint32_t IDR5       :1; /**< Input data for pin 5 */
-        uint32_t IDR6       :1; /**< Input data for pin 6 */
-        uint32_t IDR7       :1; /**< Input data for pin 7 */
-        uint32_t IDR8       :1; /**< Input data for pin 8 */
-        uint32_t IDR9       :1; /**< Input data for pin 9 */
-        uint32_t IDR10      :1; /**< Input data for pin 10 */
-        uint32_t IDR11      :1; /**< Input data for pin 11 */
-        uint32_t IDR12      :1; /**< Input data for pin 12 */
-        uint32_t IDR13      :1; /**< Input data for pin 13 */
-        uint32_t IDR14      :1; /**< Input data for pin 14 */
-        uint32_t IDR15      :1; /**< Input data for pin 15 */
-        uint32_t reserved   :16; /**< Reserved bits */
-    } GPIOx_IDR_t;
-   
-   
-    /**
-     * @brief GPIO port output data register.
-     * 
-     * Controls the output data for each pin in the GPIO port.
-     */
-    struct{         
-        uint32_t ODR0       :1; /**< Output data for pin 0 */
-        uint32_t ODR1       :1; /**< Output data for pin 1 */
-        uint32_t ODR2       :1; /**< Output data for pin 2 */
-        uint32_t ODR3       :1; /**< Output data for pin 3 */
-        uint32_t ODR4       :1; /**< Output data for pin 4 */
-        uint32_t ODR5       :1; /**< Output data for pin 5 */
-        uint32_t ODR6       :1; /**< Output data for pin 6 */
-        uint32_t ODR7       :1; /**< Output data for pin 7 */
-        uint32_t ODR8       :1; /**< Output data for pin 8 */
-        uint32_t ODR9       :1; /**< Output data for pin 9 */
-        uint32_t ODR10      :1; /**< Output data for pin 10 */
-        uint32_t ODR11      :1; /**< Output data for pin 11 */
-        uint32_t ODR12      :1; /**< Output data for pin 12 */
-        uint32_t ODR13      :1; /**< Output data for pin 13 */
-        uint32_t ODR14      :1; /**< Output data for pin 14 */
-        uint32_t ODR15      :1; /**< Output data for pin 15 */
-        uint32_t reserved   :16; /**< Reserved bits */
-    } GPIOx_ODR_t;
-
-
-    /**
-     * @brief GPIO port bit set/reset register.
-     * 
-     * Used to set or reset specific bits in the GPIO port.
-     */
-
-    struct{         //GPIO port bit set/reset register
-        uint32_t BS0       :1; /**< Bit set for pin 0 */
-        uint32_t BS1       :1; /**< Bit set for pin 1 */
-        uint32_t BS2       :1; /**< Bit set for pin 2 */
-        uint32_t BS3       :1; /**< Bit set for pin 3 */
-        uint32_t BS4       :1; /**< Bit set for pin 4 */
-        uint32_t BS5       :1; /**< Bit set for pin 5 */
-        uint32_t BS6       :1; /**< Bit set for pin 6 */
-        uint32_t BS7       :1; /**< Bit set for pin 7 */
-        uint32_t BS8       :1; /**< Bit set for pin 8 */
-        uint32_t BS9       :1; /**< Bit set for pin 9 */
-        uint32_t BS10      :1; /**< Bit set for pin 10 */
-        uint32_t BS11      :1; /**< Bit set for pin 11 */
-        uint32_t BS12      :1; /**< Bit set for pin 12 */
-        uint32_t BS13      :1; /**< Bit set for pin 13 */
-        uint32_t BS14      :1; /**< Bit set for pin 14 */
-        uint32_t BS15      :1; /**< Bit set for pin 15 */
-        uint32_t BR0       :1; /**< Bit reset for pin 0 */
-        uint32_t BR1       :1; /**< Bit reset for pin 1 */
-        uint32_t BR2       :1; /**< Bit reset for pin 2 */
-        uint32_t BR3       :1; /**< Bit reset for pin 3 */
-        uint32_t BR4       :1; /**< Bit reset for pin 4 */
-        uint32_t BR5       :1; /**< Bit reset for pin 5 */
-        uint32_t BR6       :1; /**< Bit reset for pin 6 */
-        uint32_t BR7       :1; /**< Bit reset for pin 7 */
-        uint32_t BR8       :1; /**< Bit reset for pin 8 */
-        uint32_t BR9       :1; /**< Bit reset for pin 9 */
-        uint32_t BR10      :1; /**< Bit reset for pin 10 */
-        uint32_t BR11      :1; /**< Bit reset for pin 11 */
-        uint32_t BR12      :1; /**< Bit reset for pin 12 */
-        uint32_t BR13      :1; /**< Bit reset for pin 13 */
-        uint32_t BR14      :1; /**< Bit reset for pin 14 */
-        uint32_t BR15      :1; /**< Bit reset for pin 15 */
-    } GPIOx_BSRR_t;
-
-    /**
-     * @brief GPIO port configuration lock register.
-     * 
-     * Locks the configuration of the GPIO port until the next reset.
-     */
-    struct{        
-        uint32_t LCK0       :1; /**< Lock configuration for pin 0 */
-        uint32_t LCK1       :1; /**< Lock configuration for pin 1 */
-        uint32_t LCK2       :1; /**< Lock configuration for pin 2 */
-        uint32_t LCK3       :1; /**< Lock configuration for pin 3 */
-        uint32_t LCK4       :1; /**< Lock configuration for pin 4 */
-        uint32_t LCK5       :1; /**< Lock configuration for pin 5 */
-        uint32_t LCK6       :1; /**< Lock configuration for pin 6 */
-        uint32_t LCK7       :1; /**< Lock configuration for pin 7 */
-        uint32_t LCK8       :1; /**< Lock configuration for pin 8 */
-        uint32_t LCK9       :1; /**< Lock configuration for pin 9 */
-        uint32_t LCK10      :1; /**< Lock configuration for pin 10 */
-        uint32_t LCK11      :1; /**< Lock configuration for pin 11 */
-        uint32_t LCK12      :1; /**< Lock configuration for pin 12 */
-        uint32_t LCK13      :1; /**< Lock configuration for pin 13 */
-        uint32_t LCK14      :1; /**< Lock configuration for pin 14 */
-        uint32_t LCK15      :1; /**< Lock configuration for pin 15 */
-        uint32_t LCKK       :1; /**< Lock key bit */
-        uint32_t res        :15; /**< Reserved bits */
-    } GPIOx_LCKR_t;
-
-    /**
-     * @brief GPIO alternate function low register.
-     * 
-     * Configures the alternate functions for pins 0 to 7 in the GPIO port.
-     */
-    struct{         //GPIO alternate function low register
-        uint32_t ARFL0     :4; /**< Alternate function low for pin 0 */
-        uint32_t ARFL1     :4; /**< Alternate function low for pin 1 */
-        uint32_t ARFL2     :4; /**< Alternate function low for pin 2 */
-        uint32_t ARFL3     :4; /**< Alternate function low for pin 3 */
-        uint32_t ARFL4     :4; /**< Alternate function low for pin 4 */
-        uint32_t ARFL5     :4; /**< Alternate function low for pin 5 */
-        uint32_t ARFL6     :4; /**< Alternate function low for pin 6 */
-        uint32_t ARFL7     :4; /**< Alternate function low for pin 7 */
-    } GPIOx_AFRL_t;
-   
-    /**
-     * @brief GPIO alternate function high register.
-     * 
-     * Configures the alternate functions for pins 8 to 15 in the GPIO port.
-     */
-    struct{         //GPIO alternate function high register
-        uint32_t ARFH8      :4; /**< Alternate function high for pin 8 */
-        uint32_t ARFH9      :4; /**< Alternate function high for pin 9 */
-        uint32_t ARFH10     :4; /**< Alternate function high for pin 10 */
-        uint32_t ARFH11     :4; /**< Alternate function high for pin 11 */
-        uint32_t ARFH12     :4; /**< Alternate function high for pin 12 */
-        uint32_t ARFH13     :4; /**< Alternate function high for pin 13 */
-        uint32_t ARFH14     :4; /**< Alternate function high for pin 14 */
-        uint32_t ARFH15     :4; /**< Alternate function high for pin 15 */
-    } GPIOx_AFRH_t;
-}GPIO_RegDef_t;
-
-
-
-
 
 /* 
 ******************RCC register definition structures******************
@@ -1017,6 +748,617 @@ typedef struct
 
 
 /* 
+****************** SYSCFG register definition structures******************
+*/
+
+/**
+ * @brief SYSCFG Register Definition structure.
+ * 
+ * This structure represents the configuration registers for the System Configuration (SYSCFG)
+ * peripheral, including memory remap, peripheral mode, external interrupt configuration,
+ * and compensation cell control.
+ */
+typedef struct
+{
+    /**
+     * @brief SYSCFG memory remap register (SYSCFG_MEMRMP).
+     * 
+     * Configures memory remap settings for boot configuration.
+     */
+    struct      
+    {
+        uint32_t MEM_MODE           :2; /**< Memory Mapping Selection. */
+        uint32_t res                :30; /**< Reserved. */
+    } SYSCFG_MEMRMP_t;
+
+    /**
+     * @brief SYSCFG peripheral mode configuration register (SYSCFG_PMC).
+     * 
+     * Controls peripheral mode settings, including ADC configuration.
+     */
+    struct      
+    {
+        uint32_t res                :16; /**< Reserved. */
+        uint32_t ADC1DC2            :1; /**< ADC1 DMA Channel 2 Configuration. */
+        uint32_t res1               :15; /**< Reserved. */
+    } SYSCFG_PMC_t;
+
+    /**
+     * @brief SYSCFG external interrupt configuration register 1 (SYSCFG_EXTICR1).
+     * 
+     * Configures the source input for external interrupt lines 0 to 3.
+     */
+    struct      
+    {
+        uint32_t EXTI0              :4; /**< External Interrupt 0 Configuration. */
+        uint32_t EXTI1              :4; /**< External Interrupt 1 Configuration. */
+        uint32_t EXTI2              :4; /**< External Interrupt 2 Configuration. */
+        uint32_t EXTI3              :4; /**< External Interrupt 3 Configuration. */
+        uint32_t res                :16; /**< Reserved. */
+    } SYSCFG_EXTICR1_t;
+
+    /**
+     * @brief SYSCFG external interrupt configuration register 2 (SYSCFG_EXTICR2).
+     * 
+     * Configures the source input for external interrupt lines 4 to 7.
+     */
+    struct      
+    {
+        uint32_t EXTI4              :4; /**< External Interrupt 4 Configuration. */
+        uint32_t EXTI5              :4; /**< External Interrupt 5 Configuration. */
+        uint32_t EXTI6              :4; /**< External Interrupt 6 Configuration. */
+        uint32_t EXTI7              :4; /**< External Interrupt 7 Configuration. */
+        uint32_t res                :16; /**< Reserved. */
+    } SYSCFG_EXTICR2_t;
+
+    /**
+     * @brief SYSCFG external interrupt configuration register 3 (SYSCFG_EXTICR3).
+     * 
+     * Configures the source input for external interrupt lines 8 to 11.
+     */
+    struct      
+    {
+        uint32_t EXTI8              :4; /**< External Interrupt 8 Configuration. */
+        uint32_t EXTI9              :4; /**< External Interrupt 9 Configuration. */
+        uint32_t EXTI10             :4; /**< External Interrupt 10 Configuration. */
+        uint32_t EXTI11             :4; /**< External Interrupt 11 Configuration. */
+        uint32_t res                :16; /**< Reserved. */
+    } SYSCFG_EXTICR3_t;
+
+    /**
+     * @brief SYSCFG external interrupt configuration register 4 (SYSCFG_EXTICR4).
+     * 
+     * Configures the source input for external interrupt lines 12 to 15.
+     */
+    struct      
+    {
+        uint32_t EXTI12             :4; /**< External Interrupt 12 Configuration. */
+        uint32_t EXTI13             :4; /**< External Interrupt 13 Configuration. */
+        uint32_t EXTI14             :4; /**< External Interrupt 14 Configuration. */
+        uint32_t EXTI15             :4; /**< External Interrupt 15 Configuration. */
+        uint32_t res                :16; /**< Reserved. */
+    } SYSCFG_EXTICR4_t;
+
+    /**
+     * @brief SYSCFG compensation cell control register (SYSCFG_CMPCR).
+     * 
+     * Controls the compensation cell for optimizing I/O speed performance.
+     */
+    struct      
+    {
+        uint32_t CMP_PD             :1; /**< Compensation Cell Power-Down. */
+        uint32_t res                :7; /**< Reserved. */
+        uint32_t READY              :1; /**< Compensation Cell Ready Flag. */
+        uint32_t res1               :23; /**< Reserved. */
+    } SYSCFG_CMPCR_t;
+
+} SYSCFG_RegDef_t;
+
+
+
+
+/* 
+******************GPIO register definition structures******************
+*/
+
+
+/** 
+ * @brief GPIO register definition structure.
+ * 
+ * This structure defines the registers for a GPIO port on the STM32F401xx.
+ */
+volatile typedef struct 
+{
+    /** 
+     * @brief Structure for GPIO port mode register.
+     * 
+     * Defines the mode configuration for each pin in the GPIO port.
+     */
+    struct{  
+        uint32_t MODER0       :2; /**< Mode for pin 0 */
+        uint32_t MODER1       :2; /**< Mode for pin 1 */
+        uint32_t MODER2       :2; /**< Mode for pin 2 */
+        uint32_t MODER3       :2; /**< Mode for pin 3 */
+        uint32_t MODER4       :2; /**< Mode for pin 4 */
+        uint32_t MODER5       :2; /**< Mode for pin 5 */
+        uint32_t MODER6       :2; /**< Mode for pin 6 */
+        uint32_t MODER7       :2; /**< Mode for pin 7 */
+        uint32_t MODER8       :2; /**< Mode for pin 8 */
+        uint32_t MODER9       :2; /**< Mode for pin 9 */
+        uint32_t MODER10      :2; /**< Mode for pin 10 */
+        uint32_t MODER11      :2; /**< Mode for pin 11 */
+        uint32_t MODER12      :2; /**< Mode for pin 12 */
+        uint32_t MODER13      :2; /**< Mode for pin 13 */
+        uint32_t MODER14      :2; /**< Mode for pin 14 */
+        uint32_t MODER15      :2; /**< Mode for pin 15 */
+    } GPIOx_MODER_t;
+
+
+
+    /** 
+     * @brief Structure for GPIO port output type register.
+     * 
+     * Defines the output type for each pin in the GPIO port.
+     */
+    struct{         
+        uint32_t OT0       :1; /**< Output type for pin 0 */
+        uint32_t OT1       :1; /**< Output type for pin 1 */
+        uint32_t OT2       :1; /**< Output type for pin 2 */
+        uint32_t OT3       :1; /**< Output type for pin 3 */
+        uint32_t OT4       :1; /**< Output type for pin 4 */
+        uint32_t OT5       :1; /**< Output type for pin 5 */
+        uint32_t OT6       :1; /**< Output type for pin 6 */
+        uint32_t OT7       :1; /**< Output type for pin 7 */
+        uint32_t OT8       :1; /**< Output type for pin 8 */
+        uint32_t OT9       :1; /**< Output type for pin 9 */
+        uint32_t OT10      :1; /**< Output type for pin 10 */
+        uint32_t OT11      :1; /**< Output type for pin 11 */
+        uint32_t OT12      :1; /**< Output type for pin 12 */
+        uint32_t OT13      :1; /**< Output type for pin 13 */
+        uint32_t OT14      :1; /**< Output type for pin 14 */
+        uint32_t OT15      :1; /**< Output type for pin 15 */
+        uint32_t res       :16; /**< Reserved bits */
+    } GPIOx_OTYPER_t;
+
+
+    /**
+     * @brief GPIO port output speed register.
+     * 
+     * Configures the output speed for each pin in the GPIO port.
+     */
+    struct{         
+        uint32_t OSPEEDR0       :2; /**< Speed for pin 0 */
+        uint32_t OSPEEDR1       :2; /**< Speed for pin 1 */
+        uint32_t OSPEEDR2       :2; /**< Speed for pin 2 */
+        uint32_t OSPEEDR3       :2; /**< Speed for pin 3 */
+        uint32_t OSPEEDR4       :2; /**< Speed for pin 4 */
+        uint32_t OSPEEDR5       :2; /**< Speed for pin 5 */
+        uint32_t OSPEEDR6       :2; /**< Speed for pin 6 */
+        uint32_t OSPEEDR7       :2; /**< Speed for pin 7 */
+        uint32_t OSPEEDR8       :2; /**< Speed for pin 8 */
+        uint32_t OSPEEDR9       :2; /**< Speed for pin 9 */
+        uint32_t OSPEEDR10      :2; /**< Speed for pin 10 */
+        uint32_t OSPEEDR11      :2; /**< Speed for pin 11 */
+        uint32_t OSPEEDR12      :2; /**< Speed for pin 12 */
+        uint32_t OSPEEDR13      :2; /**< Speed for pin 13 */
+        uint32_t OSPEEDR14      :2; /**< Speed for pin 14 */
+        uint32_t OSPEEDR15      :2; /**< Speed for pin 15 */
+    } GPIOx_OSPEEDR_t;
+  
+  
+    /**
+     * @brief GPIO port pull-up/pull-down register.
+     * 
+     * Configures the pull-up or pull-down resistors for each pin in the GPIO port.
+     */
+    struct{         
+        uint32_t PUPDR0       :2; /**< Pull-up/pull-down for pin 0 */
+        uint32_t PUPDR1       :2; /**< Pull-up/pull-down for pin 1 */
+        uint32_t PUPDR2       :2; /**< Pull-up/pull-down for pin 2 */
+        uint32_t PUPDR3       :2; /**< Pull-up/pull-down for pin 3 */
+        uint32_t PUPDR4       :2; /**< Pull-up/pull-down for pin 4 */
+        uint32_t PUPDR5       :2; /**< Pull-up/pull-down for pin 5 */
+        uint32_t PUPDR6       :2; /**< Pull-up/pull-down for pin 6 */
+        uint32_t PUPDR7       :2; /**< Pull-up/pull-down for pin 7 */
+        uint32_t PUPDR8       :2; /**< Pull-up/pull-down for pin 8 */
+        uint32_t PUPDR9       :2; /**< Pull-up/pull-down for pin 9 */
+        uint32_t PUPDR10      :2; /**< Pull-up/pull-down for pin 10 */
+        uint32_t PUPDR11      :2; /**< Pull-up/pull-down for pin 11 */
+        uint32_t PUPDR12      :2; /**< Pull-up/pull-down for pin 12 */
+        uint32_t PUPDR13      :2; /**< Pull-up/pull-down for pin 13 */
+        uint32_t PUPDR14      :2; /**< Pull-up/pull-down for pin 14 */
+        uint32_t PUPDR15      :2; /**< Pull-up/pull-down for pin 15 */
+    } GPIOx_PUPDR_t;
+
+
+    /**
+     * @brief GPIO port input data register.
+     * 
+     * Reads the input data for each pin in the GPIO port.
+     */
+    const  struct{         
+        uint32_t IDR0       :1; /**< Input data for pin 0 */
+        uint32_t IDR1       :1; /**< Input data for pin 1 */
+        uint32_t IDR2       :1; /**< Input data for pin 2 */
+        uint32_t IDR3       :1; /**< Input data for pin 3 */
+        uint32_t IDR4       :1; /**< Input data for pin 4 */
+        uint32_t IDR5       :1; /**< Input data for pin 5 */
+        uint32_t IDR6       :1; /**< Input data for pin 6 */
+        uint32_t IDR7       :1; /**< Input data for pin 7 */
+        uint32_t IDR8       :1; /**< Input data for pin 8 */
+        uint32_t IDR9       :1; /**< Input data for pin 9 */
+        uint32_t IDR10      :1; /**< Input data for pin 10 */
+        uint32_t IDR11      :1; /**< Input data for pin 11 */
+        uint32_t IDR12      :1; /**< Input data for pin 12 */
+        uint32_t IDR13      :1; /**< Input data for pin 13 */
+        uint32_t IDR14      :1; /**< Input data for pin 14 */
+        uint32_t IDR15      :1; /**< Input data for pin 15 */
+        uint32_t reserved   :16; /**< Reserved bits */
+    } GPIOx_IDR_t;
+   
+   
+    /**
+     * @brief GPIO port output data register.
+     * 
+     * Controls the output data for each pin in the GPIO port.
+     */
+    struct{         
+        uint32_t ODR0       :1; /**< Output data for pin 0 */
+        uint32_t ODR1       :1; /**< Output data for pin 1 */
+        uint32_t ODR2       :1; /**< Output data for pin 2 */
+        uint32_t ODR3       :1; /**< Output data for pin 3 */
+        uint32_t ODR4       :1; /**< Output data for pin 4 */
+        uint32_t ODR5       :1; /**< Output data for pin 5 */
+        uint32_t ODR6       :1; /**< Output data for pin 6 */
+        uint32_t ODR7       :1; /**< Output data for pin 7 */
+        uint32_t ODR8       :1; /**< Output data for pin 8 */
+        uint32_t ODR9       :1; /**< Output data for pin 9 */
+        uint32_t ODR10      :1; /**< Output data for pin 10 */
+        uint32_t ODR11      :1; /**< Output data for pin 11 */
+        uint32_t ODR12      :1; /**< Output data for pin 12 */
+        uint32_t ODR13      :1; /**< Output data for pin 13 */
+        uint32_t ODR14      :1; /**< Output data for pin 14 */
+        uint32_t ODR15      :1; /**< Output data for pin 15 */
+        uint32_t reserved   :16; /**< Reserved bits */
+    } GPIOx_ODR_t;
+
+
+    /**
+     * @brief GPIO port bit set/reset register.
+     * 
+     * Used to set or reset specific bits in the GPIO port.
+     */
+
+    struct{         //GPIO port bit set/reset register
+        uint32_t BS0       :1; /**< Bit set for pin 0 */
+        uint32_t BS1       :1; /**< Bit set for pin 1 */
+        uint32_t BS2       :1; /**< Bit set for pin 2 */
+        uint32_t BS3       :1; /**< Bit set for pin 3 */
+        uint32_t BS4       :1; /**< Bit set for pin 4 */
+        uint32_t BS5       :1; /**< Bit set for pin 5 */
+        uint32_t BS6       :1; /**< Bit set for pin 6 */
+        uint32_t BS7       :1; /**< Bit set for pin 7 */
+        uint32_t BS8       :1; /**< Bit set for pin 8 */
+        uint32_t BS9       :1; /**< Bit set for pin 9 */
+        uint32_t BS10      :1; /**< Bit set for pin 10 */
+        uint32_t BS11      :1; /**< Bit set for pin 11 */
+        uint32_t BS12      :1; /**< Bit set for pin 12 */
+        uint32_t BS13      :1; /**< Bit set for pin 13 */
+        uint32_t BS14      :1; /**< Bit set for pin 14 */
+        uint32_t BS15      :1; /**< Bit set for pin 15 */
+        uint32_t BR0       :1; /**< Bit reset for pin 0 */
+        uint32_t BR1       :1; /**< Bit reset for pin 1 */
+        uint32_t BR2       :1; /**< Bit reset for pin 2 */
+        uint32_t BR3       :1; /**< Bit reset for pin 3 */
+        uint32_t BR4       :1; /**< Bit reset for pin 4 */
+        uint32_t BR5       :1; /**< Bit reset for pin 5 */
+        uint32_t BR6       :1; /**< Bit reset for pin 6 */
+        uint32_t BR7       :1; /**< Bit reset for pin 7 */
+        uint32_t BR8       :1; /**< Bit reset for pin 8 */
+        uint32_t BR9       :1; /**< Bit reset for pin 9 */
+        uint32_t BR10      :1; /**< Bit reset for pin 10 */
+        uint32_t BR11      :1; /**< Bit reset for pin 11 */
+        uint32_t BR12      :1; /**< Bit reset for pin 12 */
+        uint32_t BR13      :1; /**< Bit reset for pin 13 */
+        uint32_t BR14      :1; /**< Bit reset for pin 14 */
+        uint32_t BR15      :1; /**< Bit reset for pin 15 */
+    } GPIOx_BSRR_t;
+
+    /**
+     * @brief GPIO port configuration lock register.
+     * 
+     * Locks the configuration of the GPIO port until the next reset.
+     */
+    struct{        
+        uint32_t LCK0       :1; /**< Lock configuration for pin 0 */
+        uint32_t LCK1       :1; /**< Lock configuration for pin 1 */
+        uint32_t LCK2       :1; /**< Lock configuration for pin 2 */
+        uint32_t LCK3       :1; /**< Lock configuration for pin 3 */
+        uint32_t LCK4       :1; /**< Lock configuration for pin 4 */
+        uint32_t LCK5       :1; /**< Lock configuration for pin 5 */
+        uint32_t LCK6       :1; /**< Lock configuration for pin 6 */
+        uint32_t LCK7       :1; /**< Lock configuration for pin 7 */
+        uint32_t LCK8       :1; /**< Lock configuration for pin 8 */
+        uint32_t LCK9       :1; /**< Lock configuration for pin 9 */
+        uint32_t LCK10      :1; /**< Lock configuration for pin 10 */
+        uint32_t LCK11      :1; /**< Lock configuration for pin 11 */
+        uint32_t LCK12      :1; /**< Lock configuration for pin 12 */
+        uint32_t LCK13      :1; /**< Lock configuration for pin 13 */
+        uint32_t LCK14      :1; /**< Lock configuration for pin 14 */
+        uint32_t LCK15      :1; /**< Lock configuration for pin 15 */
+        uint32_t LCKK       :1; /**< Lock key bit */
+        uint32_t res        :15; /**< Reserved bits */
+    } GPIOx_LCKR_t;
+
+    /**
+     * @brief GPIO alternate function low register.
+     * 
+     * Configures the alternate functions for pins 0 to 7 in the GPIO port.
+     */
+    struct{         //GPIO alternate function low register
+        uint32_t ARFL0     :4; /**< Alternate function low for pin 0 */
+        uint32_t ARFL1     :4; /**< Alternate function low for pin 1 */
+        uint32_t ARFL2     :4; /**< Alternate function low for pin 2 */
+        uint32_t ARFL3     :4; /**< Alternate function low for pin 3 */
+        uint32_t ARFL4     :4; /**< Alternate function low for pin 4 */
+        uint32_t ARFL5     :4; /**< Alternate function low for pin 5 */
+        uint32_t ARFL6     :4; /**< Alternate function low for pin 6 */
+        uint32_t ARFL7     :4; /**< Alternate function low for pin 7 */
+    } GPIOx_AFRL_t;
+   
+    /**
+     * @brief GPIO alternate function high register.
+     * 
+     * Configures the alternate functions for pins 8 to 15 in the GPIO port.
+     */
+    struct{         //GPIO alternate function high register
+        uint32_t ARFH8      :4; /**< Alternate function high for pin 8 */
+        uint32_t ARFH9      :4; /**< Alternate function high for pin 9 */
+        uint32_t ARFH10     :4; /**< Alternate function high for pin 10 */
+        uint32_t ARFH11     :4; /**< Alternate function high for pin 11 */
+        uint32_t ARFH12     :4; /**< Alternate function high for pin 12 */
+        uint32_t ARFH13     :4; /**< Alternate function high for pin 13 */
+        uint32_t ARFH14     :4; /**< Alternate function high for pin 14 */
+        uint32_t ARFH15     :4; /**< Alternate function high for pin 15 */
+    } GPIOx_AFRH_t;
+}GPIO_RegDef_t;
+
+
+/**
+ * @brief DMA Register Definition Structure
+ * 
+ * This structure represents the DMA Low Interrupt Status Register (LISR) and 
+ * DMA High Interrupt Status Register (HISR) of a DMA peripheral.
+ */
+volatile typedef struct {
+
+    /**
+     * @brief DMA Low Interrupt Status Register (DMA_LISR_t)
+     * 
+     * This register contains interrupt flags for the lower half of the DMA streams.
+     */
+    struct {
+        uint32_t FEIF0               :1; /**< FIFO Error Interrupt Flag for stream 0 */
+        uint32_t res                 :1; /**< Reserved bit */
+        uint32_t DMEIF0              :1; /**< Direct Mode Error Interrupt Flag for stream 0 */
+        uint32_t TEIF0               :1; /**< Transfer Error Interrupt Flag for stream 0 */
+        uint32_t HTIF0               :1; /**< Half Transfer Interrupt Flag for stream 0 */
+        uint32_t TCIF0               :1; /**< Transfer Complete Interrupt Flag for stream 0 */
+        uint32_t FEIF1               :1; /**< FIFO Error Interrupt Flag for stream 1 */
+        uint32_t res1                :1; /**< Reserved bit */
+        uint32_t DMEIF1              :1; /**< Direct Mode Error Interrupt Flag for stream 1 */
+        uint32_t TEIF1               :1; /**< Transfer Error Interrupt Flag for stream 1 */
+        uint32_t HTIF1               :1; /**< Half Transfer Interrupt Flag for stream 1 */
+        uint32_t TCIF1               :1; /**< Transfer Complete Interrupt Flag for stream 1 */
+        uint32_t res2                :4; /**< Reserved bits */
+        uint32_t FEIF2               :1; /**< FIFO Error Interrupt Flag for stream 2 */
+        uint32_t res3                :1; /**< Reserved bit */
+        uint32_t DMEIF2              :1; /**< Direct Mode Error Interrupt Flag for stream 2 */
+        uint32_t TEIF2               :1; /**< Transfer Error Interrupt Flag for stream 2 */
+        uint32_t HTIF2               :1; /**< Half Transfer Interrupt Flag for stream 2 */
+        uint32_t TCIF2               :1; /**< Transfer Complete Interrupt Flag for stream 2 */
+        uint32_t FEIF3               :1; /**< FIFO Error Interrupt Flag for stream 3 */
+        uint32_t res4                :1; /**< Reserved bit */
+        uint32_t DMEIF3              :1; /**< Direct Mode Error Interrupt Flag for stream 3 */
+        uint32_t TEIF3               :1; /**< Transfer Error Interrupt Flag for stream 3 */
+        uint32_t HTIF3               :1; /**< Half Transfer Interrupt Flag for stream 3 */
+        uint32_t TCIF3               :1; /**< Transfer Complete Interrupt Flag for stream 3 */
+        uint32_t res5                :4; /**< Reserved bits */
+    } DMA_LISR_t;
+
+    /**
+     * @brief DMA High Interrupt Status Register (DMA_HISR_t)
+     * 
+     * This register contains interrupt flags for the higher half of the DMA streams.
+     */
+    struct {
+        uint32_t FEIF4               :1; /**< FIFO Error Interrupt Flag for stream 4 */
+        uint32_t res                 :1; /**< Reserved bit */
+        uint32_t DMEIF4              :1; /**< Direct Mode Error Interrupt Flag for stream 4 */
+        uint32_t TEIF4               :1; /**< Transfer Error Interrupt Flag for stream 4 */
+        uint32_t HTIF4               :1; /**< Half Transfer Interrupt Flag for stream 4 */
+        uint32_t TCIF4               :1; /**< Transfer Complete Interrupt Flag for stream 4 */
+        uint32_t FEIF5               :1; /**< FIFO Error Interrupt Flag for stream 5 */
+        uint32_t res1                :1; /**< Reserved bit */
+        uint32_t DMEIF5              :1; /**< Direct Mode Error Interrupt Flag for stream 5 */
+        uint32_t TEIF5               :1; /**< Transfer Error Interrupt Flag for stream 5 */
+        uint32_t HTIF5               :1; /**< Half Transfer Interrupt Flag for stream 5 */
+        uint32_t TCIF5               :1; /**< Transfer Complete Interrupt Flag for stream 5 */
+        uint32_t res2                :4; /**< Reserved bits */
+        uint32_t FEIF6               :1; /**< FIFO Error Interrupt Flag for stream 6 */
+        uint32_t res3                :1; /**< Reserved bit */
+        uint32_t DMEIF6              :1; /**< Direct Mode Error Interrupt Flag for stream 6 */
+        uint32_t TEIF6               :1; /**< Transfer Error Interrupt Flag for stream 6 */
+        uint32_t HTIF6               :1; /**< Half Transfer Interrupt Flag for stream 6 */
+        uint32_t TCIF6               :1; /**< Transfer Complete Interrupt Flag for stream 6 */
+        uint32_t FEIF7               :1; /**< FIFO Error Interrupt Flag for stream 7 */
+        uint32_t res4                :1; /**< Reserved bit */
+        uint32_t DMEIF7              :1; /**< Direct Mode Error Interrupt Flag for stream 7 */
+        uint32_t TEIF7               :1; /**< Transfer Error Interrupt Flag for stream 7 */
+        uint32_t HTIF7               :1; /**< Half Transfer Interrupt Flag for stream 7 */
+        uint32_t TCIF7               :1; /**< Transfer Complete Interrupt Flag for stream 7 */
+        uint32_t res5                :4; /**< Reserved bits */
+    } DMA_HISR_t;
+
+
+    /**
+     * @brief DMA Low Interrupt Flag Clear Register (DMA_LIFCR_t)
+     * 
+     * This register is used to clear the interrupt flags for the lower half of the DMA streams.
+     */
+    struct {
+        uint32_t CFEIF0               :1; /**< Clear FIFO Error Interrupt Flag for stream 0 */
+        uint32_t res                  :1; /**< Reserved bit */
+        uint32_t CDMEIF0              :1; /**< Clear Direct Mode Error Interrupt Flag for stream 0 */
+        uint32_t CTEIF0               :1; /**< Clear Transfer Error Interrupt Flag for stream 0 */
+        uint32_t CHTIF0               :1; /**< Clear Half Transfer Interrupt Flag for stream 0 */
+        uint32_t CTCIF0               :1; /**< Clear Transfer Complete Interrupt Flag for stream 0 */
+        uint32_t CFEIF1               :1; /**< Clear FIFO Error Interrupt Flag for stream 1 */
+        uint32_t res1                 :1; /**< Reserved bit */
+        uint32_t CDMEIF1              :1; /**< Clear Direct Mode Error Interrupt Flag for stream 1 */
+        uint32_t CTEIF1               :1; /**< Clear Transfer Error Interrupt Flag for stream 1 */
+        uint32_t CHTIF1               :1; /**< Clear Half Transfer Interrupt Flag for stream 1 */
+        uint32_t CTCIF1               :1; /**< Clear Transfer Complete Interrupt Flag for stream 1 */
+        uint32_t res2                 :4; /**< Reserved bits */
+        uint32_t CFEIF2               :1; /**< Clear FIFO Error Interrupt Flag for stream 2 */
+        uint32_t res3                 :1; /**< Reserved bit */
+        uint32_t CDMEIF2              :1; /**< Clear Direct Mode Error Interrupt Flag for stream 2 */
+        uint32_t CTEIF2               :1; /**< Clear Transfer Error Interrupt Flag for stream 2 */
+        uint32_t CHTIF2               :1; /**< Clear Half Transfer Interrupt Flag for stream 2 */
+        uint32_t CTCIF2               :1; /**< Clear Transfer Complete Interrupt Flag for stream 2 */
+        uint32_t CFEIF3               :1; /**< Clear FIFO Error Interrupt Flag for stream 3 */
+        uint32_t res4                 :1; /**< Reserved bit */
+        uint32_t CDMEIF3              :1; /**< Clear Direct Mode Error Interrupt Flag for stream 3 */
+        uint32_t CTEIF3               :1; /**< Clear Transfer Error Interrupt Flag for stream 3 */
+        uint32_t CHTIF3               :1; /**< Clear Half Transfer Interrupt Flag for stream 3 */
+        uint32_t CTCIF3               :1; /**< Clear Transfer Complete Interrupt Flag for stream 3 */
+        uint32_t res5                 :4; /**< Reserved bits */
+    } DMA_LIFCR_t;
+
+    /**
+     * @brief DMA High Interrupt Flag Clear Register (DMA_HIFCR_t)
+     * 
+     * This register is used to clear the interrupt flags for the higher half of the DMA streams.
+     */
+    struct {
+        uint32_t CFEIF4               :1; /**< Clear FIFO Error Interrupt Flag for stream 4 */
+        uint32_t res                  :1; /**< Reserved bit */
+        uint32_t CDMEIF4              :1; /**< Clear Direct Mode Error Interrupt Flag for stream 4 */
+        uint32_t CTEIF4               :1; /**< Clear Transfer Error Interrupt Flag for stream 4 */
+        uint32_t CHTIF4               :1; /**< Clear Half Transfer Interrupt Flag for stream 4 */
+        uint32_t CTCIF4               :1; /**< Clear Transfer Complete Interrupt Flag for stream 4 */
+        uint32_t CFEIF5               :1; /**< Clear FIFO Error Interrupt Flag for stream 5 */
+        uint32_t res1                 :1; /**< Reserved bit */
+        uint32_t CDMEIF5              :1; /**< Clear Direct Mode Error Interrupt Flag for stream 5 */
+        uint32_t CTEIF5               :1; /**< Clear Transfer Error Interrupt Flag for stream 5 */
+        uint32_t CHTIF5               :1; /**< Clear Half Transfer Interrupt Flag for stream 5 */
+        uint32_t CTCIF5               :1; /**< Clear Transfer Complete Interrupt Flag for stream 5 */
+        uint32_t res2                 :4; /**< Reserved bits */
+        uint32_t CFEIF6               :1; /**< Clear FIFO Error Interrupt Flag for stream 6 */
+        uint32_t res3                 :1; /**< Reserved bit */
+        uint32_t CDMEIF6              :1; /**< Clear Direct Mode Error Interrupt Flag for stream 6 */
+        uint32_t CTEIF6               :1; /**< Clear Transfer Error Interrupt Flag for stream 6 */
+        uint32_t CHTIF6               :1; /**< Clear Half Transfer Interrupt Flag for stream 6 */
+        uint32_t CTCIF6               :1; /**< Clear Transfer Complete Interrupt Flag for stream 6 */
+        uint32_t CFEIF7               :1; /**< Clear FIFO Error Interrupt Flag for stream 7 */
+        uint32_t res4                 :1; /**< Reserved bit */
+        uint32_t CDMEIF7              :1; /**< Clear Direct Mode Error Interrupt Flag for stream 7 */
+        uint32_t CTEIF7               :1; /**< Clear Transfer Error Interrupt Flag for stream 7 */
+        uint32_t CHTIF7               :1; /**< Clear Half Transfer Interrupt Flag for stream 7 */
+        uint32_t CTCIF7               :1; /**< Clear Transfer Complete Interrupt Flag for stream 7 */
+        uint32_t res5                 :4; /**< Reserved bits */
+    } DMA_HIFCR_t;
+
+
+    /**
+     * @brief DMA Stream Configuration Register (DMA_SxCR_t)
+     * 
+     * This register is used to configure the settings for a specific DMA stream.
+     */
+    struct {
+        uint32_t EN                   :1; /**< Stream enable. */
+        uint32_t DMEIE                :1; /**< Direct Mode Error Interrupt Enable. */
+        uint32_t TEIE                 :1; /**< Transfer Error Interrupt Enable. */
+        uint32_t HTIE                 :1; /**< Half Transfer Interrupt Enable. */
+        uint32_t TCIE                 :1; /**< Transfer Complete Interrupt Enable. */
+        uint32_t PFCTRL               :1; /**< Peripheral Flow Controller. */
+        uint32_t DIR                  :2; /**< Data Transfer Direction. */
+        uint32_t CIRC                 :1; /**< Circular Mode. */
+        uint32_t PINC                 :1; /**< Peripheral Increment Mode. */
+        uint32_t MINC                 :1; /**< Memory Increment Mode. */
+        uint32_t PSIZE                :2; /**< Peripheral Data Size. */
+        uint32_t MSIZE                :2; /**< Memory Data Size. */
+        uint32_t PINCOS               :1; /**< Peripheral Increment Offset Size. */
+        uint32_t PL                   :2; /**< Priority Level. */
+        uint32_t DMB                  :1; /**< Double Buffer Mode. */
+        uint32_t CT                   :1; /**< Current Target (for double-buffer mode). */
+        uint32_t res                  :1; /**< Reserved bit. */
+        uint32_t PBURST               :2; /**< Peripheral Burst Transfer Configuration. */
+        uint32_t MBURST               :2; /**< Memory Burst Transfer Configuration. */
+        uint32_t CHSEL                :3; /**< Channel Selection. */
+        uint32_t res1                 :4; /**< Reserved bits. */
+    } DMA_SxCR_t;
+
+    /**
+     * @brief DMA Stream Number of Data Register (DMA_SxNDTR_t)
+     * 
+     * This register specifies the number of data items to be transferred for the DMA stream.
+     */
+    struct {
+        uint32_t NDT                  :16; /**< Number of Data items to Transfer. */
+        uint32_t res                  :16; /**< Reserved bits. */
+    } DMA_SxNDTR_t;
+
+    /**
+     * @brief DMA Stream Peripheral Address Register (DMA_SxPAR_t)
+     * 
+     * This register holds the address of the peripheral data register for the DMA stream.
+     */
+    struct {
+        uint32_t PAR                  :32; /**< Peripheral Address. */
+    } DMA_SxPAR_t;
+
+    /**
+     * @brief DMA Stream Memory 0 Address Register (DMA_SxM0AR_t)
+     * 
+     * This register holds the address of the memory buffer for the DMA stream.
+     */
+    struct {
+        uint32_t M0A                  :32; /**< Memory 0 Address. */
+    } DMA_SxM0AR_t;
+
+    /**
+     * @brief DMA Stream Memory 1 Address Register (DMA_SxM1AR_t)
+     * 
+     * This register holds the address of the second memory buffer for the DMA stream in double-buffer mode.
+     */
+    struct {
+        uint32_t M1A                  :32; /**< Memory 1 Address. */
+    } DMA_SxM1AR_t;
+
+    /**
+     * @brief DMA Stream FIFO Control Register (DMA_SxFCR_t)
+     * 
+     * This register controls the FIFO threshold, direct mode, and other FIFO-related settings for the DMA stream.
+     */
+    struct {
+        uint32_t FTH                  :2; /**< FIFO Threshold Selection. */
+        uint32_t DMDIS                :1; /**< Direct Mode Disable. */
+        uint32_t FS                   :3; /**< FIFO Status. */
+        uint32_t res                  :1; /**< Reserved bit. */
+        uint32_t FEIE                 :1; /**< FIFO Error Interrupt Enable. */
+        uint32_t res1                 :24; /**< Reserved bits. */
+    } DMA_SxFCR_t;
+
+} DMA_RegDef_t;
+
+
+
+
+
+
+
+/* 
 ****************** EXTI register definition structures******************
 */
 
@@ -1227,112 +1569,6 @@ typedef struct{
 
 
 
-/* 
-****************** SYSCFG register definition structures******************
-*/
-
-/**
- * @brief SYSCFG Register Definition structure.
- * 
- * This structure represents the configuration registers for the System Configuration (SYSCFG)
- * peripheral, including memory remap, peripheral mode, external interrupt configuration,
- * and compensation cell control.
- */
-typedef struct
-{
-    /**
-     * @brief SYSCFG memory remap register (SYSCFG_MEMRMP).
-     * 
-     * Configures memory remap settings for boot configuration.
-     */
-    struct      
-    {
-        uint32_t MEM_MODE           :2; /**< Memory Mapping Selection. */
-        uint32_t res                :30; /**< Reserved. */
-    } SYSCFG_MEMRMP_t;
-
-    /**
-     * @brief SYSCFG peripheral mode configuration register (SYSCFG_PMC).
-     * 
-     * Controls peripheral mode settings, including ADC configuration.
-     */
-    struct      
-    {
-        uint32_t res                :16; /**< Reserved. */
-        uint32_t ADC1DC2            :1; /**< ADC1 DMA Channel 2 Configuration. */
-        uint32_t res1               :15; /**< Reserved. */
-    } SYSCFG_PMC_t;
-
-    /**
-     * @brief SYSCFG external interrupt configuration register 1 (SYSCFG_EXTICR1).
-     * 
-     * Configures the source input for external interrupt lines 0 to 3.
-     */
-    struct      
-    {
-        uint32_t EXTI0              :4; /**< External Interrupt 0 Configuration. */
-        uint32_t EXTI1              :4; /**< External Interrupt 1 Configuration. */
-        uint32_t EXTI2              :4; /**< External Interrupt 2 Configuration. */
-        uint32_t EXTI3              :4; /**< External Interrupt 3 Configuration. */
-        uint32_t res                :16; /**< Reserved. */
-    } SYSCFG_EXTICR1_t;
-
-    /**
-     * @brief SYSCFG external interrupt configuration register 2 (SYSCFG_EXTICR2).
-     * 
-     * Configures the source input for external interrupt lines 4 to 7.
-     */
-    struct      
-    {
-        uint32_t EXTI4              :4; /**< External Interrupt 4 Configuration. */
-        uint32_t EXTI5              :4; /**< External Interrupt 5 Configuration. */
-        uint32_t EXTI6              :4; /**< External Interrupt 6 Configuration. */
-        uint32_t EXTI7              :4; /**< External Interrupt 7 Configuration. */
-        uint32_t res                :16; /**< Reserved. */
-    } SYSCFG_EXTICR2_t;
-
-    /**
-     * @brief SYSCFG external interrupt configuration register 3 (SYSCFG_EXTICR3).
-     * 
-     * Configures the source input for external interrupt lines 8 to 11.
-     */
-    struct      
-    {
-        uint32_t EXTI8              :4; /**< External Interrupt 8 Configuration. */
-        uint32_t EXTI9              :4; /**< External Interrupt 9 Configuration. */
-        uint32_t EXTI10             :4; /**< External Interrupt 10 Configuration. */
-        uint32_t EXTI11             :4; /**< External Interrupt 11 Configuration. */
-        uint32_t res                :16; /**< Reserved. */
-    } SYSCFG_EXTICR3_t;
-
-    /**
-     * @brief SYSCFG external interrupt configuration register 4 (SYSCFG_EXTICR4).
-     * 
-     * Configures the source input for external interrupt lines 12 to 15.
-     */
-    struct      
-    {
-        uint32_t EXTI12             :4; /**< External Interrupt 12 Configuration. */
-        uint32_t EXTI13             :4; /**< External Interrupt 13 Configuration. */
-        uint32_t EXTI14             :4; /**< External Interrupt 14 Configuration. */
-        uint32_t EXTI15             :4; /**< External Interrupt 15 Configuration. */
-        uint32_t res                :16; /**< Reserved. */
-    } SYSCFG_EXTICR4_t;
-
-    /**
-     * @brief SYSCFG compensation cell control register (SYSCFG_CMPCR).
-     * 
-     * Controls the compensation cell for optimizing I/O speed performance.
-     */
-    struct      
-    {
-        uint32_t CMP_PD             :1; /**< Compensation Cell Power-Down. */
-        uint32_t res                :7; /**< Reserved. */
-        uint32_t READY              :1; /**< Compensation Cell Ready Flag. */
-        uint32_t res1               :23; /**< Reserved. */
-    } SYSCFG_CMPCR_t;
-
-} SYSCFG_RegDef_t;
 
 
 
@@ -1856,6 +2092,130 @@ volatile typedef struct {
 
 } I2C_RegDef_t;
 
+
+
+
+
+
+
+
+/**
+ * @brief USART Register Definition Structure
+ * 
+ * This structure represents the various registers of a USART peripheral.
+ * It includes the status register, data register, and control register 1,
+ * each with their respective bit fields.
+ */
+volatile typedef struct {
+
+    /**
+     * @brief Status Register (USART_SR_t)
+     * 
+     * This register holds the status flags for the USART peripheral.
+     */
+    struct {
+        uint32_t PE                 :1; /**< Parity Error. */
+        uint32_t FE                 :1; /**< Framing Error. */
+        uint32_t NF                 :1; /**< Noise Flag. */
+        uint32_t ORE                :1; /**< Overrun Error. */
+        uint32_t IDLE               :1; /**< Idle Line Detected. */
+        uint32_t RXNE               :1; /**< Read Data Register Not Empty. */
+        uint32_t TC                 :1; /**< Transmission Complete. */
+        uint32_t TXE                :1; /**< Transmit Data Register Empty. */
+        uint32_t LBD                :1; /**< LIN Break Detection. */
+        uint32_t CTS                :1; /**< Clear to Send Flag. */
+        uint32_t res                :22; /**< Reserved bits. */
+    } USART_SR_t;
+
+    /**
+     * @brief Data Register (USART_DR_t)
+     * 
+     * This register is used to read or write data to the USART peripheral.
+     */
+    struct {
+        uint32_t DIV_Fraction       :4; /**< Fraction of USART Divider. */
+        uint32_t DIV_Mantissa       :12; /**< Mantissa of USART Divider. */
+        uint32_t res                :16; /**< Reserved bits. */
+    } USART_DR_t;
+
+    /**
+     * @brief Control Register 1 (USART_CR1_t)
+     * 
+     * This register contains control bits for configuring the USART peripheral.
+     */
+    struct {
+        uint32_t SBK                :1; /**< Send Break. */
+        uint32_t RWU                :1; /**< Receiver Wakeup. */
+        uint32_t RE                 :1; /**< Receiver Enable. */
+        uint32_t TE                 :1; /**< Transmitter Enable. */
+        uint32_t IDLEIE             :1; /**< IDLE Interrupt Enable. */
+        uint32_t RXNEIE             :1; /**< RXNE Interrupt Enable. */
+        uint32_t TCIE               :1; /**< Transmission Complete Interrupt Enable. */
+        uint32_t TXEIE              :1; /**< TXE Interrupt Enable. */
+        uint32_t PEIE               :1; /**< PE Interrupt Enable. */
+        uint32_t PS                 :1; /**< Parity Selection. */
+        uint32_t PCE                :1; /**< Parity Control Enable. */
+        uint32_t WAKE               :1; /**< Wakeup method. */
+        uint32_t M                  :1; /**< Word Length. */
+        uint32_t UE                 :1; /**< USART Enable. */
+        uint32_t res                :1; /**< Reserved bit. */
+        uint32_t OVER8              :1; /**< Oversampling mode. */
+        uint32_t res1               :16; /**< Reserved bits. */
+    } USART_CR1_t;
+
+
+/**
+ * @brief USART Control Register 2 (USART_CR2_t)
+ * 
+ * This register contains additional control bits for the USART peripheral.
+ */
+struct {
+    uint32_t ADD                :4;  /**< Address of the USART node. */
+    uint32_t res                :1;  /**< Reserved bit. */
+    uint32_t LBDL               :1;  /**< LIN Break Detection Length. */
+    uint32_t LBDIE              :1;  /**< LIN Break Detection Interrupt Enable. */
+    uint32_t res1               :1;  /**< Reserved bit. */
+    uint32_t LBCL               :1;  /**< Last Bit Clock pulse. */
+    uint32_t CPHA               :1;  /**< Clock Phase. */
+    uint32_t CPOL               :1;  /**< Clock Polarity. */
+    uint32_t STOP               :2;  /**< STOP bits. */
+    uint32_t LINEN              :1;  /**< LIN Mode Enable. */
+    uint32_t res2               :17; /**< Reserved bits. */
+} USART_CR2_t;
+
+/**
+ * @brief USART Control Register 3 (USART_CR3_t)
+ * 
+ * This register contains additional control bits for the USART peripheral.
+ */
+struct {
+    uint32_t EIE                :1;  /**< Error Interrupt Enable. */
+    uint32_t IREN               :1;  /**< IrDA Mode Enable. */
+    uint32_t HDSEL              :1;  /**< Half-Duplex Selection. */
+    uint32_t NACK               :1;  /**< Smartcard NACK Enable. */
+    uint32_t SCEN               :1;  /**< Smartcard Mode Enable. */
+    uint32_t DMAR               :1;  /**< DMA Enable Receiver. */
+    uint32_t DMAT               :1;  /**< DMA Enable Transmitter. */
+    uint32_t RTSE               :1;  /**< RTS Enable. */
+    uint32_t CTSE               :1;  /**< CTS Enable. */
+    uint32_t CTSIE              :1;  /**< CTS Interrupt Enable. */
+    uint32_t ONEBIT             :1;  /**< One Sample Bit Method Enable. */
+    uint32_t res2               :20; /**< Reserved bits. */
+} USART_CR3_t;
+
+/**
+ * @brief USART Guard Time and Prescaler Register (USART_GTPR_t)
+ * 
+ * This register is used to set the prescaler value and guard time for the USART.
+ */
+struct {
+    uint32_t PSC                :8;  /**< Prescaler value. */
+    uint32_t GT                 :8;  /**< Guard time value. */
+    uint32_t res2               :16; /**< Reserved bits. */
+} USART_GTPR_t;
+
+     
+} USART_RegDef_t;
 
 
 
