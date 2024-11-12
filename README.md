@@ -18,7 +18,7 @@ This repository provides custom peripheral drivers for STM32F401xx microcontroll
   A test application demonstrating the usage of the SPI driver by setting up basic SPI communication.
 
 - **002Testapp_SPI_Sl_arduino.c**  
-  Another test application that interfaces the STM32 SPI as a slave with an Arduino, demonstrating SPI slave communication.
+  Another test application that interfaces the STM32 SPI as a master with an Arduino as a slave, demonstrating SPI communication.
 
 - **generate_documentation.bat**  
   A script file to generate documentation for the project using Doxygen.
@@ -60,7 +60,7 @@ This repository provides custom peripheral drivers for STM32F401xx microcontroll
    ```
 
 3. **Example Usage**:  
-   Use the `001test_app_for_spi_driver.c` to initialize SPI and test data transfer. The `002Testapp_SPI_Sl_arduino.c` provides an example of using the STM32 as an SPI slave in conjunction with an Arduino.
+   Use the `001test_app_for_spi_driver.c` to initialize SPI and test data transfer. The `002Testapp_SPI_Sl_arduino.c` provides an example of using the STM32 as an SPI master in conjunction with an slave Arduino.
 
 4. **Configuring Parameters**:  
    Modify GPIO or SPI configurations in the respective driver files as per your project requirements. Parameters for speed, mode, pull-up/pull-down, and frame format can be adjusted within the driver setup functions.

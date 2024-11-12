@@ -2339,6 +2339,9 @@ struct {
 #define SPI3_REG_RESET()                 do{ (RCC->RCC_APB1RSTR_t.SPI3RST=1); (RCC->RCC_APB1RSTR_t.SPI3RST=0);}while(0) /**< Reset SPI3 */
 #define SPI4_REG_RESET()                 do{ (RCC->RCC_APB2RSTR_t.SPI4RST=1); (RCC->RCC_APB2RSTR_t.SPI4RST=0);}while(0) /**< Reset SPI4 */
 
+#define I2C1_REG_RESET()                 do{  (RCC->RCC_APB1RSTR_t.I2C1RST=1); (RCC->RCC_APB1RSTR_t.I2C1RST=0)}while(0) /**< Reset I2C1 */
+#define I2C2_REG_RESET()                 do{  (RCC->RCC_APB1RSTR_t.I2C2RST=1); (RCC->RCC_APB1RSTR_t.I2C2RST=0)}while(0) /**< Reset I2C2 */
+#define I2C3_REG_RESET()                 do{  (RCC->RCC_APB1RSTR_t.I2C3RST=1); (RCC->RCC_APB1RSTR_t.I2C3RST=0)}while(0) /**< Reset I2C3 */
 /** @} */
 
 /**
@@ -2448,5 +2451,6 @@ struct {
 
 #include "stm32f401xx_gpio_driver.h"
 #include "Stm32f401xx_spi_driver.h"
+#include "stm32f401xx_i2c_driver.h"
 
 #endif /* INC_STM32F401XX_H_ */

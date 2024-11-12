@@ -228,7 +228,13 @@ void SPI_IRQITConfig(uint8_t IRQNumber, uint8_t EnorDi) {
  * @param[in] IRQNumber IRQ number for which priority is to be set.
  * @param[in] IRQPriority Priority level for the IRQ.
  */
-void SPI_IRQPriorityConfig(uint8_t IRQNumber, uint32_t IRQPriority);
+void SPI_IRQPriorityConfig(uint8_t IRQNumber,uint32_t IRQPriority){
+    //1. IPR register
+    uint8_t iprx = IRQNumber/4;
+    uint8_t iprx_section = IRQNumber%4;
+
+    *(NVIC_PR_BASEADDR  +  (iprx))  |=   ((IRQPriority<<(8*iprx_section))<<4); //the first 4 bits of each section is non-implemented
+}
 
 
 /**
