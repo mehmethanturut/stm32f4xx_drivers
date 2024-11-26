@@ -1,0 +1,7 @@
+../Drivers/Src/stm32f401xx_i2c_driver.c:21:6:I2C_PeriClkCtrl	16	static
+../Drivers/Src/stm32f401xx_i2c_driver.c:69:6:I2C_Init	16	static
+../Drivers/Src/stm32f401xx_i2c_driver.c:126:6:I2C_DeInit	16	static
+../Drivers/Src/stm32f401xx_i2c_driver.c:173:6:I2C_MasterSendData	32	static
+../Drivers/Src/stm32f401xx_i2c_driver.c:215:6:I2C_IRQITConfig	16	static
+../Drivers/Src/stm32f401xx_i2c_driver.c:249:6:I2C_IRQPriorityConfig	24	static
+../Drivers/Src/stm32f401xx_i2c_driver.c:258:10:RCC_GetAPB1_CLK	4	static

@@ -82,12 +82,36 @@ void I2C_PeriClkCtrl(I2C_RegDef_t *pI2Cx, uint8_t EnorDi);
  */
 void I2C_Init(I2C_Handle_t *pI2CHandle);
 
+
 /**
  * @brief Deinitializes the I2C peripheral, resetting it to its default state.
  * 
  * @param[in] pI2Cx Pointer to the I2C port base address.
  */
 void I2C_DeInit(I2C_RegDef_t *pI2Cx);
+
+/**
+ * @brief  Sends data from the I2C master to a slave device.
+ * 
+ * This function transmits a specified amount of data from the master I2C device
+ * to a target slave device. It manages the I2C communication process, including
+ * addressing the slave and handling data transfer.
+ * 
+ * @param[in]  pI2CHandle  Pointer to the I2C handle structure containing the 
+ *                         configuration and state information for the I2C peripheral.
+ * @param[in]  pTxbuffer   Pointer to the buffer containing the data to be sent.
+ * @param[in]  Len         Length of the data to be transmitted (in bytes).
+ * @param[in]  SlaveAddr   7-bit address of the target slave device.
+ * 
+ * @note  This function is blocking and waits for the transmission process to complete.
+ *        Ensure the I2C peripheral is properly configured and the slave device is
+ *        ready to receive data.
+ * 
+ * @pre    The I2C peripheral must be initialized and configured in master mode.
+ * @pre    The slave device must acknowledge its address.
+ *
+ */
+void I2C_MasterSendData(I2C_Handle_t *pI2CHandle, uint8_t *pTxbuffer, uint32_t Len, uint8_t SlaveAddr);
 
 
 /**
@@ -114,5 +138,8 @@ void I2C_IRQPriorityConfig(uint8_t IRQNumber, uint32_t IRQPriority);
  * @param[in] Event Event type that occurred.
  */
 void I2C_AppEventCallback(I2C_Handle_t *pI2CHandle, uint8_t Event);
+
+
+uint32_t RCC_GetAPB1_CLK(void);
 
 #endif /* INC_STM32F401XX_I2C_DRIVER_H_ */

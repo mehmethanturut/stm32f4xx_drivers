@@ -266,4 +266,7 @@ void SPI_CloseReception(SPI_Handle_t *pSPIHandle);
  */
 void SPI_AppEventCallback(SPI_Handle_t *pSPIHandle, uint8_t Event);
 
+
+
+
 #endif /* INC_STM32F401XX_SPI_DRIVER_H_ */

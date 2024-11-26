@@ -1,4 +1,5 @@
 "./Drivers/Src/stm32f401xx_gpio_driver.o"
+"./Drivers/Src/stm32f401xx_i2c_driver.o"
 "./Drivers/Src/stm32f401xx_spi_driver.o"
 "./Src/002Testapp_SPI_Sl_arduino.o"
 "./Startup/startup_stm32f401retx.o"

@@ -200,8 +200,7 @@ typedef struct
     struct{         
         uint32_t SW0              :1; /**< System clock switch bit 0 */
         uint32_t SW1              :1; /**< System clock switch bit 1 */
-        uint32_t SWS0             :1; /**< System clock switch status bit 0 */
-        uint32_t SWS1             :1; /**< System clock switch status bit 1 */
+        uint32_t SWS              :2; /**< System clock switch status bits */
         uint32_t HPRE             :4; /**< AHB prescaler */
         uint32_t res              :2; /**< Reserved */
         uint32_t PPRE1            :3; /**< APB low-speed prescaler (APB1) */
@@ -1899,7 +1898,8 @@ volatile typedef struct {
         uint16_t ADD0               :1; /**< Interface Address Bit 0. */
         uint16_t ADD                :7; /**< Interface Address Bits 7:1 (7-bit mode) or Bits 9:3 (10-bit mode). */
         uint16_t ADD10              :2; /**< Interface Address Bits 9:8 in 10-bit addressing mode. */
-        uint16_t res                :5; /**< Reserved. */
+        uint16_t res                :4; /**< Reserved. */
+        uint16_t res14              :1; /**< Reserved. Should always be kept at 1 by software. */
         uint16_t ADDMODE            :1; /**< Addressing Mode (0: 7-bit, 1: 10-bit). */
     } I2C_OAR1_t;
 
@@ -2339,9 +2339,9 @@ struct {
 #define SPI3_REG_RESET()                 do{ (RCC->RCC_APB1RSTR_t.SPI3RST=1); (RCC->RCC_APB1RSTR_t.SPI3RST=0);}while(0) /**< Reset SPI3 */
 #define SPI4_REG_RESET()                 do{ (RCC->RCC_APB2RSTR_t.SPI4RST=1); (RCC->RCC_APB2RSTR_t.SPI4RST=0);}while(0) /**< Reset SPI4 */
 
-#define I2C1_REG_RESET()                 do{  (RCC->RCC_APB1RSTR_t.I2C1RST=1); (RCC->RCC_APB1RSTR_t.I2C1RST=0)}while(0) /**< Reset I2C1 */
-#define I2C2_REG_RESET()                 do{  (RCC->RCC_APB1RSTR_t.I2C2RST=1); (RCC->RCC_APB1RSTR_t.I2C2RST=0)}while(0) /**< Reset I2C2 */
-#define I2C3_REG_RESET()                 do{  (RCC->RCC_APB1RSTR_t.I2C3RST=1); (RCC->RCC_APB1RSTR_t.I2C3RST=0)}while(0) /**< Reset I2C3 */
+#define I2C1_REG_RESET()                 do{  (RCC->RCC_APB1RSTR_t.I2C1RST=1); (RCC->RCC_APB1RSTR_t.I2C1RST=0);}while(0) /**< Reset I2C1 */
+#define I2C2_REG_RESET()                 do{  (RCC->RCC_APB1RSTR_t.I2C2RST=1); (RCC->RCC_APB1RSTR_t.I2C2RST=0);}while(0) /**< Reset I2C2 */
+#define I2C3_REG_RESET()                 do{  (RCC->RCC_APB1RSTR_t.I2C3RST=1); (RCC->RCC_APB1RSTR_t.I2C3RST=0);}while(0) /**< Reset I2C3 */
 /** @} */
 
 /**
@@ -2448,6 +2448,25 @@ struct {
 #define RESET           0   /**< Reset flag */
 #define GPIO_PIN_SET    1   /**< GPIO pin set */
 #define GPIO_PIN_RESET  0   /**< GPIO pin reset */
+
+
+#define GET_AHB1_CLK_PRE                (       (RCC->RCC_CFGR_t.HPRE==8)   ? 2:\
+                                                (RCC->RCC_CFGR_t.HPRE==9)   ? 4:\
+                                                (RCC->RCC_CFGR_t.HPRE==10)  ? 8:\
+                                                (RCC->RCC_CFGR_t.HPRE==11)  ? 16:\
+                                                (RCC->RCC_CFGR_t.HPRE==12)  ? 64:\
+                                                (RCC->RCC_CFGR_t.HPRE==13)  ? 128:\
+                                                (RCC->RCC_CFGR_t.HPRE==14)  ? 256:\
+                                                (RCC->RCC_CFGR_t.HPRE==15)  ? 512:1)
+
+
+
+#define GET_APB1_CLK_PRE                (       (RCC->RCC_CFGR_t.PPRE1==4)   ? 2:\
+                                                (RCC->RCC_CFGR_t.PPRE1==5)   ? 4:\
+                                                (RCC->RCC_CFGR_t.PPRE1==6)   ? 8:\
+                                                (RCC->RCC_CFGR_t.PPRE1==7)   ? 16:1)       
+
+
 
 #include "stm32f401xx_gpio_driver.h"
 #include "Stm32f401xx_spi_driver.h"

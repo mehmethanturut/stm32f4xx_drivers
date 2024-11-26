@@ -1,6 +1,13 @@
 {
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
-        "stm32f401xx.h": "c"
+        "stm32f401xx.h": "c",
+        "compare": "c",
+        "tuple": "c",
+        "type_traits": "c",
+        "utility": "c",
+        "xmemory": "c",
+        "xtr1common": "c",
+        "xutility": "c"
     }
 }
