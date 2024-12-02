@@ -113,6 +113,31 @@ void I2C_DeInit(I2C_RegDef_t *pI2Cx);
  */
 void I2C_MasterSendData(I2C_Handle_t *pI2CHandle, uint8_t *pTxbuffer, uint32_t Len, uint8_t SlaveAddr);
 
+/**
+ * @brief  Receives data from an I2C slave in master mode.
+ *
+ * This function is used to receive a block of data from an I2C slave device
+ * when the I2C peripheral is configured in master mode.
+ *
+ * @param[in]   pI2CHandle  Pointer to the I2C handle structure containing the base address of the I2C peripheral
+ *                          and the configuration settings for the I2C device.
+ * @param[out]  pRxbuffer   Pointer to the buffer where the received data will be stored.
+ * @param[in]   Len         Length of the data to be received in bytes.
+ * @param[in]   SlaveAddr   Address of the I2C slave device from which data is to be received.
+ *
+ * @note This function initiates the communication sequence, sends the slave address in read mode,
+ *       and receives the requested data. Ensure the I2C peripheral is properly initialized and configured
+ *       before calling this function.
+ *
+ * @pre The I2C peripheral must be initialized using I2C_Init() before using this function.
+ * @post After the function returns, the pRxbuffer will contain the received data.
+ *
+ * @return None
+ *
+ * @attention This function blocks until all the data is received, so ensure it is used in applications where
+ *            blocking behavior is acceptable.
+ */
+void I2C_MasterReceiveData(I2C_Handle_t *pI2CHandle, uint8_t *pRxbuffer, uint32_t Len, uint8_t SlaveAddr);
 
 /**
  * @brief Configures the interrupt for the specified IRQ number.

@@ -207,6 +207,102 @@ void I2C_MasterSendData(I2C_Handle_t *pI2CHandle, uint8_t *pTxbuffer, uint32_t L
 
 
 /**
+ * @brief  Receives data from an I2C slave in master mode.
+ *
+ * This function handles the communication to receive a specified length of data from an I2C slave device.
+ * The function generates the start condition, addresses the slave, receives data, and generates the stop condition.
+ *
+ * @param[in]   pI2CHandle  Pointer to the I2C handle structure containing the base address of the I2C peripheral
+ *                          and configuration settings.
+ * @param[out]  pRxbuffer   Pointer to the buffer where the received data will be stored.
+ * @param[in]   Len         Number of bytes to receive.
+ * @param[in]   SlaveAddr   Address of the I2C slave device.
+ *
+ * @note 
+ * - This function manages both single-byte and multi-byte reads from the slave.
+ * - Ensure that the ACK bit is correctly set or cleared depending on the read length.
+ * - Blocking behavior: The function waits for flags to be set/reset during communication.
+ *
+ * @pre 
+ * - The I2C peripheral should be properly initialized before calling this function.
+ * - Slave device must be ready to communicate.
+ *
+ * @post 
+ * - After the function completes, the received data will be available in the pRxbuffer.
+ * - The STOP condition will be generated to release the I2C bus.
+ *
+ * @attention 
+ * - Re-enabling the ACK bit after communication is critical for subsequent I2C transactions.
+ * - Ensure the I2C lines are not stuck and the bus is idle before calling this function.
+ */
+void I2C_MasterReceiveData(I2C_Handle_t *pI2CHandle, uint8_t *pRxbuffer, uint32_t Len, uint8_t SlaveAddr){
+    uint8_t dummy;
+    
+    //1. generate the start condition
+    pI2CHandle->pI2Cx->I2C_CR1_t.START=1;
+
+    //2. confirm the that start generation  is complete
+    while(!(pI2CHandle->pI2Cx->I2C_SR1_t.SB));
+
+    //3. send the address of the slave
+    SlaveAddr=(SlaveAddr<<1);
+    SlaveAddr|=1;
+    pI2CHandle->pI2Cx->I2C_DR_t.DR=SlaveAddr;
+
+    //4. check the addr flag
+    while(!(pI2CHandle->pI2Cx->I2C_SR1_t.ADDR));
+
+    //read
+    if(Len == 1){
+        //disable acking
+        pI2CHandle->pI2Cx->I2C_CR1_t.ACK=0;
+        
+        //clear the addr flag by reading the sr1 and sr2
+        dummy= pI2CHandle->pI2Cx->I2C_SR1_t.ADDR;
+        dummy= pI2CHandle->pI2Cx->I2C_SR2_t.BUSY;
+        (void)dummy;
+
+        //wait until rxne flag becomes 1
+        while(!(pI2CHandle->pI2Cx->I2C_SR1_t.RxNE));
+
+        //generate stop condition
+        pI2CHandle->pI2Cx->I2C_CR1_t.STOP=1;
+
+        *pRxbuffer= pI2CHandle->pI2Cx->I2C_DR_t.DR;
+
+        return;
+    }
+
+    if(Len>1){
+        dummy= pI2CHandle->pI2Cx->I2C_SR1_t.ADDR;
+        dummy= pI2CHandle->pI2Cx->I2C_SR2_t.BUSY;
+        (void)dummy;
+        
+        //read until len becomes zero
+        while(Len){
+            //wait until rxne becomes 1
+            while(!(pI2CHandle->pI2Cx->I2C_SR1_t.RxNE));
+
+            if(Len==2){
+                //disable acking
+                pI2CHandle->pI2Cx->I2C_CR1_t.ACK=0; 
+
+                    //generate stop condition
+                    pI2CHandle->pI2Cx->I2C_CR1_t.STOP=1;
+            
+            }
+
+            pI2CHandle->pI2Cx->I2C_DR_t.DR=*pRxbuffer;
+            pRxbuffer++;
+            Len--;
+        }
+    }
+    //re-enable acking
+    pI2CHandle->pI2Cx->I2C_CR1_t.ACK=1;
+}
+
+
+/**
  * @brief Configures the interrupt for the specified IRQ number
  * 
  * @param IRQNumber   IRQ number to configure
