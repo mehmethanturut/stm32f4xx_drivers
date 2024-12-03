@@ -2363,10 +2363,12 @@ struct {
 #define IRQ_NO_SPI3             51  /**< SPI3 IRQ number */
 #define IRQ_NO_SPI4             84  /**< SPI4 IRQ number */
 
-#define NVIC_IRQ_PRIO0          0   /**< NVIC IRQ Priority 0 */
-#define NVIC_IRQ_PRIO1          1   /**< NVIC IRQ Priority 1 */
-#define NVIC_IRQ_PRIO2          2   /**< NVIC IRQ Priority 2 */
-// Define other IRQ priorities up to 15 as needed
+#define IRQ_NO_I2C1_EV          31
+#define IRQ_NO_I2C1_ER          32             
+#define IRQ_NO_I2C2_EV          33
+#define IRQ_NO_I2C2_ER          34
+#define IRQ_NO_I2C3_EV          72
+#define IRQ_NO_I2C3_ER          73
 
 /** @} */
 
@@ -2437,6 +2439,28 @@ struct {
 #define SPI_BSY_IN_RX   1 /**< SPI busy in reception */
 #define SPI_BSY_IN_TX   2 /**< SPI busy in transmission */
 
+
+/** @} */
+
+/**
+ * @defgroup I2C_App_States I2C Application States
+ * @brief Defines possible states of I2C peripheral during communication.
+ * @{
+ */
+#define I2C_READY       0 /**< I2C ready state */
+#define I2C_BSY_IN_RX   1 /**< I2C busy in reception */
+#define I2C_BSY_IN_TX   2 /**< I2C busy in transmission */
+
+#define I2C_EV_TX_COMP          0
+#define I2C_EV_RX_COMP          1
+#define I2C_EV_STOP             2
+#define I2C_ERROR_BERR 	 		3
+#define I2C_ERROR_ARLO  		4
+#define I2C_ERROR_AF    		5
+#define I2C_ERROR_OVR   		6
+#define I2C_ERROR_TIMEOUT 		7
+#define I2C_EV_DATA_REQ         8
+#define I2C_EV_DATA_RCV         9
 /** @} */
 
 /** 
