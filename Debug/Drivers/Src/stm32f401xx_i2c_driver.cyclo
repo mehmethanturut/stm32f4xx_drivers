@@ -8,8 +8,10 @@
 ../Drivers/Src/stm32f401xx_i2c_driver.c:417:9:I2C_MasterReceiveDataIT	2
 ../Drivers/Src/stm32f401xx_i2c_driver.c:448:6:I2C_IRQITConfig	12
 ../Drivers/Src/stm32f401xx_i2c_driver.c:482:6:I2C_IRQPriorityConfig	1
-../Drivers/Src/stm32f401xx_i2c_driver.c:501:6:I2C_EV_IRQHandling	30
-../Drivers/Src/stm32f401xx_i2c_driver.c:629:6:I2C_ER_IRQHandling	11
-../Drivers/Src/stm32f401xx_i2c_driver.c:705:6:I2C_CloseReceiveData	2
-../Drivers/Src/stm32f401xx_i2c_driver.c:737:6:I2C_CloseSendData	2
-../Drivers/Src/stm32f401xx_i2c_driver.c:768:10:RCC_GetAPB1_CLK	29
+../Drivers/Src/stm32f401xx_i2c_driver.c:501:6:I2C_EV_IRQHandling	31
+../Drivers/Src/stm32f401xx_i2c_driver.c:637:6:I2C_ER_IRQHandling	11
+../Drivers/Src/stm32f401xx_i2c_driver.c:713:6:I2C_CloseReceiveData	2
+../Drivers/Src/stm32f401xx_i2c_driver.c:745:6:I2C_CloseSendData	2
+../Drivers/Src/stm32f401xx_i2c_driver.c:773:6:I2C_SlaveSendData	1
+../Drivers/Src/stm32f401xx_i2c_driver.c:783:9:I2C_SlaveReceiveData	1
+../Drivers/Src/stm32f401xx_i2c_driver.c:798:10:RCC_GetAPB1_CLK	29

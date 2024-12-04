@@ -184,6 +184,8 @@ uint8_t I2C_MasterReceiveDataIT(I2C_Handle_t *pI2CHandle, uint8_t *pRxbuffer, ui
 
 
 
+
+
 /**
  * @brief Configures the interrupt for the specified IRQ number.
  * 
@@ -245,6 +247,23 @@ void I2C_CloseReceiveData(I2C_Handle_t *pI2CHandle);
  *                       state information for the I2C peripheral.
  */
 void I2C_CloseSendData(I2C_Handle_t *pI2CHandle);
+
+/**
+ * @brief  Sends data from the I2C slave to the I2C data register.
+ * @param  pI2Cx: Pointer to the I2C register definition structure.
+ * @param  data:  Data to be sent.
+ * @note   This function directly writes the data to the Data Register (DR).
+ */
+void I2C_SlaveSendData(I2C_RegDef_t *pI2Cx,uint8_t data);
+
+/**
+ * @brief  Receives data from the I2C data register in slave mode.
+ * @param  pI2Cx: Pointer to the I2C register definition structure.
+ * @return uint8_t: Data received from the Data Register (DR).
+ * @note   This function directly reads the data from the Data Register (DR).
+ */
+uint8_t I2C_SlaveReceiveData(I2C_RegDef_t *pI2Cx);
+
 
 /**
  * @brief Application callback function for I2C events.
