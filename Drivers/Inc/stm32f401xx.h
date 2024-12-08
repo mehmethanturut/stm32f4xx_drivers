@@ -2250,6 +2250,7 @@ struct {
 #define SPI4                ((SPI_RegDef_t*) SPI4_BASEADDR)    /**< SPI4 base address */
 
 #define USART1              ((USART_RegDef_t*) USART1_BASEADDR) /**< USART1 base address */
+#define USART2              ((USART_RegDef_t*) USART2_BASEADDR) /**< USART2 base address */
 #define USART6              ((USART_RegDef_t*) USART6_BASEADDR) /**< USART6 base address */
 
 #define I2C1                ((I2C_RegDef_t*) I2C1_BASEADDR)    /**< I2C1 base address */
@@ -2285,6 +2286,7 @@ struct {
 
 /* Clock enable macros for USARTx peripherals */
 #define USART1_PCLK_EN()                 (RCC->RCC_APB2ENR_t.USART1EN=1) /**< Enable USART1 clock */
+#define USART2_PCLK_EN()                 (RCC->RCC_APB1ENR_t.USART2EN=1) /**< Enable USART2 clock */
 #define USART6_PCLK_EN()                 (RCC->RCC_APB2ENR_t.USART6EN=1) /**< Enable USART6 clock */
 
 /* Clock enable macros for SYSCFG peripheral */
@@ -2315,6 +2317,7 @@ struct {
 #define SPI4_PCLK_DI()                   (RCC->RCC_APB2ENR_t.SPI4EN=0) /**< Disable SPI4 clock */
 
 #define USART1_PCLK_DI()                 (RCC->RCC_APB2ENR_t.USART1EN=0) /**< Disable USART1 clock */
+#define USART2_PCLK_DI()                 (RCC->RCC_APB1ENR_t.USART2EN=0) /**< Disable USART2 clock */
 #define USART6_PCLK_DI()                 (RCC->RCC_APB2ENR_t.USART6EN=0) /**< Disable USART6 clock */
 
 #define SYSCFG_PCLK_DI()                 (RCC->RCC_APB2ENR_t.SYSCFGEN=0) /**< Disable SYSCFG clock */
@@ -2342,6 +2345,10 @@ struct {
 #define I2C1_REG_RESET()                 do{  (RCC->RCC_APB1RSTR_t.I2C1RST=1); (RCC->RCC_APB1RSTR_t.I2C1RST=0);}while(0) /**< Reset I2C1 */
 #define I2C2_REG_RESET()                 do{  (RCC->RCC_APB1RSTR_t.I2C2RST=1); (RCC->RCC_APB1RSTR_t.I2C2RST=0);}while(0) /**< Reset I2C2 */
 #define I2C3_REG_RESET()                 do{  (RCC->RCC_APB1RSTR_t.I2C3RST=1); (RCC->RCC_APB1RSTR_t.I2C3RST=0);}while(0) /**< Reset I2C3 */
+
+#define USART1_REG_RESET()               do{  (RCC->RCC_APB2RSTR_t.USART1RST=1); (RCC->RCC_APB2RSTR_t.USART1RST=0);}while(0) /**< Reset USART1 */
+#define USART2_REG_RESET()               do{  (RCC->RCC_APB1RSTR_t.USART2RST=1); (RCC->RCC_APB1RSTR_t.USART2RST=0);}while(0) /**< Reset USART2 */
+#define USART6_REG_RESET()               do{  (RCC->RCC_APB2RSTR_t.USART6RST=1); (RCC->RCC_APB2RSTR_t.USART6RST=0);}while(0) /**< Reset USART6 */
 /** @} */
 
 /**
@@ -2403,6 +2410,15 @@ struct {
 #define SPI3_BUSY                (SPI3->SPI_SR_t.BSY) /**< Check if SPI3 is busy */
 #define SPI4_BUSY                (SPI4->SPI_SR_t.BSY) /**< Check if SPI4 is busy */
 
+
+
+#define USART1_ENABLE()         (USART1->USART_CR1_t.UE=1) /**< Enable USART1 peripheral */
+#define USART2_ENABLE()         (USART2->USART_CR1_t.UE=1) /**< Enable USART2 peripheral */
+#define USART6_ENABLE()         (USART6->USART_CR1_t.UE=1) /**< Enable USART6 peripheral */
+
+#define USART1_DISABLE()         (USART1->USART_CR1_t.UE=0) /**< Enable USART1 peripheral */
+#define USART2_DISABLE()         (USART2->USART_CR1_t.UE=0) /**< Enable USART2 peripheral */
+#define USART6_DISABLE()         (USART6->USART_CR1_t.UE=0) /**< Enable USART6 peripheral */
 /**
  * @brief Converts a GPIO base address to its corresponding port code.
  * 
@@ -2427,41 +2443,12 @@ struct {
                                             (x  ==   GPIOH)  ? 7 : 0 )
 
 
-/** @} */
 
-/**
- * @defgroup SPI_App_States SPI Application States
- * @brief Defines possible states of SPI peripheral during communication.
- * @{
- */
-
-#define SPI_READY       0 /**< SPI ready state */
-#define SPI_BSY_IN_RX   1 /**< SPI busy in reception */
-#define SPI_BSY_IN_TX   2 /**< SPI busy in transmission */
 
 
 /** @} */
 
-/**
- * @defgroup I2C_App_States I2C Application States
- * @brief Defines possible states of I2C peripheral during communication.
- * @{
- */
-#define I2C_READY       0 /**< I2C ready state */
-#define I2C_BSY_IN_RX   1 /**< I2C busy in reception */
-#define I2C_BSY_IN_TX   2 /**< I2C busy in transmission */
 
-#define I2C_EV_TX_COMP          0
-#define I2C_EV_RX_COMP          1
-#define I2C_EV_STOP             2
-#define I2C_ERROR_BERR 	 		3
-#define I2C_ERROR_ARLO  		4
-#define I2C_ERROR_AF    		5
-#define I2C_ERROR_OVR   		6
-#define I2C_ERROR_TIMEOUT 		7
-#define I2C_EV_DATA_REQ         8
-#define I2C_EV_DATA_RCV         9
-/** @} */
 
 /** 
  * @brief Generic macros for use in various peripheral setups.
@@ -2495,5 +2482,6 @@ struct {
 #include "stm32f401xx_gpio_driver.h"
 #include "Stm32f401xx_spi_driver.h"
 #include "stm32f401xx_i2c_driver.h"
+#include "stm32f401xx_usart_driver.h"
 
 #endif /* INC_STM32F401XX_H_ */

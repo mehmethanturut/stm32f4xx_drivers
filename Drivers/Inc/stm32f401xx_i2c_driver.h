@@ -76,6 +76,26 @@ typedef struct
 #define I2C_FM_DUTY_16_9      1        /**< Fast mode duty cycle 16/9. */
 /** @} */
 
+/**
+ * @defgroup I2C_App_States I2C Application States
+ * @brief Defines possible states of I2C peripheral during communication.
+ * @{
+ */
+#define I2C_READY       0 /**< I2C ready state */
+#define I2C_BSY_IN_RX   1 /**< I2C busy in reception */
+#define I2C_BSY_IN_TX   2 /**< I2C busy in transmission */
+
+#define I2C_EV_TX_COMP          0
+#define I2C_EV_RX_COMP          1
+#define I2C_EV_STOP             2
+#define I2C_ERROR_BERR 	 		3
+#define I2C_ERROR_ARLO  		4
+#define I2C_ERROR_AF    		5
+#define I2C_ERROR_OVR   		6
+#define I2C_ERROR_TIMEOUT 		7
+#define I2C_EV_DATA_REQ         8
+#define I2C_EV_DATA_RCV         9
+/** @} */
 
 /**
  * @brief Enables or disables the peripheral clock for the given I2C port.

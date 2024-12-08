@@ -151,6 +151,17 @@ typedef struct
 #define SPI_SSI_MASTER         1 /**< Slave select for master mode */
 /** @} */
 
+/** @} */
+
+/**
+ * @defgroup SPI_App_States SPI Application States
+ * @brief Defines possible states of SPI peripheral during communication.
+ * @{
+ */
+
+#define SPI_READY       0 /**< SPI ready state */
+#define SPI_BSY_IN_RX   1 /**< SPI busy in reception */
+#define SPI_BSY_IN_TX   2 /**< SPI busy in transmission */
 
 /**
  * @brief Enables or disables the peripheral clock for the given SPI port.
