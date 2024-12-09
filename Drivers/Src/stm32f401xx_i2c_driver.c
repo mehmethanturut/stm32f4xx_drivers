@@ -15,7 +15,7 @@
  * @param pI2Cx   Base address of the I2C peripheral (I2C1, I2C2, or I2C3)
  * @param EnorDi  ENABLE or DISABLE macros to enable or disable the clock
  */
-#include "stm32f401xx.h"
+#include "../Inc/stm32f401xx.h"
 
 static void I2C_ClearADDRFlag(I2C_Handle_t *pI2CHandle );
 

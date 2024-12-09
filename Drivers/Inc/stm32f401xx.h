@@ -2133,10 +2133,16 @@ volatile typedef struct {
      * This register is used to read or write data to the USART peripheral.
      */
     struct {
-        uint32_t DIV_Fraction       :4; /**< Fraction of USART Divider. */
-        uint32_t DIV_Mantissa       :12; /**< Mantissa of USART Divider. */
-        uint32_t res                :16; /**< Reserved bits. */
+        uint32_t DR                 :9; /**< Data Register. */       
+        uint32_t res                :23; /**< Reserved bits. */
     } USART_DR_t;
+
+    struct{
+        uint32_t DIV_Fraction       :4; /**< Fraction of USARTDIV. */
+        uint32_t DIV_Mantissa       :12; /**< Mantissa of USARTDIV. */
+        uint32_t res                :16; /**< Reserved bits. */
+    }USART_BRR_t;
+    
 
     /**
      * @brief Control Register 1 (USART_CR1_t)

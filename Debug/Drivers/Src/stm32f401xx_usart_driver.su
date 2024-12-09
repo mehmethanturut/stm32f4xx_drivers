@@ -1,0 +1,10 @@
+../Drivers/Src/stm32f401xx_usart_driver.c:21:6:USART_PeriClkCtrl	16	static
+../Drivers/Src/stm32f401xx_usart_driver.c:49:6:USART_PeripheralControl	16	static
+../Drivers/Src/stm32f401xx_usart_driver.c:82:6:USART_Init	16	static
+../Drivers/Src/stm32f401xx_usart_driver.c:173:6:USART_DeInit	16	static
+../Drivers/Src/stm32f401xx_usart_driver.c:195:6:USART_SendData	32	static
+../Drivers/Src/stm32f401xx_usart_driver.c:234:6:USART_ReceiveData	32	static
+../Drivers/Src/stm32f401xx_usart_driver.c:275:9:USART_SendDataIT	32	static
+../Drivers/Src/stm32f401xx_usart_driver.c:304:9:USART_ReceiveDataIT	32	static
+../Drivers/Src/stm32f401xx_usart_driver.c:333:6:USART_IRQITConfig	16	static
+../Drivers/Src/stm32f401xx_usart_driver.c:367:6:USART_IRQPriorityConfig	24	static

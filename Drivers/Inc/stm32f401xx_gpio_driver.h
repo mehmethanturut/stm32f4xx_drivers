@@ -12,7 +12,7 @@
 #ifndef INC_STM32F401XX_GPIO_DRIVER_H_
 #define INC_STM32F401XX_GPIO_DRIVER_H_
 
-#include "stm32f401xx.h"
+#include "../Inc/stm32f401xx.h"
 
 /**
  * @brief GPIO pin configuration structure.

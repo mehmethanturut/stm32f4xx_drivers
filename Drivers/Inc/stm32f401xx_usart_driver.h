@@ -12,7 +12,7 @@
 #ifndef INC_STM32F401XX_USART_DRIVER_H_
 #define INC_STM32F401XX_USART_DRIVER_H_
 
-#include "stm32f401xx.h"
+#include "../Inc/stm32f401xx.h"
 
 typedef struct
 {
@@ -28,6 +28,12 @@ typedef struct
 {
     USART_RegDef_t *pUSARTx;
     USART_Config_t USART_config;
+    uint32_t TxLen;
+	uint32_t RxLen;
+    uint8_t *pTxBuffer;
+	uint8_t *pRxBuffer;
+	uint8_t TxBusyState;
+	uint8_t RxBusyState;
 } USART_Handle_t;
 
 /*
@@ -89,6 +95,13 @@ typedef struct
 #define USART_HW_FLOW_CTRL_RTS    	2
 #define USART_HW_FLOW_CTRL_CTS_RTS	3
 
+/*
+ * Application states
+ */
+#define USART_BUSY_IN_RX 1
+#define USART_BUSY_IN_TX 2
+#define USART_READY 0
+
 
 /**
  * @brief Enables or disables the peripheral clock for the given I2C port.
@@ -106,8 +119,86 @@ void USART_PeriClkCtrl(USART_RegDef_t *pUSARTx, uint8_t EnorDi);
  */
 void USART_PeripheralControl(USART_RegDef_t *pUSARTx, uint8_t EnorDi);
 
+/**
+ * @brief Initializes the given USART peripheral with the specified configuration settings.
+ * 
+ * @param[in] pUSARTHandle Pointer to the USART handle structure.
+ */
+void USART_Init(USART_Handle_t *pUSARTHandle);
 
+/**
+ * @brief Deinitializes the given USART peripheral.
+ * 
+ * @param[in] pUSARTx Pointer to the USART peripheral.
+ */
+void USART_DeInit(USART_RegDef_t *pUSARTx);
+
+/**
+ * @brief Sends data through the USART peripheral.
+ * 
+ * This function transmits data through the USART peripheral by writing to the data register.
+ * It waits for the transmit data register to be empty before sending each byte.
+ * 
+ * @param[in] pUSARTHandle Pointer to the USART handle structure containing the configuration information.
+ * @param[in] pTxBuffer Pointer to the buffer containing the data to be transmitted.
+ * @param[in] Len Length of the data to be transmitted.
+ * 
+ * @note This function blocks until all data is transmitted.
+ */
+void USART_SendData(USART_Handle_t *pUSARTHandle, uint8_t *pTxBuffer, uint32_t Len);
+
+/**
+ * @brief Receives data through the USART peripheral.
+ * 
+ * This function receives data through the USART peripheral by reading from the data register.
+ * It waits for the receive data register to be full before reading each byte.
+ * 
+ * @param[in] pUSARTHandle Pointer to the USART handle structure containing the configuration information.
+ * @param[in] pRxBuffer Pointer to the buffer to store the received data.
+ * @param[in] Len Length of the data to be received.
+ * 
+ * @note This function blocks until all data is received.
+ */
+void USART_ReceiveData(USART_Handle_t *pUSARTHandle, uint8_t *pRxBuffer, uint32_t Len);
+
+
+/**
+ * @brief Sends data through the USART peripheral in interrupt mode.
+ * 
+ * This function sends data through the USART peripheral in interrupt mode. It sets the
+ * transmit buffer and length in the USART handle structure and enables the TXEIE and TCIE
+ * bits in the USART control register to generate interrupts.
+ * 
+ * @param[in] pUSARTHandle Pointer to the USART handle structure containing the configuration information.
+ * @param[in] pTxBuffer Pointer to the buffer containing the data to be transmitted.
+ * @param[in] Len Length of the data to be transmitted.
+ * 
+ * @return uint8_t State of the USART transmission (busy or ready).
+ */
+uint8_t USART_SendDataIT(USART_Handle_t *pUSARTHandle,uint8_t *pTxBuffer, uint32_t Len);
+
+/**
+ * @brief Receives data through the USART peripheral in interrupt mode.
+ * 
+ * This function receives data through the USART peripheral in interrupt mode. It sets the
+ * receive buffer and length in the USART handle structure and enables the RXNEIE bit in the
+ * USART control register to generate interrupts.
+ * 
+ * @param[in] pUSARTHandle Pointer to the USART handle structure containing the configuration information.
+ * @param[in] pRxBuffer Pointer to the buffer to store the received data.
+ * @param[in] Len Length of the data to be received.
+ * 
+ * @return uint8_t State of the USART reception (busy or ready).
+ */
+uint8_t USART_ReceiveDataIT(USART_Handle_t *pUSARTHandle,uint8_t *pRxBuffer, uint32_t Len);
+
+/**
+ * @brief Deinitializes the given USART peripheral.
+ * 
+ * @param[in] pUSARTHandle Pointer to the USART handle structure.
+ */
 void USART_ClearFlag(USART_RegDef_t *pUSARTx, uint16_t StatusflagName);
+
 /**
  * @brief Configures the interrupt for a specific IRQ number.
  * 

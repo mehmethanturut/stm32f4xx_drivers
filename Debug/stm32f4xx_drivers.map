@@ -127,7 +127,7 @@ Discarded input sections
                 0x00000000       0xa0 ./Drivers/Src/stm32f401xx_i2c_driver.o
  .debug_rnglists
                 0x00000000       0x7d ./Drivers/Src/stm32f401xx_i2c_driver.o
- .debug_line    0x00000000      0xc2f ./Drivers/Src/stm32f401xx_i2c_driver.o
+ .debug_line    0x00000000      0xbfa ./Drivers/Src/stm32f401xx_i2c_driver.o
  .debug_str     0x00000000      0xda5 ./Drivers/Src/stm32f401xx_i2c_driver.o
  .comment       0x00000000       0x44 ./Drivers/Src/stm32f401xx_i2c_driver.o
  .debug_frame   0x00000000      0x2a4 ./Drivers/Src/stm32f401xx_i2c_driver.o
@@ -164,6 +164,41 @@ Discarded input sections
                 0x00000000       0x32 ./Drivers/Src/stm32f401xx_spi_driver.o
  .text.SPI_AppEventCallback
                 0x00000000       0x18 ./Drivers/Src/stm32f401xx_spi_driver.o
+ .text          0x00000000        0x0 ./Drivers/Src/stm32f401xx_usart_driver.o
+ .data          0x00000000        0x0 ./Drivers/Src/stm32f401xx_usart_driver.o
+ .bss           0x00000000        0x0 ./Drivers/Src/stm32f401xx_usart_driver.o
+ .text.USART_PeriClkCtrl
+                0x00000000       0xbc ./Drivers/Src/stm32f401xx_usart_driver.o
+ .text.USART_PeripheralControl
+                0x00000000       0xa0 ./Drivers/Src/stm32f401xx_usart_driver.o
+ .text.USART_Init
+                0x00000000      0x214 ./Drivers/Src/stm32f401xx_usart_driver.o
+ .text.USART_DeInit
+                0x00000000       0x94 ./Drivers/Src/stm32f401xx_usart_driver.o
+ .text.USART_SendData
+                0x00000000       0xae ./Drivers/Src/stm32f401xx_usart_driver.o
+ .text.USART_ReceiveData
+                0x00000000       0xca ./Drivers/Src/stm32f401xx_usart_driver.o
+ .text.USART_SendDataIT
+                0x00000000       0x58 ./Drivers/Src/stm32f401xx_usart_driver.o
+ .text.USART_ReceiveDataIT
+                0x00000000       0x4c ./Drivers/Src/stm32f401xx_usart_driver.o
+ .text.USART_IRQITConfig
+                0x00000000      0x10c ./Drivers/Src/stm32f401xx_usart_driver.o
+ .text.USART_IRQPriorityConfig
+                0x00000000       0x50 ./Drivers/Src/stm32f401xx_usart_driver.o
+ .debug_info    0x00000000     0x1a06 ./Drivers/Src/stm32f401xx_usart_driver.o
+ .debug_abbrev  0x00000000      0x207 ./Drivers/Src/stm32f401xx_usart_driver.o
+ .debug_aranges
+                0x00000000       0x68 ./Drivers/Src/stm32f401xx_usart_driver.o
+ .debug_rnglists
+                0x00000000       0x50 ./Drivers/Src/stm32f401xx_usart_driver.o
+ .debug_line    0x00000000      0x6c3 ./Drivers/Src/stm32f401xx_usart_driver.o
+ .debug_str     0x00000000      0xc9d ./Drivers/Src/stm32f401xx_usart_driver.o
+ .comment       0x00000000       0x44 ./Drivers/Src/stm32f401xx_usart_driver.o
+ .debug_frame   0x00000000      0x1a0 ./Drivers/Src/stm32f401xx_usart_driver.o
+ .ARM.attributes
+                0x00000000       0x34 ./Drivers/Src/stm32f401xx_usart_driver.o
  .text          0x00000000        0x0 ./Src/002Testapp_SPI_Sl_arduino.o
  .data          0x00000000        0x0 ./Src/002Testapp_SPI_Sl_arduino.o
  .bss           0x00000000        0x0 ./Src/002Testapp_SPI_Sl_arduino.o
@@ -462,6 +497,7 @@ LOAD C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
 LOAD ./Drivers/Src/stm32f401xx_gpio_driver.o
 LOAD ./Drivers/Src/stm32f401xx_i2c_driver.o
 LOAD ./Drivers/Src/stm32f401xx_spi_driver.o
+LOAD ./Drivers/Src/stm32f401xx_usart_driver.o
 LOAD ./Src/002Testapp_SPI_Sl_arduino.o
 LOAD ./Startup/startup_stm32f401retx.o
 START GROUP
@@ -785,11 +821,11 @@ LOAD C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_rnglists
                 0x000000f9       0x19 ./Startup/startup_stm32f401retx.o
 
-.debug_line     0x00000000     0x14b5
- .debug_line    0x00000000      0x783 ./Drivers/Src/stm32f401xx_gpio_driver.o
- .debug_line    0x00000783      0x77c ./Drivers/Src/stm32f401xx_spi_driver.o
- .debug_line    0x00000eff      0x53b ./Src/002Testapp_SPI_Sl_arduino.o
- .debug_line    0x0000143a       0x7b ./Startup/startup_stm32f401retx.o
+.debug_line     0x00000000     0x14d2
+ .debug_line    0x00000000      0x7a0 ./Drivers/Src/stm32f401xx_gpio_driver.o
+ .debug_line    0x000007a0      0x77c ./Drivers/Src/stm32f401xx_spi_driver.o
+ .debug_line    0x00000f1c      0x53b ./Src/002Testapp_SPI_Sl_arduino.o
+ .debug_line    0x00001457       0x7b ./Startup/startup_stm32f401retx.o
 
 .debug_str      0x00000000     0x14f2
  .debug_str     0x00000000     0x10c2 ./Drivers/Src/stm32f401xx_gpio_driver.o

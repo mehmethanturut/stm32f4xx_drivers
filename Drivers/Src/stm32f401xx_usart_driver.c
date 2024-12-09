@@ -68,6 +68,253 @@ void USART_PeripheralControl(USART_RegDef_t *pUSARTx, uint8_t EnorDi) {
     }
 }
 
+
+/**
+ * @brief Initializes the USART peripheral according to the specified parameters.
+ * 
+ * This function configures the USART peripheral based on the settings in the USART handle.
+ * It enables the peripheral clock and sets the mode (RX, TX, or both).
+ * 
+ * @param[in] pUSARTHandle Pointer to the USART handle structure containing the configuration information.
+ * 
+ * @note This function must be called before using the USART peripheral.
+ */
+void USART_Init(USART_Handle_t *pUSARTHandle){
+    USART_PeriClkCtrl(pUSARTHandle->pUSARTx, ENABLE);
+
+    switch (pUSARTHandle->USART_config.USART_Mode)
+    {
+    case USART_MODE_ONLY_RX:
+        pUSARTHandle->pUSARTx->USART_CR1_t.RE=1;
+        break;
+    case USART_MODE_ONLY_TX:
+        pUSARTHandle->pUSARTx->USART_CR1_t.TE=1;
+        break;
+    case USART_MODE_TXRX:
+        pUSARTHandle->pUSARTx->USART_CR1_t.TE=1;
+        pUSARTHandle->pUSARTx->USART_CR1_t.RE=1;
+        break;
+    default:
+        pUSARTHandle->pUSARTx->USART_CR1_t.TE=1;
+        pUSARTHandle->pUSARTx->USART_CR1_t.RE=1;
+        break;
+    }
+
+    pUSARTHandle->pUSARTx->USART_CR1_t.M= pUSARTHandle->USART_config.USART_WordLen;
+
+    switch (pUSARTHandle->USART_config.USART_ParityControl)
+    {
+    case USART_PARITY_DISABLE:
+        pUSARTHandle->pUSARTx->USART_CR1_t.PCE=0;
+        break;
+    case USART_PARITY_EN_EVEN:
+        pUSARTHandle->pUSARTx->USART_CR1_t.PCE=1;
+        pUSARTHandle->pUSARTx->USART_CR1_t.PS=0;
+        break;
+    case USART_PARITY_EN_ODD:
+        pUSARTHandle->pUSARTx->USART_CR1_t.PCE=1;
+        pUSARTHandle->pUSARTx->USART_CR1_t.PS=1;
+        break;
+    default:
+            pUSARTHandle->pUSARTx->USART_CR1_t.PCE=0;
+        break;
+    }
+
+    switch (pUSARTHandle->USART_config.USART_StopLen)
+    {
+    case USART_STOPBITS_1:
+        pUSARTHandle->pUSARTx->USART_CR2_t.STOP=0;
+        break;
+    case USART_STOPBITS_0_5:
+        pUSARTHandle->pUSARTx->USART_CR2_t.STOP=1;
+        break;
+    case USART_STOPBITS_2:
+        pUSARTHandle->pUSARTx->USART_CR2_t.STOP=2;
+        break;
+    case USART_STOPBITS_1_5:
+        pUSARTHandle->pUSARTx->USART_CR2_t.STOP=3;
+        break;
+    default:
+        pUSARTHandle->pUSARTx->USART_CR2_t.STOP=0;
+        break;
+    }
+
+    switch (pUSARTHandle->USART_config.USART_HWFlowControl)
+    {
+    case USART_HW_FLOW_CTRL_NONE:
+        pUSARTHandle->pUSARTx->USART_CR3_t.CTSE=0;
+        break;
+    case USART_HW_FLOW_CTRL_RTS:
+        pUSARTHandle->pUSARTx->USART_CR3_t.CTSE=0;
+        pUSARTHandle->pUSARTx->USART_CR3_t.RTSE=1;
+        pUSARTHandle->pUSARTx->USART_CR3_t.CTSIE=0;
+        break;
+    case USART_HW_FLOW_CTRL_CTS:
+        pUSARTHandle->pUSARTx->USART_CR3_t.CTSE=1;
+        pUSARTHandle->pUSARTx->USART_CR3_t.RTSE=0;
+        pUSARTHandle->pUSARTx->USART_CR3_t.CTSIE=1;
+        break;
+    case USART_HW_FLOW_CTRL_CTS_RTS:
+        pUSARTHandle->pUSARTx->USART_CR3_t.CTSE=1;
+        pUSARTHandle->pUSARTx->USART_CR3_t.RTSE=1;
+        pUSARTHandle->pUSARTx->USART_CR3_t.CTSIE=1;
+        break;
+    default:
+        pUSARTHandle->pUSARTx->USART_CR3_t.CTSE=0;
+        break;
+    }
+}
+
+/**
+ * @brief Deinitializes the given USART peripheral.
+ * 
+ * @param[in] pUSARTx Pointer to the USART peripheral.
+ */
+void USART_DeInit(USART_RegDef_t *pUSARTx){
+    if (pUSARTx == USART1) {
+        USART1_REG_RESET();
+    } else if (pUSARTx == USART2) {
+        USART2_REG_RESET();
+    } else if (pUSARTx == USART6) {
+        USART6_REG_RESET();
+    }
+}
+
+/**
+ * @brief Sends data through the USART peripheral.
+ * 
+ * This function transmits data through the USART peripheral by writing to the data register.
+ * It waits for the transmit data register to be empty before sending each byte.
+ * 
+ * @param[in] pUSARTHandle Pointer to the USART handle structure containing the configuration information.
+ * @param[in] pTxBuffer Pointer to the buffer containing the data to be transmitted.
+ * @param[in] Len Length of the data to be transmitted.
+ * 
+ * @note This function blocks until all data is transmitted.
+ */
+void USART_SendData(USART_Handle_t *pUSARTHandle, uint8_t *pTxBuffer, uint32_t Len){
+    for (uint32_t i = 0; i <Len; i++)
+    {
+        while(!(pUSARTHandle->pUSARTx->USART_SR_t.TXE));
+        
+        if (pUSARTHandle->USART_config.USART_WordLen)
+        {
+            pUSARTHandle->pUSARTx->USART_DR_t.DR=(*((uint16_t*)pTxBuffer) & 0x01ffU);
+
+            if (pUSARTHandle->USART_config.USART_ParityControl== USART_PARITY_DISABLE)
+            {
+                pTxBuffer++;
+                pTxBuffer++;
+            }else{
+                pTxBuffer++;
+            }  
+        }else{
+            pUSARTHandle->pUSARTx->USART_DR_t.DR=*pTxBuffer;
+            pTxBuffer++;
+        }  
+    }  
+
+    while(!(pUSARTHandle->pUSARTx->USART_SR_t.TC));
+}
+
+
+
+/**
+ * @brief Receives data through the USART peripheral.
+ * 
+ * This function receives data through the USART peripheral by reading from the data register.
+ * It waits for the receive data register to be full before reading each byte.
+ * 
+ * @param[in] pUSARTHandle Pointer to the USART handle structure containing the configuration information.
+ * @param[in] pRxBuffer Pointer to the buffer to store the received data.
+ * @param[in] Len Length of the data to be received.
+ * 
+ * @note This function blocks until all data is received.
+ */
+void USART_ReceiveData(USART_Handle_t *pUSARTHandle, uint8_t *pRxBuffer, uint32_t Len){
+    for (uint32_t i = 0; i < Len; i++)
+    {
+        while(!(pUSARTHandle->pUSARTx->USART_SR_t.RXNE));
+
+        if (pUSARTHandle->USART_config.USART_WordLen){
+            if (pUSARTHandle->USART_config.USART_ParityControl== USART_PARITY_DISABLE)
+            {
+                *pRxBuffer = pUSARTHandle->pUSARTx->USART_DR_t.DR & 0xff;
+                pRxBuffer++;
+                pRxBuffer++;           
+            }else{
+                *pRxBuffer = pUSARTHandle->pUSARTx->USART_DR_t.DR & 0x7f;
+                pRxBuffer++;
+            }
+        }else{
+            if(pUSARTHandle->USART_config.USART_ParityControl== USART_PARITY_DISABLE)
+            {
+                *pRxBuffer= (uint8_t)pUSARTHandle->pUSARTx->USART_DR_t.DR;
+            }else{
+                *pRxBuffer= (uint8_t)(pUSARTHandle->pUSARTx->USART_DR_t.DR & 0x7f);
+            }
+            pRxBuffer++;
+        }  
+    }
+}
+
+
+/**
+ * @brief Sends data through the USART peripheral in interrupt mode.
+ * 
+ * This function sends data through the USART peripheral in interrupt mode. It sets the
+ * transmit buffer and length in the USART handle structure and enables the TXEIE and TCIE
+ * bits in the USART control register to generate interrupts.
+ * 
+ * @param[in] pUSARTHandle Pointer to the USART handle structure containing the configuration information.
+ * @param[in] pTxBuffer Pointer to the buffer containing the data to be transmitted.
+ * @param[in] Len Length of the data to be transmitted.
+ * 
+ * @return uint8_t State of the USART transmission (busy or ready).
+ */
+uint8_t USART_SendDataIT(USART_Handle_t *pUSARTHandle,uint8_t *pTxBuffer, uint32_t Len){
+    
+    uint8_t txstate = pUSARTHandle->TxBusyState;
+
+    if (pUSARTHandle->TxBusyState != USART_BUSY_IN_TX)
+    {
+        pUSARTHandle->TxLen = Len;
+        pUSARTHandle->pTxBuffer = pTxBuffer;
+        pUSARTHandle->TxBusyState = USART_BUSY_IN_TX;
+
+        pUSARTHandle->pUSARTx->USART_CR1_t.TXEIE = 1;
+        pUSARTHandle->pUSARTx->USART_CR1_t.TCIE = 1;
+    }
+    return txstate;
+}
+
+/**
+ * @brief Receives data through the USART peripheral in interrupt mode.
+ * 
+ * This function receives data through the USART peripheral in interrupt mode. It sets the
+ * receive buffer and length in the USART handle structure and enables the RXNEIE bit in the
+ * USART control register to generate interrupts.
+ * 
+ * @param[in] pUSARTHandle Pointer to the USART handle structure containing the configuration information.
+ * @param[in] pRxBuffer Pointer to the buffer to store the received data.
+ * @param[in] Len Length of the data to be received.
+ * 
+ * @return uint8_t State of the USART reception (busy or ready).
+ */
+uint8_t USART_ReceiveDataIT(USART_Handle_t *pUSARTHandle,uint8_t *pRxBuffer, uint32_t Len){
+    uint8_t rxstate = pUSARTHandle->RxBusyState;
+
+    if (pUSARTHandle->RxBusyState != USART_BUSY_IN_RX)
+    {
+        pUSARTHandle->RxLen = Len;
+        pUSARTHandle->pRxBuffer = pRxBuffer;
+        pUSARTHandle->RxBusyState = USART_BUSY_IN_RX;
+
+        pUSARTHandle->pUSARTx->USART_CR1_t.RXNEIE = 1;
+    }
+    return rxstate;
+}
+
 /**
  * @brief Configures the interrupt for a specific IRQ number.
  * 
