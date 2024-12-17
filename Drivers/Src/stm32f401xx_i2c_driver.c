@@ -818,3 +818,27 @@ uint32_t RCC_GetAPB1_CLK(void)
     // Placeholder return for unimplemented cases
     return ((16000000 / GET_AHB1_CLK_PRE) / GET_APB1_CLK_PRE);
 }
+
+uint32_t RCC_GetAPB2_CLK(void)
+{
+    switch (RCC->RCC_CFGR_t.SWS)
+    {
+    case 0:
+        // HSI used as system clock
+        return ((16000000 / GET_AHB1_CLK_PRE) / GET_APB2_CLK_PRE);
+        break;
+    case 1:
+        // HSE used as system clock
+        // Implementation pending
+        break;
+    case 2:
+        // PLL used as system clock
+        // Implementation pending
+        break;
+    default:
+        // Invalid case
+        break;
+    }
+    // Placeholder return for unimplemented cases
+    return ((16000000 / GET_AHB1_CLK_PRE) / GET_APB2_CLK_PRE);
+}

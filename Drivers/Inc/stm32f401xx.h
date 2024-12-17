@@ -2483,6 +2483,10 @@ struct {
                                                 (RCC->RCC_CFGR_t.PPRE1==6)   ? 8:\
                                                 (RCC->RCC_CFGR_t.PPRE1==7)   ? 16:1)       
 
+#define GET_APB2_CLK_PRE                (       (RCC->RCC_CFGR_t.PPRE2==4)   ? 2:\
+                                                (RCC->RCC_CFGR_t.PPRE2==5)   ? 4:\
+                                                (RCC->RCC_CFGR_t.PPRE2==6)   ? 8:\
+                                                (RCC->RCC_CFGR_t.PPRE2==7)   ? 16:1)     
 
 
 #include "stm32f401xx_gpio_driver.h"

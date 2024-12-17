@@ -15,3 +15,4 @@
 ../Drivers/Src/stm32f401xx_i2c_driver.c:773:6:I2C_SlaveSendData	16	static
 ../Drivers/Src/stm32f401xx_i2c_driver.c:783:9:I2C_SlaveReceiveData	16	static
 ../Drivers/Src/stm32f401xx_i2c_driver.c:798:10:RCC_GetAPB1_CLK	4	static
+../Drivers/Src/stm32f401xx_i2c_driver.c:822:10:RCC_GetAPB2_CLK	4	static

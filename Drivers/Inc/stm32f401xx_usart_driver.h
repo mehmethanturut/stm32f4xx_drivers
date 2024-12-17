@@ -223,4 +223,18 @@ void USART_IRQITConfig(uint8_t IRQNumber, uint8_t EnorDi);
  * @param[in] IRQPriority Priority level for the IRQ.
  */
 void USART_IRQPriorityConfig(uint8_t IRQNumber, uint32_t IRQPriority);
+
+
+/**
+ * @brief Configures the baud rate for the USART peripheral.
+ * 
+ * This function calculates and sets the baud rate for the specified USART peripheral
+ * based on the provided baud rate value and the peripheral clock frequency.
+ * 
+ * @param[in] pUSARTx Pointer to the USART peripheral base address.
+ * @param[in] BaudRate Desired baud rate for the USART communication.
+ * 
+ * @note This function must be called after the USART peripheral is initialized.
+ */
+void USART_SetBaudRate(USART_RegDef_t *pUSARTx, uint32_t BaudRate);
 #endif /* INC_STM32F401XX_USART_DRIVER_H_ */

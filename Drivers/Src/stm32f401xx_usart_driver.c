@@ -61,7 +61,7 @@ void USART_PeripheralControl(USART_RegDef_t *pUSARTx, uint8_t EnorDi) {
         if (pUSARTx == USART1) {
             USART1_DISABLE();
         } else if (pUSARTx == USART2) {
-            USART2_DISABLE();
+            USART1_DISABLE();
         } else if (pUSARTx == USART6) {
             USART6_DISABLE();
         }  
@@ -163,6 +163,8 @@ void USART_Init(USART_Handle_t *pUSARTHandle){
         pUSARTHandle->pUSARTx->USART_CR3_t.CTSE=0;
         break;
     }
+
+    USART_SetBaudRate(pUSARTHandle->pUSARTx, pUSARTHandle->USART_config.USART_Baud);
 }
 
 /**
@@ -372,3 +374,58 @@ void USART_IRQPriorityConfig(uint8_t IRQNumber, uint32_t IRQPriority){
     *(NVIC_PR_BASEADDR  +  (iprx))  |=   ((IRQPriority<<(8*iprx_section))<<4); //the first 4 bits of each section is non-implemented
 }
 
+
+
+/**
+ * @brief Configures the baud rate for the USART peripheral.
+ * 
+ * This function calculates and sets the baud rate for the specified USART peripheral
+ * based on the provided baud rate value and the peripheral clock frequency.
+ * 
+ * @param[in] pUSARTx Pointer to the USART peripheral base address.
+ * @param[in] BaudRate Desired baud rate for the USART communication.
+ * 
+ * @note This function must be called after the USART peripheral is initialized.
+ */
+void USART_SetBaudRate(USART_RegDef_t *pUSARTx, uint32_t BaudRate) {
+    //Variable to hold the APB clock
+    uint32_t PCLKx;
+
+    uint32_t usartdiv;
+
+    //variables to hold Mantissa and Fraction values
+    uint32_t M_part, F_part;
+
+    if (pUSARTx == USART1 || pUSARTx == USART6) {
+        PCLKx = RCC_GetAPB2_CLK();
+    } else {
+        PCLKx = RCC_GetAPB1_CLK();
+    }
+
+    //Check for OVER8 configuration bit
+    if (pUSARTx->USART_CR1_t.OVER8) {
+        //OVER8 = 1 , over sampling by 8
+        usartdiv = ((25 * PCLKx) / (2 * BaudRate));
+    } else {
+        //over sampling by 16
+        usartdiv = ((25 * PCLKx) / (4 * BaudRate));
+    }
+
+    //Calculate the Mantissa part
+    M_part = usartdiv / 100;
+
+    //Extract the fraction part
+    F_part = (usartdiv - (M_part * 100));
+
+    //Calculate the final fractional
+    if (pUSARTx->USART_CR1_t.OVER8) {
+        //OVER8 = 1 , over sampling by 8
+        F_part = (((F_part * 8) + 50) / 100) & ((uint8_t)0x07);
+    } else {
+        //over sampling by 16
+        F_part = (((F_part * 16) + 50) / 100) & ((uint8_t)0x0F);
+    }
+
+    pUSARTx->USART_BRR_t.DIV_Fraction = F_part;
+    pUSARTx->USART_BRR_t.DIV_Mantissa = M_part;
+}

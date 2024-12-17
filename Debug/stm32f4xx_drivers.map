@@ -121,16 +121,18 @@ Discarded input sections
                 0x00000000       0x1a ./Drivers/Src/stm32f401xx_i2c_driver.o
  .text.RCC_GetAPB1_CLK
                 0x00000000      0x214 ./Drivers/Src/stm32f401xx_i2c_driver.o
- .debug_info    0x00000000     0x1ccd ./Drivers/Src/stm32f401xx_i2c_driver.o
- .debug_abbrev  0x00000000      0x27a ./Drivers/Src/stm32f401xx_i2c_driver.o
+ .text.RCC_GetAPB2_CLK
+                0x00000000      0x214 ./Drivers/Src/stm32f401xx_i2c_driver.o
+ .debug_info    0x00000000     0x1ce0 ./Drivers/Src/stm32f401xx_i2c_driver.o
+ .debug_abbrev  0x00000000      0x27c ./Drivers/Src/stm32f401xx_i2c_driver.o
  .debug_aranges
-                0x00000000       0xa0 ./Drivers/Src/stm32f401xx_i2c_driver.o
+                0x00000000       0xa8 ./Drivers/Src/stm32f401xx_i2c_driver.o
  .debug_rnglists
-                0x00000000       0x7d ./Drivers/Src/stm32f401xx_i2c_driver.o
- .debug_line    0x00000000      0xbfa ./Drivers/Src/stm32f401xx_i2c_driver.o
- .debug_str     0x00000000      0xda5 ./Drivers/Src/stm32f401xx_i2c_driver.o
+                0x00000000       0x84 ./Drivers/Src/stm32f401xx_i2c_driver.o
+ .debug_line    0x00000000      0xd52 ./Drivers/Src/stm32f401xx_i2c_driver.o
+ .debug_str     0x00000000      0xdb5 ./Drivers/Src/stm32f401xx_i2c_driver.o
  .comment       0x00000000       0x44 ./Drivers/Src/stm32f401xx_i2c_driver.o
- .debug_frame   0x00000000      0x2a4 ./Drivers/Src/stm32f401xx_i2c_driver.o
+ .debug_frame   0x00000000      0x2c8 ./Drivers/Src/stm32f401xx_i2c_driver.o
  .ARM.attributes
                 0x00000000       0x34 ./Drivers/Src/stm32f401xx_i2c_driver.o
  .text          0x00000000        0x0 ./Drivers/Src/stm32f401xx_spi_driver.o
@@ -172,7 +174,7 @@ Discarded input sections
  .text.USART_PeripheralControl
                 0x00000000       0xa0 ./Drivers/Src/stm32f401xx_usart_driver.o
  .text.USART_Init
-                0x00000000      0x214 ./Drivers/Src/stm32f401xx_usart_driver.o
+                0x00000000      0x224 ./Drivers/Src/stm32f401xx_usart_driver.o
  .text.USART_DeInit
                 0x00000000       0x94 ./Drivers/Src/stm32f401xx_usart_driver.o
  .text.USART_SendData
@@ -187,16 +189,18 @@ Discarded input sections
                 0x00000000      0x10c ./Drivers/Src/stm32f401xx_usart_driver.o
  .text.USART_IRQPriorityConfig
                 0x00000000       0x50 ./Drivers/Src/stm32f401xx_usart_driver.o
- .debug_info    0x00000000     0x1a06 ./Drivers/Src/stm32f401xx_usart_driver.o
- .debug_abbrev  0x00000000      0x207 ./Drivers/Src/stm32f401xx_usart_driver.o
+ .text.USART_SetBaudRate
+                0x00000000       0xf0 ./Drivers/Src/stm32f401xx_usart_driver.o
+ .debug_info    0x00000000     0x1ab5 ./Drivers/Src/stm32f401xx_usart_driver.o
+ .debug_abbrev  0x00000000      0x263 ./Drivers/Src/stm32f401xx_usart_driver.o
  .debug_aranges
-                0x00000000       0x68 ./Drivers/Src/stm32f401xx_usart_driver.o
+                0x00000000       0x70 ./Drivers/Src/stm32f401xx_usart_driver.o
  .debug_rnglists
-                0x00000000       0x50 ./Drivers/Src/stm32f401xx_usart_driver.o
- .debug_line    0x00000000      0x6c3 ./Drivers/Src/stm32f401xx_usart_driver.o
- .debug_str     0x00000000      0xc9d ./Drivers/Src/stm32f401xx_usart_driver.o
+                0x00000000       0x57 ./Drivers/Src/stm32f401xx_usart_driver.o
+ .debug_line    0x00000000      0x752 ./Drivers/Src/stm32f401xx_usart_driver.o
+ .debug_str     0x00000000      0xcf5 ./Drivers/Src/stm32f401xx_usart_driver.o
  .comment       0x00000000       0x44 ./Drivers/Src/stm32f401xx_usart_driver.o
- .debug_frame   0x00000000      0x1a0 ./Drivers/Src/stm32f401xx_usart_driver.o
+ .debug_frame   0x00000000      0x1c4 ./Drivers/Src/stm32f401xx_usart_driver.o
  .ARM.attributes
                 0x00000000       0x34 ./Drivers/Src/stm32f401xx_usart_driver.o
  .text          0x00000000        0x0 ./Src/002Testapp_SPI_Sl_arduino.o
