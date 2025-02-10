@@ -1568,6 +1568,313 @@ typedef struct{
 
 
 
+/**
+ * @brief ADC Register Definition structure.
+ * 
+ * This structure contains the register configurations for the Analog-to-Digital Converter (ADC) peripheral.
+ */
+typedef struct 
+{
+    /**
+     * @brief ADC status register (ADC_SR).
+     * 
+     * This register contains status flags for the ADC, including analog watchdog, end of conversion, 
+     * injected end of conversion, start of regular conversion, start of injected conversion, and overrun.
+     */
+    struct 
+    {
+        uint32_t AWD            :1;   /**< Analog watchdog flag. */
+        uint32_t EOC            :1;   /**< End of conversion flag. */
+        uint32_t JEOC           :1;   /**< Injected end of conversion flag. */
+        uint32_t JSTRT          :1;   /**< Injected channel start flag. */
+        uint32_t STRT           :1;   /**< Regular channel start flag. */
+        uint32_t OVR            :1;   /**< Overrun flag. */
+        uint32_t res            :26;  /**< Reserved bits. */
+    } ADC_SR_t;
+
+
+
+    /**
+    * @brief ADC control register 1 (ADC_CR1).
+    * 
+    * This register configures various control settings for the ADC, including 
+    * analog watchdog channels, interrupt enables, scan mode, and more.
+    */
+    struct 
+    {
+        uint32_t AWDCH          :5;  /**< Analog watchdog channel select bits. */
+        uint32_t EOCIE          :1;  /**< Interrupt enable for EOC (End of Conversion). */
+        uint32_t AWDIE          :1;  /**< Analog watchdog interrupt enable. */
+        uint32_t JEOCIE         :1;  /**< Interrupt enable for injected channels. */
+        uint32_t SCAN           :1;  /**< Scan mode enable. */
+        uint32_t AWDSGL         :1;  /**< Enable the watchdog on a single channel in scan mode. */
+        uint32_t JAUTO          :1;  /**< Automatic injected group conversion. */
+        uint32_t DISCEN         :1;  /**< Discontinuous mode on regular channels. */
+        uint32_t JDISCEN        :1;  /**< Discontinuous mode on injected channels. */
+        uint32_t DISCNUM        :3;  /**< Discontinuous mode channel count. */
+        uint32_t res            :6;  /**< Reserved bits. */
+        uint32_t JAWDEN         :1;  /**< Analog watchdog enable on injected channels. */
+        uint32_t AWDEN          :1;  /**< Analog watchdog enable on regular channels. */
+        uint32_t res2           :2;  /**< Reserved bits. */
+        uint32_t OVRIE          :1;  /**< Overrun interrupt enable. */
+        uint32_t res3           :5;  /**< Reserved bits. */
+    } ADC_CR1_t;
+
+
+    /**
+     * @brief ADC control register 2 (ADC_CR2).
+     * 
+     * This register configures various control settings for the ADC, including 
+     * enabling the ADC, continuous conversion mode, data alignment, external triggers, 
+     * and more.
+     */
+    struct 
+    {
+        uint32_t ADON           :1;  /**< ADC enable. */
+        uint32_t CONT           :1;  /**< Continuous conversion mode. */
+        uint32_t res            :6;  /**< Reserved bits. */
+        uint32_t DMA            :1;  /**< Direct memory access mode. */
+        uint32_t DDS            :1;  /**< DMA disable selection (single ADC mode). */
+        uint32_t EOCS           :1;  /**< End of conversion selection. */
+        uint32_t ALIGN          :1;  /**< Data alignment. */
+        uint32_t res1           :4;  /**< Reserved bits. */
+        uint32_t JEXTSEL        :4;  /**< External event select for injected group. */
+        uint32_t JEXTEN         :2;  /**< External trigger enable for injected channels. */
+        uint32_t JSWSTART       :1;  /**< Start conversion of injected channels. */
+        uint32_t res2           :1;  /**< Reserved bit. */
+        uint32_t EXTSEL         :4;  /**< External event select for regular group. */
+        uint32_t EXTEN          :2;  /**< External trigger enable for regular channels. */
+        uint32_t SWSTART        :1;  /**< Start conversion of regular channels. */
+        uint32_t res3           :1;  /**< Reserved bit. */
+    } ADC_CR2_t;
+
+    /**
+     * @brief ADC sample time register 1 (ADC_SMPR1).
+     * 
+     * This register configures the sample time for channels 10 to 18 of the ADC.
+     */
+    struct 
+    {
+        uint32_t SMP10           :3; /**< Sample time for channel 10. */
+        uint32_t SMP11           :3; /**< Sample time for channel 11. */
+        uint32_t SMP12           :3; /**< Sample time for channel 12. */
+        uint32_t SMP13           :3; /**< Sample time for channel 13. */
+        uint32_t SMP14           :3; /**< Sample time for channel 14. */
+        uint32_t SMP15           :3; /**< Sample time for channel 15. */
+        uint32_t SMP16           :3; /**< Sample time for channel 16. */
+        uint32_t SMP17           :3; /**< Sample time for channel 17. */
+        uint32_t SMP18           :3; /**< Sample time for channel 18. */
+        uint32_t res             :5; /**< Reserved bits. */
+    } ADC_SMPR1_t;
+
+
+    /**
+     * @brief ADC sample time register 2 (ADC_SMPR2).
+     * 
+     * This register configures the sample time for channels 0 to 9 of the ADC.
+     */
+    struct 
+    {
+        uint32_t SMP0            :3; /**< Sample time for channel 0. */
+        uint32_t SMP1            :3; /**< Sample time for channel 1. */
+        uint32_t SMP2            :3; /**< Sample time for channel 2. */
+        uint32_t SMP3            :3; /**< Sample time for channel 3. */
+        uint32_t SMP4            :3; /**< Sample time for channel 4. */
+        uint32_t SMP5            :3; /**< Sample time for channel 5. */
+        uint32_t SMP6            :3; /**< Sample time for channel 6. */
+        uint32_t SMP7            :3; /**< Sample time for channel 7. */
+        uint32_t SMP8            :3; /**< Sample time for channel 8. */
+        uint32_t SMP9            :3; /**< Sample time for channel 9. */
+        uint32_t res             :2; /**< Reserved bits. */
+    } ADC_SMPR2_t;
+
+
+    /**
+     * @brief ADC injected channel data offset register (ADC_JOFRx).
+     * 
+     * This register contains the offset value for the injected channels.
+     * It is used to subtract a fixed offset from the converted data.
+     */
+    struct 
+    {
+        uint32_t JOFFSETx        :12; /**< Offset for injected channel x. */
+        uint32_t res             :20; /**< Reserved bits. */
+    } ADC_JOFRx_t;
+
+
+    /**
+     * @brief ADC high threshold register (ADC_HTR).
+     * 
+     * This register contains the high threshold value for the analog watchdog.
+     * It is used to set the upper limit for the analog watchdog comparison.
+     */
+    struct 
+    {
+        uint32_t HT              :12; /**< High threshold value. */
+        uint32_t res             :20; /**< Reserved bits. */
+    } ADC_HTR_t;
+
+    /**
+     * @brief ADC low threshold register (ADC_LTR).
+     * 
+     * This register contains the low threshold value for the analog watchdog.
+     * It is used to set the lower limit for the analog watchdog comparison.
+     */
+    struct 
+    {
+        uint32_t LT              :12; /**< Low threshold value. */
+        uint32_t res             :20; /**< Reserved bits. */
+    } ADC_LTR_t;
+
+    /**
+     * @brief ADC regular sequence register 1 (ADC_SQR1).
+     * 
+     * This register configures the sequence of conversions for channels 13 to 16 
+     * in regular group conversions. It also sets the total number of conversions 
+     * in the regular sequence.
+     */
+    struct 
+    {
+        uint32_t SQ13            :5; /**< Conversion sequence for channel 13. */
+        uint32_t SQ14            :5; /**< Conversion sequence for channel 14. */
+        uint32_t SQ15            :5; /**< Conversion sequence for channel 15. */
+        uint32_t SQ16            :5; /**< Conversion sequence for channel 16. */
+        uint32_t L               :4; /**< Total number of conversions in the regular sequence. */
+        uint32_t res             :8; /**< Reserved bits. */
+    } ADC_SQR1_t;
+
+    /**
+     * @brief ADC regular sequence register 2 (ADC_SQR2).
+     * 
+     * This register configures the sequence of conversions for channels 7 to 12 
+     * in regular group conversions.
+     */
+    struct 
+    {
+        uint32_t SQ7             :5; /**< Conversion sequence for channel 7. */
+        uint32_t SQ8             :5; /**< Conversion sequence for channel 8. */
+        uint32_t SQ9             :5; /**< Conversion sequence for channel 9. */
+        uint32_t SQ10            :5; /**< Conversion sequence for channel 10. */
+        uint32_t SQ11            :5; /**< Conversion sequence for channel 11. */
+        uint32_t SQ12            :5; /**< Conversion sequence for channel 12. */
+        uint32_t res             :2; /**< Reserved bits. */
+    } ADC_SQR2_t;
+
+    /**
+     * @brief ADC regular sequence register 3 (ADC_SQR3).
+     * 
+     * This register configures the sequence of conversions for channels 1 to 6 
+     * in regular group conversions.
+     */
+    struct 
+    {
+        uint32_t SQ1             :5; /**< Conversion sequence for channel 1. */
+        uint32_t SQ2             :5; /**< Conversion sequence for channel 2. */
+        uint32_t SQ3             :5; /**< Conversion sequence for channel 3. */
+        uint32_t SQ4             :5; /**< Conversion sequence for channel 4. */
+        uint32_t SQ5             :5; /**< Conversion sequence for channel 5. */
+        uint32_t SQ6             :5; /**< Conversion sequence for channel 6. */
+        uint32_t res             :2; /**< Reserved bits. */
+    } ADC_SQR3_t;
+
+    /**
+     * @brief ADC injected sequence register (ADC_JSQR).
+     * 
+     * This register configures the sequence of conversions for injected channels.
+     * It also sets the total number of conversions in the injected sequence.
+     */
+    struct 
+    {
+        uint32_t JSQ1            :5; /**< Conversion sequence for injected channel 1. */
+        uint32_t JSQ2            :5; /**< Conversion sequence for injected channel 2. */
+        uint32_t JSQ3            :5; /**< Conversion sequence for injected channel 3. */
+        uint32_t JSQ4            :5; /**< Conversion sequence for injected channel 4. */
+        uint32_t JL              :2; /**< Total number of conversions in the injected sequence. */
+        uint32_t res             :10; /**< Reserved bits. */
+    } ADC_JSQR_t;
+
+
+
+    /**
+     * @brief ADC injected data register 1 (ADC_JDR1).
+     * 
+     * This register contains the result of the conversion for the first injected channel.
+     */
+    struct 
+    {
+        uint32_t JDATA            :16; /**< Injected data. */
+        uint32_t res              :16; /**< Reserved bits. */
+    } ADC_JDR1_t;
+
+    /**
+     * @brief ADC injected data register 2 (ADC_JDR2).
+     * 
+     * This register contains the result of the conversion for the second injected channel.
+     */
+    struct 
+    {
+        uint32_t JDATA            :16; /**< Injected data. */
+        uint32_t res              :16; /**< Reserved bits. */
+    } ADC_JDR2_t;
+
+    /**
+     * @brief ADC injected data register 3 (ADC_JDR3).
+     * 
+     * This register contains the result of the conversion for the third injected channel.
+     */
+
+    struct 
+    {
+        uint32_t JDATA            :16; /**< Injected data. */
+        uint32_t res              :16; /**< Reserved bits. */
+    } ADC_JDR3_t;
+
+    /**
+     * @brief ADC injected data register 4 (ADC_JDR4).
+     * 
+     * This register contains the result of the conversion for the fourth injected channel.
+     */
+
+    struct
+    {
+        uint32_t JDATA            :16; /**< Injected data. */
+        uint32_t res              :16; /**< Reserved bits. */
+    } ADC_JDR4_t;
+
+    /**
+     * @brief ADC data register (ADC_DR).
+     * 
+     * This register contains the result of the conversion for the regular channels.
+     */
+    struct 
+    {
+        uint32_t DATA             :16; /**< Regular data. */
+        uint32_t res              :16; /**< Reserved bits. */
+    } ADC_DR_t;
+
+    /**
+     * @brief ADC common control register (ADC_CCR).
+     * 
+     * This register contains common control settings for all ADCs, including 
+     * multi-mode configuration, clock settings, and temperature sensor/VREFINT enable.
+     */
+    struct 
+    {
+        uint32_t MULTI           :5; /**< Multi ADC mode selection. */
+        uint32_t res             :3; /**< Reserved bits. */
+        uint32_t DELAY           :4; /**< Delay between 2 sampling phases. */
+        uint32_t res1            :1; /**< Reserved bit. */
+        uint32_t DDS             :1; /**< DMA disable selection (for multi-ADC mode). */
+        uint32_t res2            :1; /**< Reserved bit. */
+        uint32_t DMA             :2; /**< Direct memory access mode for multi-ADC mode. */
+        uint32_t ADCPRE          :2; /**< ADC prescaler. */
+        uint32_t res3            :4; /**< Reserved bits. */
+        uint32_t VBATE           :1; /**< VBAT enable. */
+        uint32_t TSVREFE         :1; /**< Temperature sensor and VREFINT enable. */
+        uint32_t res4            :7; /**< Reserved bits. */
+    } ADC_CCR_t;
+
+}ADC_RegDef_t;
 
 
 
